@@ -1,167 +1,205 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>CV - Trần Huy Hoàng</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      padding: 20px;
+      font-family: 'Roboto', sans-serif;
+      background: #f0f2f5;
+      color: #333;
     }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 30px;
     }
-
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 25px;
+      border: 4px solid #3498db;
+    }
+    .header .info h1 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+    .header .info p {
+      margin: 4px 0;
+      color: #555;
+    }
     .section {
-      margin-bottom: 40px;
+      margin-top: 30px;
     }
-
+    .section h2 {
+      font-size: 22px;
+      color: #3498db;
+      border-left: 6px solid #3498db;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+    .section p, .section ul {
+      line-height: 1.7;
+    }
     .skills-group {
       margin-bottom: 20px;
     }
-
-    .skill-title {
-      font-size: 18px;
-      margin: 10px 0;
+    .skill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
     }
-
     .stars {
       color: gold;
-      animation: glow 1s infinite alternate;
+      animation: fadeIn 0.5s ease-in;
     }
-
-    .stars i {
-      margin-right: 2px;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 2px yellow; }
-      to   { text-shadow: 0 0 8px yellow; }
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .project {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid white;
-      border-radius: 15px;
-      padding: 20px;
-      transition: transform 0.3s;
-      backdrop-filter: blur(6px);
-    }
-
-    .project:hover {
-      transform: translateY(-5px) scale(1.02);
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .project h3 {
-      margin-top: 0;
-    }
-
-    .tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tool {
-      background: rgba(255, 255, 255, 0.15);
-      padding: 10px 15px;
-      border-radius: 20px;
-      border: 1px solid white;
-      animation: fadeIn 0.5s ease;
-    }
-
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
+      from { opacity: 0; transform: scale(0.8); }
       to { opacity: 1; transform: scale(1); }
     }
+    .projects .card {
+      background: #f9f9f9;
+      border-left: 5px solid #3498db;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .projects .card:hover {
+      transform: translateY(-3px);
+    }
+    .projects .card strong {
+      font-size: 16px;
+    }
+    .contact i {
+      margin-right: 10px;
+      color: #3498db;
+    }
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
 
-    @media (max-width: 600px) {
-      h1, h2 { font-size: 22px; }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header img {
+        margin-bottom: 15px;
+      }
+      .skill {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-
-  <h1>Trần Huy Hoàng - CV</h1>
-
-  <!-- KỸ NĂNG -->
-  <div class="section">
-    <h2>Kỹ năng</h2>
-
-    <div class="skills-group">
-      <h3>🧠 Web</h3>
-      <div class="skill-title">HTML <span class="stars">★★★★★</span></div>
-      <div class="skill-title">CSS <span class="stars">★★★★☆</span></div>
-      <div class="skill-title">JavaScript <span class="stars">★★★☆☆</span></div>
-      <div class="skill-title">PHP <span class="stars">★★★☆☆</span></div>
-    </div>
-
-    <div class="skills-group">
-      <h3>🖥 Ứng dụng</h3>
-      <div class="skill-title">C# <span class="stars">★★★☆☆</span></div>
-      <div class="skill-title">Java <span class="stars">★★★☆☆</span></div>
-      <div class="skill-title">Python <span class="stars">★★★☆☆</span></div>
-    </div>
-
-    <div class="skills-group">
-      <h3>🎨 Đồ họa</h3>
-      <div class="skill-title">Photoshop <span class="stars">★★★☆☆</span></div>
-      <div class="skill-title">Canva <span class="stars">★★★★☆</span></div>
-      <div class="skill-title">CapCut <span class="stars">★★★★☆</span></div>
-    </div>
-  </div>
-
-  <!-- CÔNG CỤ -->
-  <div class="section">
-    <h2>Công cụ sử dụng</h2>
-    <div class="tools">
-      <div class="tool">Visual Studio</div>
-      <div class="tool">VS Code</div>
-      <div class="tool">XAMPP</div>
-      <div class="tool">NetBeans</div>
-      <div class="tool">GitHub</div>
-      <div class="tool">WordPress</div>
-      <div class="tool">Elementor</div>
-    </div>
-  </div>
-
-  <!-- DỰ ÁN -->
-  <div class="section">
-    <h2>Dự án tiêu biểu</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>🛒 Website thương mại điện tử</h3>
-        <p>Vai trò: Full Stack Developer</p>
-        <p>Mô tả: Xây dựng website bán hàng có giỏ hàng, đăng ký đăng nhập, lọc sản phẩm, và thanh toán.</p>
-      </div>
-
-      <div class="project">
-        <h3>📷 Ứng dụng điểm danh bằng FaceID</h3>
-        <p>Ngôn ngữ: Java</p>
-        <p>Mô tả: Ứng dụng sử dụng nhận diện khuôn mặt để điểm danh sinh viên qua webcam.</p>
-      </div>
-
-      <div class="project">
-        <h3>🧼 Ứng dụng xử lý ảnh khử nhiễu</h3>
-        <p>Ngôn ngữ: Python</p>
-        <p>Mô tả: Dùng OpenCV và thuật toán xử lý ảnh để làm mịn ảnh nhiễu và cải thiện chất lượng.</p>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <img src="avatar.jpg" alt="Trần Huy Hoàng">
+      <div class="info">
+        <h1>Trần Huy Hoàng</h1>
+        <p><i class="fas fa-birthday-cake"></i> 21/09/2003</p>
+        <p><i class="fas fa-phone-alt"></i> 0907316417</p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:nhoxhoang3k@gmail.com">nhoxhoang3k@gmail.com</a></p>
       </div>
     </div>
-  </div>
 
+    <!-- Mục tiêu -->
+    <div class="section">
+      <h2>Mục tiêu nghề nghiệp</h2>
+      <p>Là sinh viên mới tốt nghiệp ngành Công nghệ thông tin, tôi mong muốn được làm việc trong môi trường chuyên nghiệp, áp dụng kiến thức đã học vào thực tế và không ngừng phát triển kỹ năng lập trình.</p>
+    </div>
+
+    <!-- Học vấn -->
+    <div class="section">
+      <h2>Trình độ học vấn</h2>
+      <p><strong>Đại học Nam Cần Thơ</strong> – Kỹ sư Công nghệ Thông tin (2021 – 2025)</p>
+    </div>
+
+    <!-- Kỹ năng -->
+    <div class="section">
+      <h2>Kỹ năng</h2>
+      <div class="skills-group">
+        <strong>Web</strong>
+        <div class="skill">HTML/CSS <span class="stars">★★★★★</span></div>
+        <div class="skill">JavaScript <span class="stars">★★★★☆</span></div>
+        <div class="skill">PHP/MySQL <span class="stars">★★★★☆</span></div>
+      </div>
+      <div class="skills-group">
+        <strong>Ứng dụng</strong>
+        <div class="skill">C#, Java <span class="stars">★★★☆☆</span></div>
+        <div class="skill">Python <span class="stars">★★★☆☆</span></div>
+      </div>
+      <div class="skills-group">
+        <strong>Thiết kế</strong>
+        <div class="skill">Photoshop <span class="stars">★★★☆☆</span></div>
+      </div>
+      <div class="skills-group">
+        <strong>Kỹ năng mềm</strong>
+        <p>Giao tiếp, làm việc nhóm, giải quyết vấn đề, tư duy phản biện</p>
+      </div>
+    </div>
+
+    <!-- Dự án -->
+    <div class="section projects">
+      <h2>Dự án</h2>
+      <div class="card">
+        <strong>Website thương mại điện tử thời trang</strong><br>
+        Vai trò: Full Stack<br>
+        Công nghệ: HTML, CSS, JS, PHP, MySQL
+      </div>
+      <div class="card">
+        <strong>Ứng dụng điểm danh và chấm công bằng FaceID</strong><br>
+        Vai trò: Full Stack<br>
+        Công nghệ: Java
+      </div>
+      <div class="card">
+        <strong>Ứng dụng khử nhiễu ảnh</strong><br>
+        Vai trò: Full Stack<br>
+        Công nghệ: Python
+      </div>
+    </div>
+
+    <!-- Chứng chỉ -->
+    <div class="section">
+      <h2>Chứng chỉ</h2>
+      <ul>
+        <li>Tiếng Anh B1</li>
+        <li>Kỹ năng mềm</li>
+        <li>Kỹ năng nghề nghiệp</li>
+      </ul>
+    </div>
+
+    <!-- Sở thích -->
+    <div class="section">
+      <h2>Sở thích</h2>
+      <p>Học hỏi và lập trình trong thời gian rảnh.</p>
+    </div>
+  </div>
 </body>
 </html>
