@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>CV - Trần Huy Hoàng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link Google Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 30px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 20px;
+    }
+    .header img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 25px;
+      border: 4px solid #3498db;
+    }
+    .header .info h1 {
+      font-size: 28px;
+      color: #2c3e50;
+    }
+    .header .info p {
+      margin: 6px 0;
+      color: #555;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    .section h2 {
+      color: #3498db;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .section h2::before {
+      content: '•';
+      color: #3498db;
+      font-size: 24px;
+      position: absolute;
+      left: -20px;
+      top: -2px;
+    }
+    .section ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    .section ul li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .contact i, .skills i {
+      color: #3498db;
+      margin-right: 10px;
+    }
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+    .skills p {
+      margin: 6px 0;
+    }
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .header img {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="avatar.jpg" alt="Trần Huy Hoàng">
+      <div class="info">
+        <h1>Trần Huy Hoàng</h1>
+        <p><i class="fas fa-birthday-cake"></i> 21/09/2003</p>
+        <p><i class="fas fa-phone-alt"></i> 0907316417</p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:nhoxhoang3k@gmail.com">nhoxhoang3k@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Mục tiêu nghề nghiệp</h2>
+      <p>Là sinh viên mới tốt nghiệp ngành Công nghệ thông tin, tôi mong muốn được làm việc trong môi trường chuyên nghiệp, áp dụng kiến thức đã học vào thực tế và không ngừng phát triển kỹ năng lập trình.</p>
+    </div>
+
+    <div class="section">
+      <h2>Trình độ học vấn</h2>
+      <p><strong>Đại học Nam Cần Thơ</strong> – Kỹ sư Công nghệ Thông tin (2021 – 2025)</p>
+    </div>
+
+    <div class="section skills">
+      <h2>Kỹ năng</h2>
+      <p><i class="fas fa-code"></i> <strong>Kỹ năng cứng:</strong> JS, HTML, CSS, C#, Java, Python, PHP, chỉnh sửa ảnh</p>
+      <p><i class="fas fa-tools"></i> <strong>Công cụ:</strong> Apache NetBeans, VSCode, Visual Studio, Photoshop</p>
+      <p><i class="fas fa-user-friends"></i> <strong>Kỹ năng mềm:</strong> Giao tiếp, làm việc nhóm, giải quyết vấn đề, tư duy phản biện</p>
+    </div>
+
+    <div class="section">
+      <h2>Dự án</h2>
+      <ul>
+        <li><strong>Website thương mại điện tử thời trang</strong>  
+          <br>Vai trò: Full Stack  
+          <br>Công nghệ: HTML, CSS, PHP, JS, MySQL
+        </li>
+        <li><strong>Ứng dụng điểm danh và chấm công bằng FaceID</strong>  
+          <br>Vai trò: Full Stack  
+          <br>Công nghệ: Java
+        </li>
+        <li><strong>Ứng dụng khử nhiễu ảnh</strong>  
+          <br>Vai trò: Full Stack  
+          <br>Công nghệ: Python
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Chứng chỉ</h2>
+      <ul>
+        <li>Tiếng Anh B1</li>
+        <li>Kỹ năng mềm</li>
+        <li>Kỹ năng nghề nghiệp</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Sở thích</h2>
+      <p>Học hỏi và lập trình trong thời gian rảnh.</p>
+    </div>
+  </div>
+</body>
+</html>
