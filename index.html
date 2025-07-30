@@ -104,7 +104,7 @@
     <p><i class="fa-solid fa-house-chimney"></i> Hậu Giang</p>
   </div>
 
-  <!-- Các nút liên kết -->
+<!-- Các nút liên kết -->
   <div class="buttons">
     <button class="btn" onclick="alert('Zalo: 0907316417')">
       <i class="fa-brands fa-zalo"></i> Zalo
@@ -125,7 +125,30 @@
     <button class="btn" onclick="alert('Gmail: nhoxhoang3k@gmail.com')">
       <i class="fa-solid fa-envelope"></i> Gmail
     </button>
+
+    <!-- 📌 Nút Tài khoản ngân hàng -->
+    <button class="btn" onclick="showQR()">
+      <i class="fa-solid fa-qrcode"></i> Tài khoản ngân hàng
+    </button>
+
+    <!-- 📞 Nút gọi điện thoại -->
+    <a href="tel:0907316417" class="btn">
+      <i class="fa-solid fa-phone"></i> Gọi: 0907316417
+    </a>
   </div>
 
+  <!-- Ảnh QR Ngân hàng (ẩn ban đầu) -->
+  <div id="qrPopup" style="display:none; margin-top: 20px; animation: fadeIn 0.5s ease;">
+    <img src="bankqr.png" alt="QR Ngân hàng" style="width: 250px; border-radius: 12px; border: 3px solid white;" />
+  </div>
+
+  <script>
+    function showQR() {
+      const popup = document.getElementById('qrPopup');
+      popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+
 </body>
+</html>
 </html>
