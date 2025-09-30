@@ -2002,40 +2002,39 @@
       changeLanguage(savedLang);
     }
 
-    // Typing Animation
-    let typingIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingTimeout;
+// Typing Animation
+let typingIndex = 0; // Dòng khoảng 1962
+let charIndex = 0;
+let isDeleting = false;
+let typingTimeout;
 
-    function startTypingAnimation() {
-      const typingElement = document.getElementById('typingText');
-      const texts = translations[currentLang].typing_texts;
-      const currentText = texts[typingIndex];
-      
-      if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-      }
+function startTypingAnimation() { // Dòng khoảng 1967
+  const typingElement = document.getElementById('typingText');
+  const texts = translations[currentLang].typing_texts;
+  const currentText = texts[typingIndex]; // Dòng 1970, đây là nơi sử dụng typingIndex
+  
+  if (isDeleting) {
+    typingElement.textContent = currentText.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typingElement.textContent = currentText.substring(0, charIndex + 1);
+    charIndex++;
+  }
 
-      let speed = isDeleting ? 50 : 100;
+  let speed = isDeleting ? 50 : 100;
 
-      if (!isDeleting && charIndex === currentText.length) {
-        speed = 2000;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        typingIndex = (typingIndex + 1) % texts.length;
-        speed = 500;
-      }
+  if (!isDeleting && charIndex === currentText.length) {
+    speed = 2000;
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    typingIndex = (typingIndex + 1) % texts.length; // Dòng 1982
+    speed = 500;
+  }
 
-      clearTimeout(typingTimeout);
-      typingTimeout = setTimeout(startTypingAnimation, speed);
-    }
-
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(startTypingAnimation, speed); // Dòng 1986
+}
     // Start typing animation on load
     window.addEventListener('load', () => {
       startTypingAnimation();
