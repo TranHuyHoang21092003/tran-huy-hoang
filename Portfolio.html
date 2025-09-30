@@ -46,7 +46,8 @@
       width: 100%;
       height: 100%;
       background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+                  radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 90%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
       animation: gradientShift 15s ease infinite;
     }
 
@@ -78,58 +79,136 @@
       position: relative;
       z-index: 1;
       min-height: 100vh;
-      padding: 2rem;
     }
 
-    /* Back Button */
-    .back-btn {
+    /* Header */
+    header {
       position: fixed;
-      top: 2rem;
-      left: 2rem;
-      width: 55px;
-      height: 55px;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 1001;
-      text-decoration: none;
       color: white;
-      font-size: 1.3rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+      animation: logoFloat 3s ease-in-out infinite;
     }
 
-    .back-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      transform: translateX(-5px);
-      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.5);
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
-    /* Container */
-    .portfolio-container {
-      max-width: 1400px;
-      margin: 6rem auto 2rem;
+    .logo-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #fff, #a0aec0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--primary);
     }
 
     /* Hero Section */
-    .hero-section {
+    .hero {
+      padding: 10rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+      filter: blur(100px);
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
       text-align: center;
-      margin-bottom: 4rem;
-      animation: fadeIn 1s ease;
+      position: relative;
+      z-index: 1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-section h1 {
-      font-size: 4rem;
+    .hero-content h1 {
+      font-size: 4.5rem;
       font-weight: 900;
       margin-bottom: 1.5rem;
       background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
@@ -175,30 +254,52 @@
       to { left: 100%; }
     }
 
-    /* Filter Buttons */
+    /* Filter Tabs */
     .filter-container {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 4rem;
+      margin: 4rem 0;
       flex-wrap: wrap;
+      padding: 0 2rem;
     }
 
     .filter-btn {
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50px;
       color: rgba(255, 255, 255, 0.8);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: width 0.6s ease, height 0.6s ease;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    .filter-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .filter-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-color: var(--primary);
       transform: translateY(-2px);
     }
@@ -210,14 +311,20 @@
       box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
     }
 
-    /* Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 3rem;
+    /* Projects Container */
+    .projects-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
     }
 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* Project Card */
     .project-card {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
@@ -229,6 +336,7 @@
       transform: translateY(50px);
       animation: slideUp 0.8s ease forwards;
       cursor: pointer;
+      position: relative;
     }
 
     @keyframes slideUp {
@@ -249,29 +357,7 @@
     .project-card:nth-child(5) { animation-delay: 0.5s; }
     .project-card:nth-child(6) { animation-delay: 0.6s; }
 
-    .project-card:hover {
-      transform: translateY(-15px);
-      border-color: var(--primary);
-      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
-    }
-
-    .project-image {
-      width: 100%;
-      height: 250px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .project-image i {
-      font-size: 4rem;
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .project-image::before {
+    .project-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -282,8 +368,36 @@
       transition: left 0.5s ease;
     }
 
-    .project-card:hover .project-image::before {
+    .project-card:hover::before {
       left: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 25px 70px rgba(37, 99, 235, 0.4);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
+    }
+
+    .project-image i {
+      font-size: 5rem;
+      color: rgba(255, 255, 255, 0.3);
+      transition: all 0.5s ease;
+    }
+
+    .project-card:hover .project-image i {
+      transform: scale(1.2) rotate(10deg);
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .project-content {
@@ -294,7 +408,7 @@
       display: flex;
       justify-content: space-between;
       align-items: start;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       gap: 1rem;
     }
 
@@ -306,7 +420,7 @@
     }
 
     .project-category {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.2rem;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -335,7 +449,7 @@
 
     .project-description {
       color: rgba(255, 255, 255, 0.7);
-      line-height: 1.7;
+      line-height: 1.8;
       margin-bottom: 1.5rem;
       font-size: 1.05rem;
     }
@@ -361,15 +475,11 @@
       background: rgba(37, 99, 235, 0.2);
       border-color: var(--primary);
       color: white;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 1rem;
+      transform: translateY(-2px);
     }
 
     .project-link {
-      flex: 1;
+      width: 100%;
       padding: 1rem;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -386,58 +496,78 @@
     }
 
     .project-link:hover {
-      background: rgba(37, 99, 235, 0.2);
-      border-color: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color: transparent;
       transform: translateY(-2px);
-    }
-
-    .project-link i {
-      font-size: 1.1rem;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
     }
 
     /* Stats Section */
     .stats-section {
-      margin-top: 5rem;
-      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 5rem auto;
+      padding: 5rem 2rem;
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 30px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.1), transparent 50%);
+      animation: statsGlow 10s linear infinite;
+    }
+
+    @keyframes statsGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .stats-section h2 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 900;
       margin-bottom: 3rem;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      position: relative;
+      z-index: 1;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     .stat-item {
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
     }
 
     .stat-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.05);
       border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.4);
     }
 
     .stat-number {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 900;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
@@ -450,7 +580,7 @@
       font-size: 1.1rem;
       color: rgba(255, 255, 255, 0.7);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       font-weight: 600;
     }
 
@@ -604,6 +734,13 @@
       align-items: center;
       gap: 0.75rem;
       color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    .features-list li:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
+      transform: translateX(5px);
     }
 
     .features-list li i {
@@ -641,78 +778,32 @@
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      .content-wrapper {
-        padding: 1rem;
-      }
-
-      .portfolio-container {
-        margin: 5rem auto 1rem;
-      }
-
-      .back-btn {
-        width: 50px;
-        height: 50px;
-        top: 1rem;
-        left: 1rem;
-        font-size: 1.1rem;
-      }
-
-      .hero-section h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.2rem;
+    @media (max-width: 968px) {
+      .hero-content h1 {
+        font-size: 3rem;
       }
 
       .projects-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
       }
 
-      .filter-container {
-        gap: 0.5rem;
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
       }
 
       .filter-btn {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      .project-image {
-        height: 200px;
-      }
-
-      .project-content {
-        padding: 1.5rem;
-      }
-
-      .project-title {
-        font-size: 1.3rem;
-      }
-
-      .stats-section {
-        padding: 2rem 1rem;
-      }
-
-      .stats-section h2 {
-        font-size: 2rem;
-      }
-
-      .modal-content {
-        margin: 1rem;
-      }
-
-      .modal-close {
-        top: 1rem;
-        right: 1rem;
-        width: 45px;
-        height: 45px;
-      }
-
-      .modal-image {
-        height: 250px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
       }
 
       .modal-body {
@@ -721,10 +812,6 @@
 
       .modal-title {
         font-size: 1.8rem;
-      }
-
-      .modal-links {
-        flex-direction: column;
       }
     }
   </style>
@@ -735,31 +822,43 @@
   <div class="grid-bg"></div>
 
   <div class="content-wrapper">
-    <!-- Back Button -->
-    <a href="index.html" class="back-btn" title="Quay lại trang chủ">
-      <i class="fas fa-arrow-left"></i>
-    </a>
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">H</div>
+          <span class="logo-text">Hoàng</span>
+        </a>
+        <nav>
+          <a href="index.html">Trang chủ</a>
+          <a href="CV.html">CV</a>
+          <a href="Services.html">Dịch vụ</a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- Portfolio Container -->
-    <div class="portfolio-container">
-      <!-- Hero Section -->
-      <div class="hero-section">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
         <h1>Portfolio</h1>
         <p class="hero-subtitle">Khám phá các dự án tôi đã thực hiện</p>
         <div class="section-underline"></div>
       </div>
+    </section>
 
-      <!-- Filter Buttons -->
-      <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">Tất cả</button>
-        <button class="filter-btn" data-filter="web">Website</button>
-        <button class="filter-btn" data-filter="desktop">Desktop App</button>
-        <button class="filter-btn" data-filter="ai">AI & ML</button>
-      </div>
+    <!-- Filter Buttons -->
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">Tất cả</button>
+      <button class="filter-btn" data-filter="web">Website</button>
+      <button class="filter-btn" data-filter="desktop">Desktop App</button>
+      <button class="filter-btn" data-filter="ai">AI & ML</button>
+    </div>
 
-      <!-- Projects Grid -->
+    <!-- Projects Grid -->
+    <div class="projects-container">
       <div class="projects-grid">
-        <!-- Project 1: E-commerce Website -->
+        <!-- Project 1 -->
         <div class="project-card" data-category="web" onclick="openModal('project1')">
           <div class="project-image">
             <i class="fas fa-shopping-cart"></i>
@@ -778,16 +877,14 @@
               <span class="tech-tag">PHP</span>
               <span class="tech-tag">MySQL</span>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
           </div>
         </div>
 
-        <!-- Project 2: Face Recognition Attendance -->
+        <!-- Project 2 -->
         <div class="project-card" data-category="desktop ai" onclick="openModal('project2')">
           <div class="project-image">
             <i class="fas fa-user-check"></i>
@@ -806,16 +903,14 @@
               <span class="tech-tag">Face Recognition</span>
               <span class="tech-tag">MySQL</span>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
           </div>
         </div>
 
-        <!-- Project 3: Image Denoising -->
+        <!-- Project 3 -->
         <div class="project-card" data-category="ai desktop" onclick="openModal('project3')">
           <div class="project-image">
             <i class="fas fa-image"></i>
@@ -826,6 +921,58 @@
               <span class="project-category ai">AI & ML</span>
             </div>
             <p class="project-description">
+              Ứng dụng xử lý ảnh sử dụng thuật toán AI để loại bỏ nhiễu, cải thiện chất lượng hình ảnh một cách tự động.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">OpenCV</span>
+              <span class="tech-tag">Image Processing</span>
+              <span class="tech-tag">NumPy</span>
+            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="web" onclick="openModal('project4')">
+          <div class="project-image">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Portfolio Website</h3>
+              <span class="project-category web">Website</span>
+            </div>
+            <p class="project-description">
+              Website portfolio cá nhân với thiết kế hiện đại, animations mượt mà và tối ưu trải nghiệm người dùng.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Responsive</span>
+            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="desktop" onclick="openModal('project5')">
+          <div class="project-image">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Ứng dụng Quản lý Công việc</h3>
+              <span class="project-category desktop">Desktop</span>
+            </div>
+            <p class="project-description">
               Ứng dụng desktop quản lý công việc với giao diện trực quan, hỗ trợ làm việc nhóm và đồng bộ dữ liệu.
             </p>
             <div class="project-tech">
@@ -834,16 +981,14 @@
               <span class="tech-tag">WPF</span>
               <span class="tech-tag">SQLite</span>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
           </div>
         </div>
 
-        <!-- Project 6: Chatbot AI -->
+        <!-- Project 6 -->
         <div class="project-card" data-category="web ai" onclick="openModal('project6')">
           <div class="project-image">
             <i class="fas fa-robot"></i>
@@ -862,42 +1007,40 @@
               <span class="tech-tag">TensorFlow</span>
               <span class="tech-tag">Flask</span>
             </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
+            <a href="#" class="project-link" onclick="event.stopPropagation()">
+              <i class="fas fa-eye"></i>
+              <span>Xem chi tiết</span>
+            </a>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Stats Section -->
-      <div class="stats-section">
-        <h2>Thành tựu & Con số</h2>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number" data-count="10">0</div>
-            <div class="stat-label">Dự án hoàn thành</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="5">0</div>
-            <div class="stat-label">Khách hàng hài lòng</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="15">0</div>
-            <div class="stat-label">Công nghệ sử dụng</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="2">0</div>
-            <div class="stat-label">Năm kinh nghiệm</div>
-          </div>
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <h2>Thành tựu & Con số</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-count="10">0</div>
+          <div class="stat-label">Dự án hoàn thành</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="5">0</div>
+          <div class="stat-label">Khách hàng hài lòng</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="15">0</div>
+          <div class="stat-label">Công nghệ sử dụng</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="2">0</div>
+          <div class="stat-label">Năm kinh nghiệm</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Project Modals -->
+  <!-- Project Modal -->
   <div id="projectModal" class="modal" onclick="closeModal(event)">
     <button class="modal-close" onclick="closeModal()">
       <i class="fas fa-times"></i>
@@ -931,7 +1074,7 @@
 
         <div class="modal-links">
           <a href="https://zalo.me/0907316417" target="_blank" class="modal-link">
-            <i class="fab fa-telegram"></i>
+            <i class="fas fa-comment-dots"></i>
             <span>Liên hệ qua Zalo</span>
           </a>
         </div>
@@ -1040,9 +1183,7 @@
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active class from all buttons
         filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
         btn.classList.add('active');
 
         const filter = btn.getAttribute('data-filter');
@@ -1067,24 +1208,20 @@
       const project = projectsData[projectId];
       const modal = document.getElementById('projectModal');
       
-      // Update modal content
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalCategory').textContent = project.category === 'web' ? 'Website' : 
                                                             project.category === 'desktop' ? 'Desktop' : 'AI & ML';
       document.getElementById('modalCategory').className = `project-category ${project.category}`;
       document.getElementById('modalDescription').textContent = project.description;
       
-      // Update icon
       const modalImage = document.getElementById('modalImage');
       modalImage.innerHTML = `<i class="fas ${project.icon}"></i>`;
       
-      // Update features
       const featuresList = document.getElementById('modalFeatures');
       featuresList.innerHTML = project.features.map(feature => 
         `<li><i class="fas fa-check-circle"></i> ${feature}</li>`
       ).join('');
       
-      // Update tech
       const techContainer = document.getElementById('modalTech');
       techContainer.innerHTML = project.tech.map(tech => 
         `<span class="tech-tag">${tech}</span>`
@@ -1101,7 +1238,6 @@
       }
     }
 
-    // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal();
@@ -1157,87 +1293,16 @@
           const rotateX = (y - centerY) / 20;
           const rotateY = (centerX - x) / 20;
           
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
         }
       });
       
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.transform = '';
       });
-    });
-
-    // Parallax effect
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrolled = window.pageYOffset;
-          if (window.innerWidth > 768) {
-            document.querySelector('.animated-bg').style.transform = `translateY(${scrolled * 0.5}px)`;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
     });
 
     console.log('%c🎨 Portfolio Loaded Successfully!', 'color: #2563eb; font-size: 16px; font-weight: bold;');
   </script>
 </body>
-</html> xử lý ảnh sử dụng thuật toán AI để loại bỏ nhiễu, cải thiện chất lượng hình ảnh một cách tự động.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">OpenCV</span>
-              <span class="tech-tag">Image Processing</span>
-              <span class="tech-tag">NumPy</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4: Portfolio Website -->
-        <div class="project-card" data-category="web" onclick="openModal('project4')">
-          <div class="project-image">
-            <i class="fas fa-briefcase"></i>
-          </div>
-          <div class="project-content">
-            <div class="project-header">
-              <h3 class="project-title">Portfolio Website</h3>
-              <span class="project-category web">Website</span>
-            </div>
-            <p class="project-description">
-              Website portfolio cá nhân với thiết kế hiện đại, animations mượt mà và tối ưu trải nghiệm người dùng.
-            </p>
-            <div class="project-tech">
-              <span class="tech-tag">HTML5</span>
-              <span class="tech-tag">CSS3</span>
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Responsive</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="project-link" onclick="event.stopPropagation()">
-                <i class="fas fa-eye"></i>
-                <span>Xem chi tiết</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5: Task Management App -->
-        <div class="project-card" data-category="desktop" onclick="openModal('project5')">
-          <div class="project-image">
-            <i class="fas fa-tasks"></i>
-          </div>
-          <div class="project-content">
-            <div class="project-header">
-              <h3 class="project-title">Ứng dụng Quản lý Công việc</h3>
-              <span class="project-category desktop">Desktop</span>
-            </div>
-            <p class="project-description">
-              Ứng dụng
+</html>
