@@ -1476,7 +1476,7 @@
       margin-bottom: 1.5rem;
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(30, 30, 30, 0.8); /* Màu tối hơn để dễ nhìn */
       color: var(--white);
       font-size: 1rem;
       transition: all 0.3s ease;
@@ -1525,6 +1525,13 @@
       justify-content: center;
       gap: 1rem;
       margin-bottom: 2rem;
+      animation: footerLogoPulse 2s infinite;
+    }
+
+    @keyframes footerLogoPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .footer-links {
@@ -1547,6 +1554,24 @@
       color: var(--primary);
       text-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
       transform: scale(1.1);
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-social a {
+      color: var(--light-text);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--primary);
+      transform: scale(1.2);
     }
 
     .footer-text {
@@ -1572,6 +1597,7 @@
       align-items: center;
       justify-content: center;
       padding: 1rem;
+      overflow-y: auto;
     }
 
     .modal.active {
@@ -1591,6 +1617,8 @@
       animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
       aria-label: "Modal content";
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     @keyframes modalSlideIn {
@@ -1646,6 +1674,22 @@
       margin-bottom: 2rem;
       font-size: 1.1rem;
       line-height: 1.6;
+    }
+
+    .bank-info {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .bank-info p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .transfer-btn {
+      margin-top: 1rem;
+      display: inline-flex;
+      justify-content: center;
     }
 
     .qr-wrapper {
@@ -2215,9 +2259,11 @@
         </button>
         <h3 data-i18n="modal_phone_title">Số điện thoại</h3>
         <p data-i18n="modal_phone_text">Liên hệ với tôi qua số điện thoại dưới đây:</p>
-        <div class="qr-wrapper">
-          <img src="phone-qr.png" alt="Phone QR Code" />
-        </div>
+        <p class="phone-number">0907316417</p>
+        <a href="tel:0907316417" class="btn-primary call-btn">
+          <i class="fas fa-phone"></i>
+          <span data-i18n="call_now">Gọi ngay</span>
+        </a>
       </div>
     </div>
 
@@ -2269,6 +2315,12 @@
           <a href="Portfolio.html">Portfolio</a>
           <a href="CV.html">CV</a>
           <a href="Services.html">Dịch vụ</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://zalo.me/0907316417" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://facebook.com/tranhuyhoang.dev" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/tranhuyhoang.dev" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:tranhuyhoang.dev.ai@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="footer-text" data-i18n="footer_text">
           Tạo ra những giải pháp sáng tạo, hiệu quả và đáng tin cậy.
@@ -2534,3 +2586,4 @@
     </script>
   </body>
 </html>
+</xaiArtifact>
