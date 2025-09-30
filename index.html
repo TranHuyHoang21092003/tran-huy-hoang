@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+viết tiếp <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -2089,8 +2089,440 @@
       </div>
     </section>
 
-    <section id="skills" class="skills">
-      <div class="skills-container">
-        <div class="section-title">
-          <h2 data-i18n="skills_title">Kỹ năng</h2>
-          <div class="section
+ <section id="skills" class="skills">
+  <div class="skills-container">
+    <div class="section-title">
+      <h2 data-i18n="skills_title">Kỹ năng</h2>
+      <div class="section-underline"></div>
+      <p data-i18n="skills_subtitle">Các công nghệ và kỹ năng tôi thành thạo</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <i class="fab fa-html5 skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_html">HTML5</div>
+        <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-css3-alt skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_css">CSS3</div>
+        <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-js skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_js">JavaScript</div>
+        <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-react skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_react">React</div>
+        <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 65%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-node-js skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_nodejs">Node.js</div>
+        <div class="skill-level" data-i18n="skill_level_beginner">Sơ cấp</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 50%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-paint-brush skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_design">Thiết kế giao diện</div>
+        <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-figma skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_figma">Figma</div>
+        <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-database skill-icon"></i>
+        <div class="skill-name" data-i18n="skill_database">Cơ sở dữ liệu</div>
+        <div class="skill-level" data-i18n="skill_level_beginner">Sơ cấp</div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 50%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-container">
+    <div class="section-title">
+      <h2 data-i18n="contact_title">Liên hệ</h2>
+      <div class="section-underline"></div>
+      <p data-i18n="contact_subtitle">Kết nối với tôi qua các nền tảng hoặc gửi tin nhắn trực tiếp</p>
+    </div>
+    <div class="social-grid">
+      <a href="https://zalo.me/0907316417" class="social-card zalo" target="_blank">
+        <div class="social-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3 data-i18n="social_zalo">Zalo</h3>
+        <p>0907316417</p>
+      </a>
+      <a href="https://facebook.com/tranhuyhoang.dev" class="social-card facebook" target="_blank">
+        <div class="social-icon">
+          <i class="fab fa-facebook-f"></i>
+        </div>
+        <h3 data-i18n="social_facebook">Facebook</h3>
+        <p>Trần Huy Hoàng</p>
+      </a>
+      <a href="https://instagram.com/tranhuyhoang.dev" class="social-card instagram" target="_blank">
+        <div class="social-icon">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <h3 data-i18n="social_instagram">Instagram</h3>
+        <p>@tranhuyhoang.dev</p>
+      </a>
+      <a href="mailto:tranhuyhoang.dev.ai@gmail.com" class="social-card gmail">
+        <div class="social-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3 data-i18n="social_gmail">Gmail</h3>
+        <p style="font-size: 0.9rem;">tranhuyhoang.dev.ai@gmail.com</p>
+      </a>
+    </div>
+    <div class="action-buttons">
+      <button class="action-btn phone" data-modal="phoneModal">
+        <i class="fas fa-phone"></i>
+        <span data-i18n="action_phone">Số điện thoại</span>
+      </button>
+      <button class="action-btn bank" data-modal="bankModal">
+        <i class="fas fa-university"></i>
+        <span data-i18n="action_bank">Tài khoản ngân hàng</span>
+      </button>
+    </div>
+    <div class="contact-form">
+      <h3 data-i18n="form_title">Gửi tin nhắn</h3>
+      <input type="text" placeholder="Họ và tên" data-i18n-placeholder="form_name" required />
+      <input type="email" placeholder="Email" data-i18n-placeholder="form_email" required />
+      <textarea placeholder="Tin nhắn của bạn" data-i18n-placeholder="form_message" rows="5" required></textarea>
+      <button type="submit" data-i18n="form_submit">Gửi đi</button>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="phoneModal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="phoneModal">
+      <i class="fas fa-times"></i>
+    </button>
+    <h3 data-i18n="modal_phone_title">Số điện thoại</h3>
+    <p data-i18n="modal_phone_text">Liên hệ với tôi qua số điện thoại dưới đây:</p>
+    <div class="qr-wrapper">
+      <img src="phone-qr.png" alt="Phone QR Code" />
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="bankModal">
+  <div class="modal-content">
+    <button class="modal-close" data-close="bankModal">
+      <i class="fas fa-times"></i>
+    </button>
+    <h3 data-i18n="modal_bank_title">Tài khoản ngân hàng</h3>
+    <p data-i18n="modal_bank_text">Thông tin tài khoản ngân hàng của tôi:</p>
+    <div class="qr-wrapper">
+      <img src="bank-qr.png" alt="Bank QR Code" />
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <div class="logo-icon">H</div>
+      <span class="logo-text">Hoàng</span>
+    </div>
+    <div class="footer-links">
+      <a href="#about" data-i18n="nav_about">Giới thiệu</a>
+      <a href="#skills" data-i18n="nav_skills">Kỹ năng</a>
+      <a href="#contact" data-i18n="nav_contact">Liên hệ</a>
+      <a href="Portfolio.html">Portfolio</a>
+      <a href="CV.html">CV</a>
+      <a href="Services.html">Dịch vụ</a>
+    </div>
+    <div class="footer-text" data-i18n="footer_text">
+      Tạo ra những giải pháp sáng tạo, hiệu quả và đáng tin cậy.
+    </div>
+    <div class="footer-copyright" data-i18n="footer_copyright">
+      &copy; 2025 Trần Huy Hoàng. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 1000);
+  });
+
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    const body = document.body;
+    const currentTheme = body.getAttribute('data-theme') || 'dark';
+    body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+    themeToggle.querySelector('span').classList.toggle('fa-moon');
+    themeToggle.querySelector('span').classList.toggle('fa-sun');
+  });
+
+  // Desktop Mode Toggle
+  const desktopToggle = document.getElementById('desktopToggle');
+  desktopToggle.addEventListener('click', () => {
+    document.body.classList.toggle('desktop-mode');
+  });
+
+  // Language Switcher
+  const langButtons = document.querySelectorAll('.lang-btn');
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      langButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const lang = btn.getAttribute('data-lang');
+      // Implement language switch logic here
+    });
+  });
+
+  // Menu Toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+
+  // Scroll Effects
+  const header = document.getElementById('header');
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+    scrollTop.classList.toggle('show', window.scrollY > 300);
+  });
+
+  scrollTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Reveal Animations
+  const revealElements = document.querySelectorAll('.stat-card, .section-title, .info-card, .skill-item, .social-card');
+  const revealOnScroll = () => {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8) {
+        el.classList.add('reveal');
+      }
+    });
+  };
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+
+  // Typing Effect
+  const typingText = document.getElementById('typingText');
+  const texts = [
+    'Nhà phát triển Web',
+    'Thiết kế giao diện',
+    'Tư duy sáng tạo',
+    'Đam mê công nghệ'
+  ];
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentText = texts[textIndex];
+    if (!isDeleting && charIndex < currentText.length) {
+      typingText.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      setTimeout(type, 100);
+    } else if (isDeleting && charIndex >= 0) {
+      typingText.textContent = currentText.substring(0, charIndex);
+      charIndex--;
+      setTimeout(type, 50);
+    } else {
+      isDeleting = !isDeleting;
+      if (!isDeleting) {
+        textIndex = (textIndex + 1) % texts.length;
+      }
+      setTimeout(type, isDeleting ? 50 : 1000);
+    }
+  }
+  type();
+
+  // Counter Animation
+  const counters = document.querySelectorAll('.stat-number');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-count');
+      const count = +counter.innerText;
+      const speed = 200;
+      const increment = target / speed;
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+
+  // Modal Handling
+  const modalButtons = document.querySelectorAll('[data-modal]');
+  const modals = document.querySelectorAll('.modal');
+  const modalCloses = document.querySelectorAll('.modal-close');
+
+  modalButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modalId = btn.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      modal.classList.add('active');
+    });
+  });
+
+  modalCloses.forEach(close => {
+    close.addEventListener('click', () => {
+      const modalId = close.getAttribute('data-close');
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('active');
+    });
+  });
+
+  modals.forEach(modal => {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  });
+
+  // Lazy Loading Images
+  const lazyImages = document.querySelectorAll('img[data-src]');
+  const loadImages = () => {
+    lazyImages.forEach(img => {
+      if (img.getBoundingClientRect().top < window.innerHeight * 1.2) {
+        img.src = img.getAttribute('data-src');
+        img.classList.add('loaded');
+      }
+    });
+  };
+  window.addEventListener('scroll', loadImages);
+  loadImages();
+
+  // Ripple Effect
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .action-btn, .lang-btn, .theme-toggle, .desktop-toggle, .modal-close');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', e => {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Install Button
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'flex';
+    installBtn.addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(choice => {
+        if (choice.outcome === 'accepted') {
+          installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+      });
+    });
+  });
+
+  // Hero Canvas Animation
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const particles = [];
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.speedX = Math.random() * 2 - 1;
+      this.speedY = Math.random() * 2 - 1;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.size > 0.2) this.size -= 0.05;
+    }
+    draw() {
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    for (let i = 0; i < 100; i++) {
+      particles.push(new Particle());
+    }
+  }
+  initParticles();
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      if (particles[i].size <= 0.2) {
+        particles.splice(i, 1);
+        i--;
+        particles.push(new Particle());
+      }
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  setTimeout(() => {
+    canvas.classList.add('visible');
+    animateParticles();
+  }, 1000);
+</script>
+</body>
+</html>
