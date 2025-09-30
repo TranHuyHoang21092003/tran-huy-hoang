@@ -1,205 +1,950 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>CV - Trần Huy Hoàng</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Fonts + Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trần Huy Hoàng - Curriculum Vitae</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e40af;
+      --accent: #3b82f6;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --light-gray: #f1f5f9;
+      --border: #e2e8f0;
+    }
+
     body {
-      font-family: 'Roboto', sans-serif;
-      background: #f0f2f5;
-      color: #333;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.6;
     }
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+    .cv-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
       overflow: hidden;
-      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.8s ease;
     }
-    .header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 20px;
-      flex-wrap: wrap;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .header img {
-      width: 140px;
-      height: 140px;
+
+    /* Header Section */
+    .cv-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 60px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 50%;
+    }
+
+    .header-content {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar-section {
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .avatar-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      margin-right: 25px;
-      border: 4px solid #3498db;
     }
-    .header .info h1 {
-      font-size: 28px;
-      color: #2c3e50;
+
+    .header-info h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
     }
-    .header .info p {
-      margin: 4px 0;
-      color: #555;
+
+    .job-title {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      opacity: 0.95;
+      font-weight: 400;
     }
-    .section {
-      margin-top: 30px;
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
     }
-    .section h2 {
-      font-size: 22px;
-      color: #3498db;
-      border-left: 6px solid #3498db;
-      padding-left: 10px;
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .contact-item i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      opacity: 0.8;
+    }
+
+    /* Main Content */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+    }
+
+    /* Sidebar */
+    .cv-sidebar {
+      background: var(--light-gray);
+      padding: 50px 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .sidebar-section {
+      margin-bottom: 40px;
+    }
+
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-title i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    /* Skills */
+    .skill-category {
+      margin-bottom: 25px;
+    }
+
+    .skill-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-category-title {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .skill-item {
       margin-bottom: 15px;
     }
-    .section p, .section ul {
-      line-height: 1.7;
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: var(--gray);
     }
-    .skills-group {
-      margin-bottom: 20px;
+
+    .skill-bar {
+      height: 8px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .skill {
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      transition: width 1s ease;
+      animation: fillBar 1.5s ease;
+    }
+
+    @keyframes fillBar {
+      from { width: 0; }
+    }
+
+    /* Certificates */
+    .cert-list {
+      list-style: none;
+    }
+
+    .cert-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-item:last-child {
+      border-bottom: none;
+    }
+
+    .cert-item i {
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    /* Languages */
+    .language-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .stars {
-      color: gold;
-      animation: fadeIn 0.5s ease-in;
+
+    .language-item:last-child {
+      border-bottom: none;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+
+    .language-name {
+      font-weight: 500;
+      color: var(--dark);
     }
-    .projects .card {
-      background: #f9f9f9;
-      border-left: 5px solid #3498db;
+
+    .language-level {
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    .cv-main {
+      padding: 50px;
+    }
+
+    .main-section {
+      margin-bottom: 45px;
+    }
+
+    .main-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .section-title i {
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    /* Objective */
+    .objective-text {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    /* Education */
+    .education-item {
+      display: flex;
+      gap: 20px;
+      padding: 25px;
+      background: var(--light-gray);
+      border-radius: 15px;
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .education-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .education-icon {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .education-content h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .education-details {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .education-period {
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 15px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
       margin-bottom: 15px;
-      padding: 15px 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      flex: 1;
+    }
+
+    .project-role {
+      background: var(--primary);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .project-tech {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      background: var(--light-gray);
+      color: var(--gray);
+      padding: 6px 14px;
       border-radius: 8px;
-      transition: transform 0.3s;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
-    .projects .card:hover {
-      transform: translateY(-3px);
+
+    /* Hobbies */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
     }
-    .projects .card strong {
-      font-size: 16px;
+
+    .hobby-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 20px;
+      background: var(--light-gray);
+      border-radius: 12px;
+      color: var(--gray);
+      transition: all 0.3s ease;
     }
-    .contact i {
-      margin-right: 10px;
-      color: #3498db;
+
+    .hobby-item:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateX(5px);
     }
-    a {
-      color: #3498db;
-      text-decoration: none;
+
+    .hobby-item i {
+      font-size: 1.3rem;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+
+    .hobby-item:hover i {
+      color: white;
+    }
+
+    /* Print Button */
+    .print-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .print-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.6);
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+      .cv-body {
+        grid-template-columns: 1fr;
+      }
+
+      .cv-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
     @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
+      body {
+        padding: 20px 10px;
+      }
+
+      .cv-header {
+        padding: 40px 30px;
+      }
+
+      .header-content {
+        grid-template-columns: 1fr;
         text-align: center;
+        gap: 25px;
       }
-      .header img {
-        margin-bottom: 15px;
+
+      .avatar-wrapper {
+        margin: 0 auto;
       }
-      .skill {
+
+      .contact-bar {
         flex-direction: column;
-        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .header-info h1 {
+        font-size: 2rem;
+      }
+
+      .job-title {
+        font-size: 1.2rem;
+      }
+
+      .cv-sidebar,
+      .cv-main {
+        padding: 30px 25px;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .print-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .cv-container {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .print-btn {
+        display: none;
+      }
+
+      .cv-body {
+        page-break-inside: avoid;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="cv-container">
     <!-- Header -->
-    <div class="header">
-      <img src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng">
-      <div class="info">
-        <h1>Trần Huy Hoàng</h1>
-        <p><i class="fas fa-birthday-cake"></i> 21/09/2003</p>
-        <p><i class="fas fa-phone-alt"></i> 0907316417</p>
-        <p><i class="fas fa-envelope"></i> <a href="mailto:nhoxhoang3k@gmail.com">nhoxhoang3k@gmail.com</a></p>
+    <div class="cv-header">
+      <div class="header-content">
+        <div class="avatar-section">
+          <div class="avatar-wrapper">
+            <img src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng" />
+          </div>
+        </div>
+        <div class="header-info">
+          <h1>Trần Huy Hoàng</h1>
+          <div class="job-title">Full Stack Developer & Creative Designer</div>
+          <div class="contact-bar">
+            <div class="contact-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>21/09/2003</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:0907316417">0907316417</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:tranhuyhoang.dev.ai@gmail.com">tranhuyhoang.dev.ai@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Hậu Giang, Việt Nam</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Mục tiêu -->
-    <div class="section">
-      <h2>Mục tiêu nghề nghiệp</h2>
-      <p>Là sinh viên mới tốt nghiệp ngành Công nghệ thông tin, tôi mong muốn được làm việc trong môi trường chuyên nghiệp, áp dụng kiến thức đã học vào thực tế và không ngừng phát triển kỹ năng lập trình.</p>
-    </div>
+    <!-- Body -->
+    <div class="cv-body">
+      <!-- Sidebar -->
+      <div class="cv-sidebar">
+        <!-- Skills -->
+        <div class="sidebar-section">
+          <h2 class="sidebar-title">
+            <i class="fas fa-code"></i>
+            Kỹ năng
+          </h2>
+          
+          <div class="skill-category">
+            <div class="skill-category-title">Frontend Development</div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>HTML/CSS</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>JavaScript</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
 
-    <!-- Học vấn -->
-    <div class="section">
-      <h2>Trình độ học vấn</h2>
-      <p><strong>Đại học Nam Cần Thơ</strong> – Kỹ sư Công nghệ Thông tin (2021 – 2025)</p>
-    </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Backend Development</div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>PHP/MySQL</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Java</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Python</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
 
-    <!-- Kỹ năng -->
-    <div class="section">
-      <h2>Kỹ năng</h2>
-      <div class="skills-group">
-        <strong>Web</strong>
-        <div class="skill">HTML/CSS <span class="stars">★★★★★</span></div>
-        <div class="skill">JavaScript <span class="stars">★★★★☆</span></div>
-        <div class="skill">PHP/MySQL <span class="stars">★★★★☆</span></div>
-      </div>
-      <div class="skills-group">
-        <strong>Ứng dụng</strong>
-        <div class="skill">C#, Java <span class="stars">★★★☆☆</span></div>
-        <div class="skill">Python <span class="stars">★★★☆☆</span></div>
-      </div>
-      <div class="skills-group">
-        <strong>Thiết kế</strong>
-        <div class="skill">Photoshop <span class="stars">★★★☆☆</span></div>
-      </div>
-      <div class="skills-group">
-        <strong>Kỹ năng mềm</strong>
-        <p>Giao tiếp, làm việc nhóm, giải quyết vấn đề, tư duy phản biện</p>
-      </div>
-    </div>
+          <div class="skill-category">
+            <div class="skill-category-title">Thiết kế & Khác</div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Photoshop</span>
+                <span>65%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 65%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>C#</span>
+                <span>60%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Dự án -->
-    <div class="section projects">
-      <h2>Dự án</h2>
-      <div class="card">
-        <strong>Website thương mại điện tử thời trang</strong><br>
-        Vai trò: Full Stack<br>
-        Công nghệ: HTML, CSS, JS, PHP, MySQL
-      </div>
-      <div class="card">
-        <strong>Ứng dụng điểm danh và chấm công bằng FaceID</strong><br>
-        Vai trò: Full Stack<br>
-        Công nghệ: Java
-      </div>
-      <div class="card">
-        <strong>Ứng dụng khử nhiễu ảnh</strong><br>
-        Vai trò: Full Stack<br>
-        Công nghệ: Python
-      </div>
-    </div>
+        <!-- Languages -->
+        <div class="sidebar-section">
+          <h2 class="sidebar-title">
+            <i class="fas fa-language"></i>
+            Ngôn ngữ
+          </h2>
+          <div class="language-item">
+            <span class="language-name">Tiếng Việt</span>
+            <span class="language-level">Native</span>
+          </div>
+          <div class="language-item">
+            <span class="language-name">Tiếng Anh</span>
+            <span class="language-level">B1</span>
+          </div>
+        </div>
 
-    <!-- Chứng chỉ -->
-    <div class="section">
-      <h2>Chứng chỉ</h2>
-      <ul>
-        <li>Tiếng Anh B1</li>
-        <li>Kỹ năng mềm</li>
-        <li>Kỹ năng nghề nghiệp</li>
-      </ul>
-    </div>
+        <!-- Certificates -->
+        <div class="sidebar-section">
+          <h2 class="sidebar-title">
+            <i class="fas fa-certificate"></i>
+            Chứng chỉ
+          </h2>
+          <ul class="cert-list">
+            <li class="cert-item">
+              <i class="fas fa-award"></i>
+              <span>Chứng chỉ Tiếng Anh B1</span>
+            </li>
+            <li class="cert-item">
+              <i class="fas fa-award"></i>
+              <span>Kỹ năng mềm</span>
+            </li>
+            <li class="cert-item">
+              <i class="fas fa-award"></i>
+              <span>Kỹ năng nghề nghiệp</span>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <!-- Sở thích -->
-    <div class="section">
-      <h2>Sở thích</h2>
-      <p>Học hỏi và lập trình trong thời gian rảnh.</p>
+      <!-- Main Content -->
+      <div class="cv-main">
+        <!-- Objective -->
+        <div class="main-section">
+          <h2 class="section-title">
+            <i class="fas fa-bullseye"></i>
+            Mục tiêu nghề nghiệp
+          </h2>
+          <p class="objective-text">
+            Là kỹ sư Công nghệ thông tin mới tốt nghiệp với nền tảng vững chắc về lập trình và phát triển phần mềm, 
+            tôi mong muốn được làm việc trong môi trường chuyên nghiệp và năng động để áp dụng kiến thức đã học vào 
+            thực tế. Tôi cam kết không ngừng học hỏi, phát triển kỹ năng và đóng góp tích cực vào sự phát triển của 
+            công ty, đồng thời xây dựng sự nghiệp vững chắc trong lĩnh vực công nghệ thông tin.
+          </p>
+        </div>
+
+        <!-- Education -->
+        <div class="main-section">
+          <h2 class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            Học vấn
+          </h2>
+          <div class="education-item">
+            <div class="education-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="education-content">
+              <h3>Kỹ sư Công nghệ Thông tin</h3>
+              <div class="education-details">Đại học Nam Cần Thơ</div>
+              <div class="education-period">2021 - 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="main-section">
+          <h2 class="section-title">
+            <i class="fas fa-project-diagram"></i>
+            Dự án nổi bật
+          </h2>
+          <div class="project-grid">
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Website Thương mại Điện tử Thời trang</h3>
+                <span class="project-role">Full Stack</span>
+              </div>
+              <p style="color: var(--gray); margin-bottom: 15px;">
+                Xây dựng website thương mại điện tử hoàn chỉnh với đầy đủ chức năng giỏ hàng, thanh toán, 
+                quản lý sản phẩm và đơn hàng. Giao diện responsive, thân thiện với người dùng.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Ứng dụng Điểm danh & Chấm công bằng FaceID</h3>
+                <span class="project-role">Full Stack</span>
+              </div>
+              <p style="color: var(--gray); margin-bottom: 15px;">
+                Phát triển hệ thống điểm danh tự động sử dụng công nghệ nhận diện khuôn mặt, 
+                tích hợp quản lý thời gian làm việc và báo cáo chi tiết.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Face Recognition</span>
+                <span class="tech-tag">Database</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">Ứng dụng Khử nhiễu Ảnh</h3>
+                <span class="project-role">Full Stack</span>
+              </div>
+              <p style="color: var(--gray); margin-bottom: 15px;">
+                Xây dựng ứng dụng sử dụng thuật toán xử lý ảnh để loại bỏ nhiễu, 
+                cải thiện chất lượng hình ảnh với giao diện trực quan và dễ sử dụng.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Image Processing</span>
+                <span class="tech-tag">OpenCV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills & Hobbies -->
+        <div class="main-section">
+          <h2 class="section-title">
+            <i class="fas fa-users"></i>
+            Kỹ năng mềm
+          </h2>
+          <div class="hobbies-grid">
+            <div class="hobby-item">
+              <i class="fas fa-comments"></i>
+              <span>Giao tiếp tốt</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-user-friends"></i>
+              <span>Làm việc nhóm</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-lightbulb"></i>
+              <span>Giải quyết vấn đề</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-brain"></i>
+              <span>Tư duy phản biện</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-clock"></i>
+              <span>Quản lý thời gian</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-rocket"></i>
+              <span>Học hỏi nhanh</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="main-section">
+          <h2 class="section-title">
+            <i class="fas fa-heart"></i>
+            Sở thích
+          </h2>
+          <div class="hobbies-grid">
+            <div class="hobby-item">
+              <i class="fas fa-code"></i>
+              <span>Lập trình</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-book-reader"></i>
+              <span>Học công nghệ mới</span>
+            </div>
+            <div class="hobby-item">
+              <i class="fas fa-laptop-code"></i>
+              <span>Phát triển dự án cá nhân</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Print Button -->
+  <button class="print-btn" onclick="window.print()" title="In CV">
+    <i class="fas fa-print"></i>
+  </button>
+
+  <script>
+    // Animate skill bars on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.getAttribute('data-width') || entry.target.style.width;
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.skill-progress').forEach(bar => {
+      observer.observe(bar);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
