@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dịch vụ - Trần Huy Hoàng</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --accent: #ec4899;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    }
+
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    /* Back Button */
+    .back-btn {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      width: 55px;
+      height: 55px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1001;
+      text-decoration: none;
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    .back-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateX(-5px);
+      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.5);
+    }
+
+    /* Container */
+    .services-container {
+      max-width: 1400px;
+      margin: 6rem auto 2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 5rem;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-section h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1rem;
+    }
+
+    .section-underline {
+      width: 120px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      margin: 2rem auto;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-underline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      animation: underlineShine 2s infinite;
+    }
+
+    @keyframes underlineShine {
+      to { left: 100%; }
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 3rem 2.5rem;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px);
+      border-color: var(--primary);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      position: relative;
+      transition: all 0.5s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .service-card:nth-child(1) .service-icon {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.05));
+      color: var(--primary);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .service-card:nth-child(2) .service-icon {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(124, 58, 237, 0.05));
+      color: var(--secondary);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+    }
+
+    .service-card:nth-child(3) .service-icon {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.05));
+      color: var(--accent);
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+    }
+
+    .service-card:nth-child(4) .service-icon {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+      color: var(--success);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    }
+
+    .service-card:nth-child(5) .service-icon {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+      color: var(--warning);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+    }
+
+    .service-card:nth-child(6) .service-icon {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.05));
+      color: #ef4444;
+      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .service-card p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .service-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .service-features li {
+      padding: 0.75rem 0;
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .service-features li i {
+      color: var(--success);
+      font-size: 1.1rem;
+    }
+
+    .order-btn {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .order-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: width 0.6s ease, height 0.6s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .order-btn:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .order-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 50px rgba(37, 99, 235, 0.5);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      margin-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1), transparent);
+    }
+
+    .cta-section h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-btn {
+      padding: 1.5rem 3rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn-primary {
+      background: linear-gradient(135deg, var(--success), #059669);
+      color: white;
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.6);
+    }
+
+    .cta-btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .cta-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: modalFadeIn 0.4s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(40px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 3rem;
+      border-radius: 30px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .modal-close:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: rotate(90deg);
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+    }
+
+    .modal-icon {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, var(--success), #059669);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      margin: 0 auto 2rem;
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .modal-content h3 {
+      font-size: 2.2rem;
+      color: white;
+      margin-bottom: 1rem;
+      font-weight: 900;
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-item-modal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item-modal:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .contact-item-modal:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-item-modal i {
+      font-size: 1.8rem;
+      color: var(--success);
+    }
+
+    .contact-item-modal span {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .contact-item-modal a {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .content-wrapper {
+        padding: 1rem;
+      }
+
+      .services-container {
+        margin: 5rem auto 1rem;
+      }
+
+      .back-btn {
+        width: 50px;
+        height: 50px;
+        top: 1rem;
+        left: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+
+      .cta-section p {
+        font-size: 1.1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+  <div class="grid-bg"></div>
+
+  <div class="content-wrapper">
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="Quay lại trang chủ">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- Services Container -->
+    <div class="services-container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <h1>Dịch vụ của tôi</h1>
+        <p class="hero-subtitle">Giải pháp công nghệ chuyên nghiệp cho mọi nhu cầu</p>
+        <div class="section-underline"></div>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="services-grid">
+        <!-- Website Tĩnh -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-code"></i>
+          </div>
+          <h3>Website Tĩnh</h3>
+          <p>Thiết kế website tĩnh đẹp mắt, tối ưu hiệu suất và SEO, phù hợp cho landing page, portfolio, giới thiệu doanh nghiệp.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Responsive trên mọi thiết bị</li>
+            <li><i class="fas fa-check-circle"></i> Tốc độ tải trang siêu nhanh</li>
+            <li><i class="fas fa-check-circle"></i> SEO-friendly</li>
+            <li><i class="fas fa-check-circle"></i> Thiết kế hiện đại, độc đáo</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('Website Tĩnh')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <!-- Website Động -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Website Động</h3>
+          <p>Phát triển website động với đầy đủ chức năng quản trị, tương tác người dùng, phù hợp cho thương mại điện tử, blog, diễn đàn.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Quản trị nội dung dễ dàng</li>
+            <li><i class="fas fa-check-circle"></i> Tích hợp database</li>
+            <li><i class="fas fa-check-circle"></i> Hệ thống đăng nhập/đăng ký</li>
+            <li><i class="fas fa-check-circle"></i> Bảo mật cao</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('Website Động')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <!-- Ứng dụng Web -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>Ứng dụng Web</h3>
+          <p>Xây dựng ứng dụng web phức tạp với React, Vue hoặc Angular, tích hợp API, real-time features và nhiều tính năng nâng cao.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Single Page Application (SPA)</li>
+            <li><i class="fas fa-check-circle"></i> Progressive Web App (PWA)</li>
+            <li><i class="fas fa-check-circle"></i> Real-time updates</li>
+            <li><i class="fas fa-check-circle"></i> API Integration</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('Ứng dụng Web')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <!-- Ứng dụng Desktop -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <h3>Ứng dụng Desktop</h3>
+          <p>Phát triển ứng dụng desktop đa nền tảng (Windows, macOS, Linux) với giao diện đẹp mắt và hiệu suất cao.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Cross-platform support</li>
+            <li><i class="fas fa-check-circle"></i> Giao diện thân thiện</li>
+            <li><i class="fas fa-check-circle"></i> Hiệu suất tối ưu</li>
+            <li><i class="fas fa-check-circle"></i> Tích hợp database local</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('Ứng dụng Desktop')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <!-- AI & Machine Learning -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI & Machine Learning</h3>
+          <p>Tích hợp AI, xử lý ảnh, nhận diện khuôn mặt, chatbot thông minh và các giải pháp machine learning cho dự án của bạn.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Computer Vision</li>
+            <li><i class="fas fa-check-circle"></i> Natural Language Processing</li>
+            <li><i class="fas fa-check-circle"></i> Predictive Analytics</li>
+            <li><i class="fas fa-check-circle"></i> Chatbot Development</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('AI & Machine Learning')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <!-- Custom Solutions -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Giải pháp tùy chỉnh</h3>
+          <p>Tư vấn và phát triển giải pháp công nghệ tùy chỉnh theo yêu cầu riêng, đáp ứng mọi nhu cầu đặc biệt của dự án.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Tư vấn công nghệ</li>
+            <li><i class="fas fa-check-circle"></i> Phát triển theo yêu cầu</li>
+            <li><i class="fas fa-check-circle"></i> Bảo trì & nâng cấp</li>
+            <li><i class="fas fa-check-circle"></i> Support 24/7</li>
+          </ul>
+          <button class="order-btn" onclick="openModal('Giải pháp tùy chỉnh')">
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h2>Sẵn sàng bắt đầu dự án?</h2>
+        <p>Liên hệ ngay để được tư vấn miễn phí và báo giá chi tiết cho dự án của bạn</p>
+        <div class="cta-buttons">
+          <a href="tel:0907316417" class="cta-btn cta-btn-primary">
+            <i class="fas fa-phone"></i>
+            <span>Gọi ngay: 0907316417</span>
+          </a>
+          <button class="cta-btn cta-btn-secondary" onclick="openModal('Tư vấn miễn phí')">
+            <i class="fab fa-telegram"></i>
+            <span>Nhắn Zalo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="orderModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      <h3>Đặt dịch vụ thành công!</h3>
+      <p id="modalServiceName">Cảm ơn bạn đã quan tâm đến dịch vụ của tôi</p>
+      <div class="contact-info">
+        <div class="contact-item-modal">
+          <i class="fab fa-telegram"></i>
+          <span>Zalo: <a href="https://zalo.me/0907316417" target="_blank">0907316417</a></span>
+        </div>
+        <div class="contact-item-modal">
+          <i class="fas fa-phone"></i>
+          <span><a href="tel:0907316417">0907316417</a></span>
+        </div>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.95rem;">
+        Vui lòng liên hệ qua Zalo hoặc số điện thoại để thảo luận chi tiết về dự án
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Modal functions
+    function openModal(serviceName) {
+      const modal = document.getElementById('orderModal');
+      const serviceText = document.getElementById('modalServiceName');
+      serviceText.textContent = `Bạn đã chọn dịch vụ: ${serviceName}`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (!event || event.target.id === 'orderModal' || event.target.closest('.modal-close')) {
+        document.getElementById('orderModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // 3D card effect
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth > 768) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+        }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+
+    // Parallax effect
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          if (window.innerWidth > 768) {
+            document.querySelector('.animated-bg').style.transform = `translateY(${scrolled * 0.5}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    });
+
+    // Add floating animation to CTA section
+    const ctaSection = document.querySelector('.cta-section');
+    const observerOptions = {
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeIn 1s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    if (ctaSection) {
+      observer.observe(ctaSection);
+    }
+
+    console.log('%c💼 Services Page Loaded!', 'color: #2563eb; font-size: 16px; font-weight: bold;');
+    console.log('%c📞 Contact: 0907316417', 'color: #10b981; font-size: 14px;');
+  </script>
+</body>
+</html>
