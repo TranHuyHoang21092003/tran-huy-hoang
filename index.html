@@ -34,6 +34,17 @@
       --black: #000;
     }
 
+    @media (prefers-color-scheme: light) {
+      :root {
+        --body-bg: #ffffff;
+        --text-color: #1f2937;
+        --light-text: rgba(0, 0, 0, 0.7);
+        --white: #000;
+        --black: #fff;
+        --glass: rgba(0, 0, 0, 0.1);
+      }
+    }
+
     [data-theme="light"] {
       --body-bg: #ffffff;
       --text-color: #1f2937;
@@ -49,6 +60,37 @@
       color: var(--text-color);
       overflow-x: hidden;
       position: relative;
+    }
+
+    /* Enhanced Loading Animation */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: var(--body-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-spinner {
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* Animated Background */
@@ -80,7 +122,7 @@
       50% { opacity: 0.8; transform: scale(1.1); }
     }
 
-    /* Floating Particles */
+    /* Floating Particles with Enhanced Parallax */
     .particle {
       position: absolute;
       border-radius: 50%;
@@ -187,6 +229,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      aria-label: "Switch language";
     }
 
     .lang-btn::before {
@@ -244,6 +287,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      aria-label: "Toggle theme";
     }
 
     .theme-toggle::before {
@@ -271,6 +315,58 @@
     }
 
     .theme-toggle span {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+    }
+
+    /* Desktop Mode Toggle for Mobile */
+    .desktop-toggle {
+      position: fixed;
+      top: 160px;
+      right: 20px;
+      z-index: 1001;
+      width: 50px;
+      height: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      background: var(--glass);
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      aria-label: "Toggle desktop mode";
+    }
+
+    .desktop-toggle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--primary);
+      transition: all 0.5s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .desktop-toggle:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    .desktop-toggle:hover {
+      border-color: var(--primary);
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+    }
+
+    .desktop-toggle span {
       position: relative;
       z-index: 1;
       color: var(--white);
@@ -381,6 +477,7 @@
       transition: all 0.3s ease;
       position: relative;
       padding: 0.5rem 0;
+      aria-label: "Navigation link";
     }
 
     nav a::before {
@@ -412,6 +509,7 @@
       gap: 6px;
       cursor: pointer;
       padding: 10px;
+      aria-label: "Toggle menu";
     }
 
     .menu-toggle span {
@@ -497,7 +595,7 @@
     }
 
     .hero-content h1 {
-      font-size: 4.5rem;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       font-weight: 900;
       margin-bottom: 1.5rem;
       line-height: 1.1;
@@ -582,7 +680,7 @@
     }
 
     .typing-text {
-      font-size: 2rem;
+      font-size: clamp(1.2rem, 3vw, 2rem);
       font-weight: 600;
       background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       -webkit-background-clip: text;
@@ -606,7 +704,7 @@
     }
 
     .hero-content .description {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--light-text);
       margin-bottom: 3rem;
       line-height: 1.8;
@@ -623,7 +721,7 @@
       padding: 1.2rem 2.5rem;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
       text-decoration: none;
       transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       display: inline-flex;
@@ -633,6 +731,7 @@
       overflow: hidden;
       border: none;
       cursor: pointer;
+      aria-label: "Button";
     }
 
     .btn-primary {
@@ -763,6 +862,7 @@
       transition: all 0.5s ease;
       position: relative;
       z-index: 1;
+      loading: "lazy";
     }
 
     .avatar:hover {
@@ -827,7 +927,7 @@
 
     /* Stats Section */
     .stats {
-      padding: 5rem 2rem;
+      padding: 8rem 2rem;
       position: relative;
     }
 
@@ -850,6 +950,7 @@
       opacity: 0;
       transform: translateY(50px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      aria-label: "Stat card";
     }
 
     .stat-card.reveal {
@@ -862,6 +963,16 @@
       background: rgba(255, 255, 255, 0.05);
       border-color: var(--primary);
       box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px var(--primary);
+      }
+      to {
+        box-shadow: 0 0 20px var(--primary);
+      }
     }
 
     .stat-number {
@@ -885,7 +996,7 @@
 
     /* About Section - Enhanced */
     .about {
-      padding: 6rem 2rem;
+      padding: 8rem 2rem;
       position: relative;
       background: rgba(0, 0, 0, 0.3);
     }
@@ -909,7 +1020,7 @@
     }
 
     .section-title h2 {
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 900;
       margin-bottom: 1rem;
       background: linear-gradient(135deg, var(--white) 0%, #a0aec0 100%);
@@ -919,7 +1030,7 @@
     }
 
     .section-title p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       color: rgba(255, 255, 255, 0.6);
       margin-top: 1rem;
     }
@@ -969,6 +1080,7 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      aria-label: "Info card";
     }
 
     .info-card::before {
@@ -995,6 +1107,7 @@
       transform: translateY(-15px) rotateX(5deg) scale(1.02);
       border-color: var(--primary);
       box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+      animation: glow 1s ease-in-out infinite alternate;
     }
 
     .info-icon {
@@ -1067,7 +1180,7 @@
 
     /* Skills Section */
     .skills {
-      padding: 6rem 2rem;
+      padding: 8rem 2rem;
       position: relative;
     }
 
@@ -1094,6 +1207,7 @@
       opacity: 0;
       transform: scale(0.8);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      aria-label: "Skill item";
     }
 
     .skill-item.reveal {
@@ -1105,6 +1219,7 @@
       transform: translateY(-10px) scale(1.05);
       border-color: var(--primary);
       box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+      animation: glow 1s ease-in-out infinite alternate;
     }
 
     .skill-icon {
@@ -1153,7 +1268,7 @@
 
     /* Contact Section - Premium Design */
     .contact {
-      padding: 6rem 2rem;
+      padding: 8rem 2rem;
       background: rgba(0, 0, 0, 0.3);
       position: relative;
     }
@@ -1187,6 +1302,7 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      aria-label: "Social card";
     }
 
     .social-card::before {
@@ -1213,6 +1329,7 @@
       transform: translateY(-15px) scale(1.05);
       border-color: transparent;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: glow 1s ease-in-out infinite alternate;
     }
 
     .social-icon {
@@ -1302,6 +1419,7 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      aria-label: "Action button";
     }
 
     .action-btn::before {
@@ -1353,6 +1471,59 @@
 
     .action-btn:hover {
       transform: translateY(-10px) scale(1.05);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 4rem auto;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      padding: 3rem;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-form h3 {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--white);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
     }
 
     /* Footer - Premium */
@@ -1443,6 +1614,7 @@
       position: relative;
       animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+      aria-label: "Modal content";
     }
 
     @keyframes modalSlideIn {
@@ -1472,6 +1644,7 @@
       transition: all 0.3s ease;
       color: var(--white);
       font-size: 1.2rem;
+      aria-label: "Close modal";
     }
 
     .modal-close:hover {
@@ -1529,6 +1702,7 @@
       border-radius: 20px;
       position: relative;
       z-index: 1;
+      loading: "lazy";
     }
 
     /* PWA Install Button - Floating */
@@ -1551,6 +1725,7 @@
       z-index: 1001;
       animation: installBounce 2s ease-in-out infinite;
       transition: all 0.3s ease;
+      aria-label: "Install app";
     }
 
     @keyframes installBounce {
@@ -1586,6 +1761,7 @@
       z-index: 1001;
       color: var(--white);
       font-size: 1.5rem;
+      aria-label: "Scroll to top";
     }
 
     .scroll-top:hover {
@@ -1598,36 +1774,6 @@
     .scroll-top.show {
       display: flex;
       animation: fadeIn 0.3s ease;
-    }
-
-    /* Loading Animation */
-    .loader {
-      position: fixed;
-      inset: 0;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .loader-spinner {
-      width: 80px;
-      height: 80px;
-      border: 5px solid rgba(255, 255, 255, 0.1);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
     }
 
     /* Animations */
@@ -1715,6 +1861,10 @@
         height: 45px;
         font-size: 1.3rem;
       }
+
+      .desktop-toggle {
+        display: flex;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1784,6 +1934,14 @@
       }
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 <body data-theme="dark">
   <!-- Loading Screen -->
@@ -1803,6 +1961,11 @@
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
       <span class="fas fa-moon"></span>
+    </button>
+
+    <!-- Desktop Mode Toggle -->
+    <button class="desktop-toggle" id="desktopToggle" title="Toggle Desktop Mode" aria-label="Toggle Desktop Mode">
+      <span class="fas fa-desktop"></span>
     </button>
 
     <!-- Language Switcher -->
@@ -1884,7 +2047,7 @@
           <div class="avatar-wrapper">
             <div class="avatar-ring"></div>
             <div class="avatar-ring-2"></div>
-            <img src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng" class="avatar" />
+            <img data-src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng" class="avatar" />
             <div class="skills-float skill-1">💻 Coding</div>
             <div class="skills-float skill-2">🎨 Design</div>
             <div class="skills-float skill-3">🚀 Innovation</div>
@@ -2083,6 +2246,15 @@
             <span data-i18n="btn_transfer">Chuyển khoản</span>
           </button>
         </div>
+
+        <!-- Contact Form -->
+        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <h3>Liên hệ trực tiếp</h3>
+          <input type="text" name="name" placeholder="Tên của bạn" required aria-label="Your name">
+          <input type="email" name="email" placeholder="Email của bạn" required aria-label="Your email">
+          <textarea name="message" placeholder="Tin nhắn" rows="5" required aria-label="Your message"></textarea>
+          <button type="submit">Gửi</button>
+        </form>
       </div>
     </section>
 
@@ -2113,7 +2285,7 @@
         <h3 data-i18n="qr_title">Quét mã QR</h3>
         <p data-i18n="qr_desc">Sử dụng ứng dụng ngân hàng để quét mã QR và chuyển khoản</p>
         <div class="qr-wrapper">
-          <img src="IMG_6758.jpeg" alt="QR Code" />
+          <img data-src="IMG_6758.jpeg" alt="QR Code" />
         </div>
       </div>
     </div>
@@ -2245,43 +2417,6 @@
       changeLanguage(savedLang);
     }
 
-function initTypingAnimation() {
-  let typingIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typingTimeout;
-
-  function startTypingAnimation() {
-    const typingElement = document.getElementById('typingText');
-    const texts = translations[currentLang].typing_texts;
-    const currentText = texts[typingIndex];
-    
-    if (isDeleting) {
-      typingElement.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typingElement.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let speed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentText.length) {
-      speed = 2000;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      typingIndex = (typingIndex + 1) % texts.length;
-      speed = 500;
-    }
-
-    clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(startTypingAnimation, speed);
-  }
-
-  return startTypingAnimation;
-}
-
 const startTypingAnimation = initTypingAnimation();
 
 // Gọi trong window.onload
@@ -2332,11 +2467,26 @@ function changeLanguage(lang) {
 
     themeToggle.addEventListener('click', toggleTheme);
 
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.setAttribute('data-theme', savedTheme);
-    if (savedTheme === 'light') {
-      themeIcon.classList.remove('fa-moon');
-      themeIcon.classList.add('fa-sun');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      body.setAttribute('data-theme', savedTheme);
+      if (savedTheme === 'light') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      toggleTheme();
+    }
+
+    // Desktop Mode Toggle
+    const desktopToggle = document.getElementById('desktopToggle');
+    if (desktopToggle) {
+      desktopToggle.addEventListener('click', () => {
+        body.classList.toggle('desktop-mode');
+      });
     }
 
     // Header scroll effect
@@ -2371,33 +2521,21 @@ function changeLanguage(lang) {
       });
     });
 
-    // Scroll Reveal Animation with reverse
-    let lastScrollTop = 0;
+    // Scroll Reveal Animation (only reveal, no reverse)
     function revealOnScroll() {
       const reveals = document.querySelectorAll('.section-title, .info-card, .social-card, .stat-card, .skill-item');
-      const windowHeight = window.innerHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const isScrollingDown = scrollTop > lastScrollTop;
       
       reveals.forEach((element, index) => {
+        const windowHeight = window.innerHeight;
         const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
         const elementVisible = 150;
         
-        if (isScrollingDown) {
-          if (elementTop < windowHeight - elementVisible) {
-            setTimeout(() => {
-              element.classList.add('reveal');
-            }, index * 100);
-          }
-        } else {
-          if (elementBottom < -elementVisible || elementTop > windowHeight + elementVisible) {
-            element.classList.remove('reveal');
-          }
+        if (elementTop < windowHeight - elementVisible && !element.classList.contains('reveal')) {
+          setTimeout(() => {
+            element.classList.add('reveal');
+          }, index * 100);
         }
       });
-      
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     }
 
     window.addEventListener('scroll', revealOnScroll);
@@ -2439,7 +2577,7 @@ function changeLanguage(lang) {
     animateCounters();
 
     // 3D Card Effect on Mouse Move
-    document.querySelectorAll('.info-card, .social-card').forEach(card => {
+    document.querySelectorAll('.info-card, .social-card, .stat-card, .skill-item').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -2567,10 +2705,10 @@ function changeLanguage(lang) {
       installBtn.style.display = 'none';
     });
 
-    // Service Worker Registration
+    // Service Worker Registration with Offline Support
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
           .then(registration => {
             console.log('SW registered:', registration);
           })
@@ -2599,7 +2737,9 @@ function changeLanguage(lang) {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const img = entry.target;
-            img.src = img.dataset.src;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+            }
             img.classList.add('loaded');
             observer.unobserve(img);
           }
@@ -2611,13 +2751,28 @@ function changeLanguage(lang) {
       });
     }
 
+    // Lazy Load Sections
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Load any dynamic content here if needed
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('lazy-section'); // Add class for initial opacity: 0 if needed
+      sectionObserver.observe(section);
+    });
+
     // Parallax effect for particles
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       const particles = document.querySelectorAll('.particle');
       
       particles.forEach((particle, index) => {
-        const speed = (index + 1) * 0.3;
+        const speed = (index + 1) * 0.5; // Enhanced speed for better parallax
         particle.style.transform = `translateY(${scrolled * speed}px)`;
       });
     });
@@ -2670,7 +2825,7 @@ function changeLanguage(lang) {
 
     // Ripple and Sound on buttons
     const clickSound = document.getElementById('clickSound');
-    document.querySelectorAll('.btn-primary, .btn-secondary, .action-btn, .lang-btn, .theme-toggle, .social-card').forEach(btn => {
+    document.querySelectorAll('.btn-primary, .btn-secondary, .action-btn, .lang-btn, .theme-toggle, .social-card, .desktop-toggle').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -2692,20 +2847,6 @@ function changeLanguage(lang) {
         }
       });
     });
-
-    // Desktop mode on mobile
-    if (window.innerWidth < 968) {
-      const desktopToggle = document.createElement('button');
-      desktopToggle.classList.add('theme-toggle');
-      desktopToggle.style.bottom = '100px';
-      desktopToggle.style.right = '20px';
-      desktopToggle.innerHTML = '<span class="fas fa-desktop"></span>';
-      document.body.appendChild(desktopToggle);
-
-      desktopToggle.addEventListener('click', () => {
-        body.classList.toggle('desktop-mode');
-      });
-    }
 
     console.log('%c🚀 Portfolio Loaded Successfully!', 'color: #2563eb; font-size: 20px; font-weight: bold;');
     console.log('%c💻 Made with ❤️ by Trần Huy Hoàng', 'color: #7c3aed; font-size: 14px;');
