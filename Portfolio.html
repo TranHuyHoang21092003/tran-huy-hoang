@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Game - Trần Huy Hoàng</title>
+  <title>Portfolio - Trần Huy Hoàng</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
@@ -17,7 +17,8 @@
       --secondary: #7c3aed;
       --accent: #ec4899;
       --success: #10b981;
-      --warning: #f59e0b;
+      --dark: #0a0a0a;
+      --glass: rgba(255, 255, 255, 0.05);
     }
 
     body {
@@ -140,6 +141,7 @@
     nav {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
 
     nav a {
@@ -173,23 +175,55 @@
       color: var(--primary);
     }
 
-    /* Game Container */
-    .game-section {
+    .back-btn {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.6);
+    }
+
+    .portfolio-section {
       padding: 10rem 2rem 5rem;
       min-height: 100vh;
     }
 
-    .game-container {
+    .portfolio-container {
       max-width: 1400px;
       margin: 0 auto;
     }
 
-    .game-header {
+    .portfolio-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
+      animation: fadeInDown 1s ease;
     }
 
-    .game-title {
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .portfolio-title {
       font-size: 4rem;
       font-weight: 900;
       margin-bottom: 1rem;
@@ -205,7 +239,7 @@
       50% { transform: translateY(-10px); }
     }
 
-    .game-subtitle {
+    .portfolio-subtitle {
       font-size: 1.3rem;
       color: rgba(255, 255, 255, 0.7);
       margin-bottom: 1rem;
@@ -236,61 +270,51 @@
       to { left: 100%; }
     }
 
-    /* Game Stats */
-    .game-stats {
+    .filter-tabs {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1rem;
       margin-bottom: 3rem;
       flex-wrap: wrap;
     }
 
-    .stat-box {
-      background: rgba(255, 255, 255, 0.05);
+    .filter-btn {
+      padding: 0.75rem 2rem;
+      background: var(--glass);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1.5rem 2.5rem;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .stat-label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 900;
+    .filter-btn:hover,
+    .filter-btn.active {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
     }
 
-    /* Game Board */
-    .game-board {
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2.5rem;
       margin-bottom: 3rem;
     }
 
     .project-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: var(--glass);
       backdrop-filter: blur(20px);
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 25px;
-      padding: 2rem;
+      overflow: hidden;
       cursor: pointer;
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: relative;
-      overflow: hidden;
-      transform-style: preserve-3d;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
 
     .project-card::before {
@@ -308,66 +332,50 @@
       left: 100%;
     }
 
-    .project-card.locked {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .project-card.unlocked {
-      border-color: var(--success);
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
-    }
-
-    .project-card.active {
+    .project-card:hover {
+      transform: translateY(-15px);
       border-color: var(--primary);
-      transform: translateY(-10px) scale(1.05);
       box-shadow: 0 20px 60px rgba(37, 99, 235, 0.5);
     }
 
-    .card-lock {
+    .card-banner {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-banner::after {
+      content: '';
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
-      transition: all 0.3s ease;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
     }
 
-    .project-card.locked .card-lock {
-      color: rgba(255, 255, 255, 0.3);
+    .card-body {
+      padding: 2rem;
     }
 
-    .project-card.unlocked .card-lock {
-      color: var(--success);
-      animation: unlockBounce 0.5s ease;
-    }
-
-    @keyframes unlockBounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3) rotate(10deg); }
-    }
-
-    .card-icon {
-      font-size: 4rem;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      filter: grayscale(1);
-      transition: all 0.5s ease;
-    }
-
-    .project-card.unlocked .card-icon {
-      filter: grayscale(0);
-      animation: iconPulse 2s ease infinite;
-    }
-
-    @keyframes iconPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+    .card-category {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
     .card-title {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      text-align: center;
       margin-bottom: 1rem;
       color: white;
     }
@@ -375,192 +383,53 @@
     .card-description {
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.7);
-      text-align: center;
       line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
 
-    .card-progress {
-      margin-top: 1.5rem;
-      text-align: center;
+    .card-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .progress-bar {
-      width: 100%;
-      height: 8px;
+    .tech-badge {
+      padding: 0.4rem 0.9rem;
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 10px;
-      transition: width 0.5s ease;
-      box-shadow: 0 0 10px var(--primary);
-    }
-
-    .progress-text {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Challenge Modal */
-    .challenge-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(20px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .challenge-modal.active {
+    .card-footer {
       display: flex;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .challenge-content {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(40px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      max-width: 700px;
-      width: 100%;
-      padding: 3rem;
-      position: relative;
-      animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    }
-
-    @keyframes modalSlideIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8) translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    .challenge-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: white;
-      font-size: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .challenge-close:hover {
-      background: var(--primary);
-      transform: rotate(90deg);
-    }
-
-    .challenge-title {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 1rem;
+    .view-btn {
+      padding: 0.6rem 1.5rem;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .challenge-question {
-      font-size: 1.3rem;
+      border: none;
+      border-radius: 25px;
       color: white;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    .challenge-options {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .option-btn {
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      color: white;
-      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .option-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--primary);
-      transform: translateX(10px);
+    .view-btn:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
     }
 
-    .option-btn.correct {
-      background: rgba(16, 185, 129, 0.2);
-      border-color: var(--success);
-      animation: correctAnswer 0.5s ease;
-    }
-
-    .option-btn.wrong {
-      background: rgba(239, 68, 68, 0.2);
-      border-color: #ef4444;
-      animation: wrongAnswer 0.5s ease;
-    }
-
-    @keyframes correctAnswer {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    @keyframes wrongAnswer {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-
-    .challenge-result {
-      text-align: center;
-      font-size: 1.2rem;
-      padding: 1rem;
-      border-radius: 15px;
-      margin-top: 1rem;
-    }
-
-    .challenge-result.success {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid var(--success);
-      color: var(--success);
-    }
-
-    .challenge-result.error {
-      background: rgba(239, 68, 68, 0.2);
-      border: 1px solid #ef4444;
-      color: #ef4444;
-    }
-
-    /* Project Detail Modal */
     .detail-modal {
       display: none;
       position: fixed;
@@ -579,10 +448,15 @@
       animation: fadeIn 0.4s ease;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .detail-content {
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--glass);
       backdrop-filter: blur(40px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: 30px;
       max-width: 900px;
       width: 100%;
@@ -590,17 +464,54 @@
       animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       max-height: 90vh;
       overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .detail-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(236, 72, 153, 0.8);
+      border: 2px solid white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+      font-size: 1.2rem;
+      z-index: 10;
+    }
+
+    .detail-close:hover {
+      background: var(--accent);
+      transform: rotate(90deg) scale(1.1);
     }
 
     .detail-image {
       width: 100%;
       height: 300px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(124, 58, 237, 0.2));
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.3));
       border-radius: 30px 30px 0 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 6rem;
+      font-size: 8rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     }
 
     .detail-body {
@@ -643,7 +554,7 @@
 
     .features-list li {
       padding: 1rem;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
@@ -659,50 +570,44 @@
     }
 
     .tech-tag {
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      padding: 0.6rem 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      font-size: 1rem;
+      color: white;
     }
 
-    /* Responsive */
     @media (max-width: 968px) {
-      .game-board {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .game-title {
+      .portfolio-title {
         font-size: 3rem;
       }
 
-      nav {
+      nav a:not(.back-btn) {
         display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
       }
     }
 
     @media (max-width: 640px) {
-      .game-board {
-        grid-template-columns: 1fr;
-      }
-
-      .game-title {
+      .portfolio-title {
         font-size: 2.5rem;
       }
 
-      .game-stats {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .challenge-content,
-      .detail-content {
-        padding: 2rem 1.5rem;
+      .projects-grid {
+        grid-template-columns: 1fr;
       }
 
       .detail-body {
         padding: 2rem 1.5rem;
+      }
+
+      .features-list {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -722,55 +627,37 @@
           <a href="index.html">Trang chủ</a>
           <a href="CV.html">CV</a>
           <a href="Services.html">Dịch vụ</a>
+          <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Quay lại</span>
+          </a>
         </nav>
       </div>
     </header>
 
-    <section class="game-section">
-      <div class="game-container">
-        <div class="game-header">
-          <h1 class="game-title">🎮 Portfolio Quest</h1>
-          <p class="game-subtitle">Mở khóa các dự án bằng cách trả lời câu hỏi!</p>
+    <section class="portfolio-section">
+      <div class="portfolio-container">
+        <div class="portfolio-header">
+          <h1 class="portfolio-title">Portfolio Dự Án</h1>
+          <p class="portfolio-subtitle">Khám phá các dự án tôi đã thực hiện</p>
           <div class="section-underline"></div>
         </div>
 
-        <div class="game-stats">
-          <div class="stat-box">
-            <div class="stat-label">Điểm số</div>
-            <div class="stat-value" id="score">0</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Đã mở khóa</div>
-            <div class="stat-value" id="unlocked">0/6</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Combo</div>
-            <div class="stat-value" id="combo">0x</div>
-          </div>
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">Tất cả</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="app">App</button>
+          <button class="filter-btn" data-filter="ai">AI/ML</button>
         </div>
 
-        <div class="game-board" id="gameBoard"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
       </div>
     </section>
   </div>
 
-  <!-- Challenge Modal -->
-  <div id="challengeModal" class="challenge-modal">
-    <div class="challenge-content">
-      <button class="challenge-close" onclick="closeChallenge()">
-        <i class="fas fa-times"></i>
-      </button>
-      <h2 class="challenge-title" id="challengeTitle">Thử thách</h2>
-      <p class="challenge-question" id="challengeQuestion"></p>
-      <div class="challenge-options" id="challengeOptions"></div>
-      <div class="challenge-result" id="challengeResult"></div>
-    </div>
-  </div>
-
-  <!-- Detail Modal -->
   <div id="detailModal" class="detail-modal">
     <div class="detail-content">
-      <button class="challenge-close" onclick="closeDetail()">
+      <button class="detail-close" onclick="closeDetail()">
         <i class="fas fa-times"></i>
       </button>
       <div class="detail-image" id="detailIcon"></div>
@@ -795,10 +682,10 @@
         id: 1,
         title: 'Website Thương mại',
         icon: '🛒',
-        description: 'Website bán hàng với đầy đủ tính năng giỏ hàng, thanh toán',
-        question: 'Công nghệ nào KHÔNG được sử dụng trong website thương mại điển hình?',
-        options: ['HTML/CSS', 'JavaScript', 'Python', 'MySQL'],
-        correct: 2,
+        category: 'web',
+        categoryName: 'Web Development',
+        description: 'Website bán hàng với đầy đủ tính năng giỏ hàng, thanh toán online và quản lý sản phẩm thông minh.',
+        fullDescription: 'Website thương mại điện tử thời trang với đầy đủ chức năng mua sắm trực tuyến. Hệ thống được xây dựng với giao diện hiện đại, tối ưu trải nghiệm người dùng và bảo mật cao.',
         features: [
           'Giao diện responsive trên mọi thiết bị',
           'Hệ thống giỏ hàng thông minh',
@@ -806,50 +693,16 @@
           'Quản lý sản phẩm và kho hàng'
         ],
         tech: ['HTML/CSS', 'JavaScript', 'PHP', 'MySQL'],
-        fullDescription: 'Website thương mại điện tử thời trang với đầy đủ chức năng mua sắm trực tuyến. Hệ thống được xây dựng với giao diện hiện đại, tối ưu trải nghiệm người dùng và bảo mật cao.'
+        date: '2024'
       },
       {
         id: 2,
-        title: 'App Điểm danh AI',
-        icon: '👤',
-        description: 'Ứng dụng nhận diện khuôn mặt điểm danh tự động',
-        question: 'Công nghệ AI nào được sử dụng để nhận diện khuôn mặt?',
-        options: ['Blockchain', 'Face Recognition', 'VR Technology', 'Cloud Storage'],
-        correct: 1,
-        features: [
-          'Nhận diện khuôn mặt chính xác cao',
-          'Chống gian lận với ảnh/video',
-          'Quản lý thời gian làm việc',
-          'Báo cáo và thống kê chi tiết'
-        ],
-        tech: ['Java', 'OpenCV', 'Face Recognition', 'MySQL'],
-        fullDescription: 'Hệ thống điểm danh tự động sử dụng công nghệ nhận diện khuôn mặt AI. Ứng dụng giúp quản lý chấm công hiệu quả, chính xác và tiết kiệm thời gian.'
-      },
-      {
-        id: 3,
-        title: 'App Khử nhiễu Ảnh',
-        icon: '🖼️',
-        description: 'Xử lý ảnh bằng AI loại bỏ nhiễu tự động',
-        question: 'Thư viện nào thường được dùng để xử lý ảnh?',
-        options: ['React', 'OpenCV', 'jQuery', 'Bootstrap'],
-        correct: 1,
-        features: [
-          'Khử nhiễu tự động bằng AI',
-          'Hỗ trợ nhiều định dạng ảnh',
-          'Xử lý hàng loạt',
-          'Preview trước khi lưu'
-        ],
-        tech: ['Python', 'OpenCV', 'NumPy', 'PIL'],
-        fullDescription: 'Ứng dụng xử lý ảnh thông minh sử dụng thuật toán AI để loại bỏ nhiễu và cải thiện chất lượng hình ảnh. Hỗ trợ nhiều loại nhiễu khác nhau.'
-      },
-      {
-        id: 4,
         title: 'Portfolio Website',
         icon: '💼',
-        description: 'Website giới thiệu cá nhân với thiết kế hiện đại',
-        question: 'Đâu là yếu tố quan trọng nhất của Portfolio Website?',
-        options: ['Database lớn', 'Giao diện đẹp', 'Nhiều tính năng', 'Load nhanh'],
-        correct: 1,
+        category: 'web',
+        categoryName: 'Web Design',
+        description: 'Website giới thiệu cá nhân với thiết kế hiện đại, animations mượt mà và tối ưu SEO.',
+        fullDescription: 'Website portfolio cá nhân với thiết kế hiện đại, sử dụng các hiệu ứng animation mượt mà. Tối ưu SEO và performance để đảm bảo trải nghiệm người dùng tốt nhất.',
         features: [
           'Thiết kế hiện đại, sáng tạo',
           'Animations mượt mà',
@@ -857,16 +710,33 @@
           'Tốc độ tải trang cực nhanh'
         ],
         tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
-        fullDescription: 'Website portfolio cá nhân với thiết kế hiện đại, sử dụng các hiệu ứng animation mượt mà. Tối ưu SEO và performance để đảm bảo trải nghiệm người dùng tốt nhất.'
+        date: '2024'
       },
       {
-        id: 5,
+        id: 3,
+        title: 'App Điểm danh AI',
+        icon: '👤',
+        category: 'ai',
+        categoryName: 'AI/Machine Learning',
+        description: 'Ứng dụng nhận diện khuôn mặt điểm danh tự động với độ chính xác cao và chống gian lận.',
+        fullDescription: 'Hệ thống điểm danh tự động sử dụng công nghệ nhận diện khuôn mặt AI. Ứng dụng giúp quản lý chấm công hiệu quả, chính xác và tiết kiệm thời gian.',
+        features: [
+          'Nhận diện khuôn mặt chính xác cao',
+          'Chống gian lận với ảnh/video',
+          'Quản lý thời gian làm việc',
+          'Báo cáo và thống kê chi tiết'
+        ],
+        tech: ['Java', 'OpenCV', 'Face Recognition', 'MySQL'],
+        date: '2024'
+      },
+      {
+        id: 4,
         title: 'App Quản lý Task',
         icon: '✅',
-        description: 'Ứng dụng desktop quản lý công việc nhóm',
-        question: 'Ngôn ngữ nào thường được dùng cho Desktop App trên Windows?',
-        options: ['Swift', 'C#', 'Ruby', 'Kotlin'],
-        correct: 1,
+        category: 'app',
+        categoryName: 'Desktop Application',
+        description: 'Ứng dụng desktop quản lý công việc nhóm với theo dõi tiến độ real-time.',
+        fullDescription: 'Ứng dụng desktop quản lý công việc và dự án với giao diện trực quan. Hỗ trợ làm việc nhóm, phân công nhiệm vụ và theo dõi tiến độ.',
         features: [
           'Quản lý tasks và projects',
           'Phân công công việc cho team',
@@ -874,16 +744,33 @@
           'Báo cáo và thống kê'
         ],
         tech: ['C#', '.NET', 'WPF', 'SQLite'],
-        fullDescription: 'Ứng dụng desktop quản lý công việc và dự án với giao diện trực quan. Hỗ trợ làm việc nhóm, phân công nhiệm vụ và theo dõi tiến độ.'
+        date: '2024'
+      },
+      {
+        id: 5,
+        title: 'App Khử nhiễu Ảnh',
+        icon: '🖼️',
+        category: 'ai',
+        categoryName: 'Image Processing',
+        description: 'Xử lý ảnh bằng AI loại bỏ nhiễu tự động với nhiều thuật toán tiên tiến.',
+        fullDescription: 'Ứng dụng xử lý ảnh thông minh sử dụng thuật toán AI để loại bỏ nhiễu và cải thiện chất lượng hình ảnh. Hỗ trợ nhiều loại nhiễu khác nhau.',
+        features: [
+          'Khử nhiễu tự động bằng AI',
+          'Hỗ trợ nhiều định dạng ảnh',
+          'Xử lý hàng loạt',
+          'Preview trước khi lưu'
+        ],
+        tech: ['Python', 'OpenCV', 'NumPy', 'PIL'],
+        date: '2024'
       },
       {
         id: 6,
         title: 'Chatbot AI',
         icon: '🤖',
-        description: 'Bot tư vấn thông minh hiểu ngữ cảnh',
-        question: 'Công nghệ nào giúp Chatbot hiểu ngôn ngữ tự nhiên?',
-        options: ['CSS Framework', 'NLP', 'SQL', 'Git'],
-        correct: 1,
+        category: 'ai',
+        categoryName: 'Natural Language Processing',
+        description: 'Bot tư vấn thông minh hiểu ngữ cảnh với Natural Language Processing.',
+        fullDescription: 'Chatbot tích hợp AI để tư vấn khách hàng tự động 24/7. Sử dụng Natural Language Processing để hiểu ngữ cảnh và trả lời chính xác.',
         features: [
           'Hiểu ngữ cảnh và ý định người dùng',
           'Trả lời tự động thông minh',
@@ -891,219 +778,123 @@
           'Hỗ trợ đa ngôn ngữ'
         ],
         tech: ['Python', 'NLP', 'TensorFlow', 'Flask'],
-        fullDescription: 'Chatbot tích hợp AI để tư vấn khách hàng tự động 24/7. Sử dụng Natural Language Processing để hiểu ngữ cảnh và trả lời chính xác.'
+        date: '2024'
       }
     ];
 
-    let gameState = {
-      score: 0,
-      unlocked: 0,
-      combo: 0,
-      unlockedProjects: []
-    };
+    function renderProjects(filter = 'all') {
+      const grid = document.getElementById('projectsGrid');
+      const filteredProjects = filter === 'all' 
+        ? projects 
+        : projects.filter(p => p.category === filter);
 
-    function initGame() {
-      const board = document.getElementById('gameBoard');
-      board.innerHTML = '';
-      
-      projects.forEach((project, index) => {
-        const card = document.createElement('div');
-        card.className = 'project-card locked';
-        card.innerHTML = `
-          <i class="fas fa-lock card-lock"></i>
-          <div class="card-icon">${project.icon}</div>
-          <h3 class="card-title">${project.title}</h3>
-          <p class="card-description">${project.description}</p>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 0%"></div>
-            </div>
-            <div class="progress-text">Nhấn để mở khóa</div>
+      grid.innerHTML = filteredProjects.map(project => `
+        <div class="project-card" onclick="showDetail(${project.id})">
+          <div class="card-banner">
+            ${project.icon}
           </div>
-        `;
-        
-        card.addEventListener('click', () => {
-          if (!gameState.unlockedProjects.includes(project.id)) {
-            openChallenge(project);
-          } else {
-            showProjectDetail(project);
-          }
-        });
-        
-        board.appendChild(card);
-      });
+          <div class="card-body">
+            <span class="card-category">${project.categoryName}</span>
+            <h3 class="card-title">${project.title}</h3>
+            <p class="card-description">${project.description}</p>
+            <div class="card-tech">
+              ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+            </div>
+            <div class="card-footer">
+              <span style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">${project.date}</span>
+              <button class="view-btn">
+                <span>Xem chi tiết</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
 
-    function openChallenge(project) {
-      const modal = document.getElementById('challengeModal');
-      const title = document.getElementById('challengeTitle');
-      const question = document.getElementById('challengeQuestion');
-      const options = document.getElementById('challengeOptions');
-      const result = document.getElementById('challengeResult');
-      
-      title.textContent = `Mở khóa: ${project.title}`;
-      question.textContent = project.question;
-      result.style.display = 'none';
-      
-      options.innerHTML = '';
-      project.options.forEach((option, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = option;
-        btn.onclick = () => checkAnswer(index, project, btn);
-        options.appendChild(btn);
-      });
-      
-      modal.classList.add('active');
-    }
+    function showDetail(id) {
+      const project = projects.find(p => p.id === id);
+      if (!project) return;
 
-    function checkAnswer(selected, project, btn) {
-      const options = document.querySelectorAll('.option-btn');
-      const result = document.getElementById('challengeResult');
-      
-      options.forEach(opt => opt.style.pointerEvents = 'none');
-      
-      if (selected === project.correct) {
-        btn.classList.add('correct');
-        result.className = 'challenge-result success';
-        result.innerHTML = '<i class="fas fa-check-circle"></i> Chính xác! Dự án đã được mở khóa!';
-        result.style.display = 'block';
-        
-        gameState.score += 100 * (gameState.combo + 1);
-        gameState.combo++;
-        gameState.unlocked++;
-        gameState.unlockedProjects.push(project.id);
-        
-        updateStats();
-        unlockProject(project.id);
-        
-        setTimeout(() => {
-          closeChallenge();
-          showProjectDetail(project);
-        }, 2000);
-      } else {
-        btn.classList.add('wrong');
-        options[project.correct].classList.add('correct');
-        result.className = 'challenge-result error';
-        result.innerHTML = '<i class="fas fa-times-circle"></i> Sai rồi! Thử lại nhé!';
-        result.style.display = 'block';
-        
-        gameState.combo = 0;
-        updateStats();
-        
-        setTimeout(() => {
-          closeChallenge();
-        }, 2000);
-      }
-    }
-
-    function unlockProject(projectId) {
-      const cards = document.querySelectorAll('.project-card');
-      const card = cards[projectId - 1];
-      
-      card.classList.remove('locked');
-      card.classList.add('unlocked');
-      
-      const lock = card.querySelector('.card-lock');
-      lock.className = 'fas fa-lock-open card-lock';
-      
-      const progressFill = card.querySelector('.progress-fill');
-      const progressText = card.querySelector('.progress-text');
-      
-      progressFill.style.width = '100%';
-      progressText.textContent = 'Đã mở khóa - Nhấn để xem';
-      
-      confetti(card);
-    }
-
-    function confetti(element) {
-      const colors = ['#2563eb', '#7c3aed', '#ec4899', '#10b981'];
-      const rect = element.getBoundingClientRect();
-      
-      for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.left = rect.left + rect.width / 2 + 'px';
-        particle.style.top = rect.top + rect.height / 2 + 'px';
-        particle.style.width = '10px';
-        particle.style.height = '10px';
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.borderRadius = '50%';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '10000';
-        document.body.appendChild(particle);
-        
-        const angle = (Math.PI * 2 * i) / 30;
-        const velocity = 100 + Math.random() * 100;
-        const vx = Math.cos(angle) * velocity;
-        const vy = Math.sin(angle) * velocity;
-        
-        let x = 0, y = 0;
-        const animate = () => {
-          x += vx * 0.016;
-          y += vy * 0.016 + 300 * 0.016;
-          
-          particle.style.transform = `translate(${x}px, ${y}px)`;
-          particle.style.opacity = Math.max(0, 1 - y / 500);
-          
-          if (y < 500) {
-            requestAnimationFrame(animate);
-          } else {
-            particle.remove();
-          }
-        };
-        
-        animate();
-      }
-    }
-
-    function showProjectDetail(project) {
       const modal = document.getElementById('detailModal');
-      const icon = document.getElementById('detailIcon');
-      const title = document.getElementById('detailTitle');
-      const description = document.getElementById('detailDescription');
-      const features = document.getElementById('detailFeatures');
-      const tech = document.getElementById('detailTech');
+      document.getElementById('detailIcon').textContent = project.icon;
+      document.getElementById('detailTitle').textContent = project.title;
+      document.getElementById('detailDescription').textContent = project.fullDescription;
       
-      icon.textContent = project.icon;
-      title.textContent = project.title;
-      description.textContent = project.fullDescription;
-      
-      features.innerHTML = project.features.map(f => 
+      const featuresList = document.getElementById('detailFeatures');
+      featuresList.innerHTML = project.features.map(f => 
         `<li><i class="fas fa-check-circle" style="color: var(--success)"></i> ${f}</li>`
       ).join('');
       
-      tech.innerHTML = project.tech.map(t => 
+      const techTags = document.getElementById('detailTech');
+      techTags.innerHTML = project.tech.map(t => 
         `<span class="tech-tag">${t}</span>`
       ).join('');
       
       modal.classList.add('active');
     }
 
-    function updateStats() {
-      document.getElementById('score').textContent = gameState.score;
-      document.getElementById('unlocked').textContent = `${gameState.unlocked}/6`;
-      document.getElementById('combo').textContent = `${gameState.combo}x`;
-    }
-
-    function closeChallenge() {
-      document.getElementById('challengeModal').classList.remove('active');
-    }
-
     function closeDetail() {
       document.getElementById('detailModal').classList.remove('active');
     }
 
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        renderProjects(filter);
+      });
+    });
+
+    // Close modal on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeChallenge();
         closeDetail();
       }
     });
 
+    // Close modal on backdrop click
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailModal') {
+        closeDetail();
+      }
+    });
+
+    // Scroll reveal animation
+    window.addEventListener('scroll', () => {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    // Initial render
     window.addEventListener('load', () => {
-      initGame();
-      updateStats();
+      renderProjects();
+      
+      // Set initial card animation state
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        card.style.transition = 'all 0.5s ease';
+        card.style.transitionDelay = `${index * 0.1}s`;
+      });
+
+      // Trigger animation
+      setTimeout(() => {
+        cards.forEach(card => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      }, 100);
     });
   </script>
 </body>
