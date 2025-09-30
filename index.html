@@ -2719,11 +2719,35 @@ function changeLanguage(lang) {
     }
 
     // Loading Screen
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      setTimeout(() => {
-        loader.classList.add('hidden');
-      }, 1000);
+   document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  const criticalImages = document.querySelectorAll('img[data-src]');
+  
+  // Hàm kiểm tra tất cả ảnh quan trọng đã tải xong
+  const loadImages = Array.from(criticalImages).map(img => {
+    return new Promise(resolve => {
+      if (img.complete && img.naturalWidth !== 0) {
+        resolve();
+      } else {
+        img.addEventListener('load', resolve);
+        img.addEventListener('error', resolve); // Xử lý trường hợp ảnh lỗi
+        img.src = img.dataset.src; // Kích hoạt tải ảnh
+      }
+    });
+  });
+
+  // Chờ DOM và ảnh tải xong
+  Promise.all(loadImages).then(() => {
+    // Thêm delay nhẹ để hiệu ứng mượt
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      // Thêm class loaded cho các icon sau khi loader ẩn
+      document.querySelectorAll('.logo-icon, .info-icon, .social-icon, .skill-icon').forEach(icon => {
+        icon.classList.add('loaded');
+      });
+    }, 300); // Delay 300ms cho transition mượt
+  });
+});
       
       // Add loaded class to icons
       document.querySelectorAll('.logo-icon, .info-icon, .social-icon, .skill-icon').forEach(icon => {
