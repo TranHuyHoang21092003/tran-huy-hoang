@@ -1219,7 +1219,7 @@
       transform: scale(1.2) rotate(10deg);
     }
 
-    .skill-name {
+   .skill-name {
       font-size: 1.1rem;
       color: var(--white);
       font-weight: 600;
@@ -1452,58 +1452,6 @@
       transform: translateY(-10px) scale(1.05);
     }
 
-    .contact-form {
-      max-width: 600px;
-      margin: 4rem auto;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      padding: 3rem;
-      border-radius: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-form h3 {
-      font-size: 2rem;
-      color: var(--white);
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(30, 30, 30, 0.8); /* Màu tối hơn để dễ nhìn */
-      color: var(--white);
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .contact-form input:focus, .contact-form textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
-    }
-
-    .contact-form button {
-      width: 100%;
-      padding: 1.2rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .contact-form button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
-    }
-
     footer {
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(20px);
@@ -1535,10 +1483,11 @@
     }
 
     .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
       margin-bottom: 2rem;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
@@ -1567,11 +1516,12 @@
       color: var(--light-text);
       font-size: 1.5rem;
       transition: all 0.3s ease;
+      transform-style: preserve-3d;
     }
 
     .footer-social a:hover {
       color: var(--primary);
-      transform: scale(1.2);
+      transform: scale(1.2) rotate(10deg);
     }
 
     .footer-text {
@@ -1587,433 +1537,234 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(20px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-
-    .modal.active {
-      display: flex;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .modal-content {
-      background: var(--glass);
-      backdrop-filter: blur(40px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 3rem;
-      border-radius: 30px;
-      max-width: 500px;
-      width: 100%;
-      position: relative;
-      animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-      aria-label: "Modal content";
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    @keyframes modalSlideIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8) translateY(50px);
+    @media (max-width: 1024px) {
+      .hero-container {
+        grid-template-columns: 1fr;
       }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
+
+      .hero-image {
+        justify-content: flex-end;
       }
-    }
 
-    .modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: var(--glass);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      color: var(--white);
-      font-size: 1.2rem;
-      aria-label: "Close modal";
-    }
-
-    .modal-close:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      transform: rotate(90deg);
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
-    }
-
-    .modal-content h3 {
-      font-size: 2.2rem;
-      color: var(--white);
-      margin-bottom: 1rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .modal-content p {
-      color: var(--light-text);
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .bank-info {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .bank-info p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-    }
-
-    .transfer-btn {
-      margin-top: 1rem;
-      display: inline-flex;
-      justify-content: center;
-    }
-
-    .qr-wrapper {
-      background: var(--white);
-      padding: 2rem;
-      border-radius: 25px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .qr-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(37, 99, 235, 0.1), transparent);
-      animation: qrShine 3s infinite;
-    }
-
-    @keyframes qrShine {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .qr-wrapper img {
-      width: 100%;
-      border-radius: 20px;
-      position: relative;
-      z-index: 1;
-      loading: "lazy";
-    }
-
-    .install-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      padding: 1.2rem 2rem;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.5);
-      display: none;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      z-index: 1001;
-      animation: installBounce 2s ease-in-out infinite;
-      transition: all 0.3s ease;
-      aria-label: "Install app";
-    }
-
-    @keyframes installBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .install-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(37, 99, 235, 0.7);
-    }
-
-    .install-btn i {
-      font-size: 1.3rem;
-    }
-
-    .scroll-top {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      width: 55px;
-      height: 55px;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 1001;
-      color: var(--white);
-      font-size: 1.5rem;
-      aria-label: "Scroll to top";
-    }
-
-    .scroll-top:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.5);
-    }
-
-    .scroll-top.show {
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 1200px) {
-      .hero-content h1 {
-        font-size: 3.5rem;
-      }
-      
-      .avatar {
-        width: 350px;
-        height: 350px;
-      }
-    }
-
-    @media (max-width: 968px) {
       nav {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 2rem;
-        border-radius: 20px 0 0 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-        transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        gap: 1.5rem;
-        min-width: 250px;
-      }
-
-      nav.active {
-        right: 0;
+        display: none;
       }
 
       .menu-toggle {
         display: flex;
       }
 
-      .hero-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: center;
+      .header-container {
+        padding: 1rem;
       }
 
       .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: clamp(2rem, 5vw, 3.5rem);
       }
 
       .typing-text {
-        font-size: 1.5rem;
+        font-size: clamp(1rem, 3vw, 1.5rem);
       }
 
-      .hero-buttons {
-        justify-content: center;
+      .hero-content .description {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+      }
+
+      .btn-primary, .btn-secondary {
+        padding: 1rem 2rem;
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
       }
 
       .avatar {
-        width: 280px;
-        height: 280px;
+        width: 300px;
+        height: 300px;
       }
 
       .skills-float {
         display: none;
       }
 
-      .section-title h2 {
-        font-size: 2.5rem;
+      .info-grid {
+        grid-template-columns: 1fr;
       }
 
-      .language-switcher {
-        top: 90px;
-        right: 15px;
-        padding: 12px;
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       }
 
-      .lang-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-      }
-
-      .desktop-toggle {
-        display: flex;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 8rem 1.5rem 4rem;
-      }
-
-      .hero-content h1 {
-        font-size: 2.2rem;
-      }
-
-      .typing-text {
-        font-size: 1.2rem;
-      }
-
-      .avatar {
-        width: 240px;
-        height: 240px;
-      }
-
-      .section-title h2 {
-        font-size: 2rem;
-      }
-
-      .stat-number {
-        font-size: 2.5rem;
-      }
-
-      .info-card, .social-card {
+      .stat-card {
         padding: 2rem 1.5rem;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
       }
 
       .action-buttons {
         grid-template-columns: 1fr;
       }
 
-      .install-btn {
-        bottom: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        font-size: 0.95rem;
-      }
-
-      .scroll-top {
-        bottom: 20px;
-        left: 20px;
-        width: 50px;
-        height: 50px;
-      }
-
-      .language-switcher {
-        padding: 10px;
-      }
-
-      .lang-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+      .footer-links {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 968px) {
-      body.desktop-mode {
-        min-width: 1024px;
-        overflow-x: auto;
+    @media (max-width: 640px) {
+      .hero {
+        padding: 6rem 1rem 3rem;
+      }
+
+      .hero-content h1 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+      }
+
+      .typing-text {
+        font-size: clamp(0.9rem, 3vw, 1.2rem);
+      }
+
+      .hero-content .description {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+      }
+
+      .btn-primary, .btn-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+      }
+
+      .avatar {
+        width: 250px;
+        height: 250px;
+      }
+
+      .section-title h2 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+      }
+
+      .section-title p {
+        font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      }
+
+      .info-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .info-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+
+      .info-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .info-card p {
+        font-size: 1rem;
+      }
+
+      .skill-item {
+        padding: 1.5rem 1rem;
+      }
+
+      .skill-icon {
+        font-size: 2.5rem;
+      }
+
+      .skill-name {
+        font-size: 1rem;
+      }
+
+      .skill-level {
+        font-size: 0.85rem;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+      }
+
+      .social-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .social-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+
+      .social-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .social-card p {
+        font-size: 0.9rem;
+      }
+
+      .action-btn {
+        padding: 1.5rem 2rem;
+        font-size: 1rem;
+      }
+
+      .action-btn i {
+        font-size: 1.2rem;
+      }
+
+      footer {
+        padding: 2rem 1rem 1rem;
+      }
+
+      .footer-links {
+        gap: 1rem;
+      }
+
+      .footer-social {
+        gap: 1rem;
+      }
+
+      .footer-social a {
+        font-size: 1.2rem;
+      }
+
+      .footer-text {
+        font-size: 1rem;
+      }
+
+      .footer-copyright {
+        font-size: 0.85rem;
       }
     }
   </style>
-  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
 </head>
-<body data-theme="dark">
-  <div class="loader" id="loader">
+<body>
+  <div class="loader">
     <div class="loader-spinner"></div>
   </div>
 
-  <div class="animated-bg">
-    <div class="particle particle-1"></div>
-    <div class="particle particle-2"></div>
-    <div class="particle particle-3"></div>
-  </div>
+  <div class="animated-bg"></div>
+  <div class="particle particle-1"></div>
+  <div class="particle particle-2"></div>
+  <div class="particle particle-3"></div>
   <div class="grid-bg"></div>
 
   <div class="content-wrapper">
-    <button class="theme-toggle" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
-      <span class="fas fa-moon"></span>
-    </button>
-
-    <button class="desktop-toggle" id="desktopToggle" title="Toggle Desktop Mode" aria-label="Toggle Desktop Mode">
-      <span class="fas fa-desktop"></span>
-    </button>
-
-    <div class="language-switcher">
-      <button class="lang-btn active" data-lang="vi" title="Tiếng Việt" aria-label="Tiếng Việt">
-        <span>🇻🇳</span>
-      </button>
-      <button class="lang-btn" data-lang="en" title="English" aria-label="English">
-        <span>🇬🇧</span>
-      </button>
-      <button class="lang-btn" data-lang="ja" title="日本語" aria-label="日本語">
-        <span>🇯🇵</span>
-      </button>
-    </div>
-
-    <button id="installBtn" class="install-btn" aria-label="Install App">
-      <i class="fas fa-download"></i>
-      <span data-i18n="install">Cài đặt ứng dụng</span>
-    </button>
-
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <header id="header">
+    <header>
       <div class="header-container">
         <div class="logo">
-          <div class="logo-icon">H</div>
-          <span class="logo-text">Hoàng</span>
+          <div class="logo-icon">TH</div>
+          <span class="logo-text">Trần Huy Hoàng</span>
         </div>
-        <nav id="nav">
-          <a href="#about" data-i18n="nav_about">Giới thiệu</a>
-          <a href="#skills" data-i18n="nav_skills">Kỹ năng</a>
-          <a href="#contact" data-i18n="nav_contact">Liên hệ</a>
-          <a href="Portfolio.html">Portfolio</a>
-          <a href="CV.html">CV</a>
-          <a href="Services.html">Dịch vụ</a>
+        <nav>
+          <a href="#hero">Trang Chủ</a>
+          <a href="#about">Về Tôi</a>
+          <a href="#skills">Kỹ Năng</a>
+          <a href="#stats">Thống Kê</a>
+          <a href="#contact">Liên Hệ</a>
         </nav>
-        <div class="menu-toggle" id="menuToggle">
+        <div class="menu-toggle">
           <span></span>
           <span></span>
           <span></span>
@@ -2021,569 +1772,401 @@
       </div>
     </header>
 
-    <section class="hero">
-      <canvas id="heroCanvas"></canvas>
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="vi"><span>VN</span></button>
+      <button class="lang-btn" data-lang="en"><span>EN</span></button>
+    </div>
+
+    <button class="theme-toggle"><span class="fas fa-adjust"></span></button>
+    <button class="desktop-toggle"><span class="fas fa-desktop"></span></button>
+
+    <section class="hero" id="hero">
+      <canvas></canvas>
       <div class="hero-glow"></div>
       <div class="hero-container">
         <div class="hero-content">
-          <h1 class="glitch" title="Trần Huy Hoàng">Trần Huy Hoàng</h1>
+          <h1 title="Trần Huy Hoàng">Trần Huy Hoàng</h1>
           <div class="typing-wrapper">
-            <div class="typing-text" id="typingText"></div>
+            <span class="typing-text"></span>
           </div>
-          <p class="description" data-i18n="hero_desc">
-            Tạo ra những giải pháp công nghệ sáng tạo và hiệu quả, kết hợp giữa thiết kế hiện đại và lập trình chuyên nghiệp.
-          </p>
+          <p class="description">Tôi là một nhà phát triển và thiết kế sáng tạo đam mê xây dựng các giải pháp công nghệ độc đáo và giao diện người dùng trực quan.</p>
           <div class="hero-buttons">
-            <a href="#contact" class="btn-primary">
-              <i class="fas fa-paper-plane"></i>
-              <span data-i18n="btn_contact">Liên hệ ngay</span>
-            </a>
-            <a href="Services.html" class="btn-secondary">
-              <i class="fas fa-file-alt"></i>
-              <span data-i18n="btn_cv">Dịch vụ</span>
-            </a>
-            <a href="CV.html" class="btn-secondary">
-              <i class="fas fa-file-alt"></i>
-              <span data-i18n="btn_cv">Xem CV</span>
-            </a>
+            <a href="#contact" class="btn-primary">Liên Hệ Ngay <i class="fas fa-arrow-right"></i></a>
+            <a href="#about" class="btn-secondary">Tìm Hiểu Thêm</a>
           </div>
         </div>
         <div class="hero-image">
           <div class="avatar-wrapper">
             <div class="avatar-ring"></div>
             <div class="avatar-ring-2"></div>
-            <img data-src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng" class="avatar" />
-            <div class="skills-float skill-1">💻 Coding</div>
-            <div class="skills-float skill-2">🎨 Design</div>
-            <div class="skills-float skill-3">🚀 Innovation</div>
+            <img src="IMG_6758.jpeg" alt="Trần Huy Hoàng" class="avatar" />
           </div>
+          <div class="skills-float skill-1">HTML/CSS</div>
+          <div class="skills-float skill-2">JavaScript</div>
+          <div class="skills-float skill-3">React</div>
         </div>
       </div>
     </section>
 
-    <section class="stats">
+    <section class="stats" id="stats">
       <div class="stats-container">
         <div class="stat-card">
-          <span class="stat-number" data-count="5">0</span>
-          <span class="stat-label" data-i18n="stat_projects">Projects</span>
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Năm Kinh Nghiệm</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number" data-count="10">0</span>
-          <span class="stat-label" data-i18n="stat_skills">Skills</span>
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Dự Án Hoàn Thành</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number" data-count="100">0</span>
-          <span class="stat-label" data-i18n="stat_commits">Commits</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number" data-count="2">0</span>
-          <span class="stat-label" data-i18n="stat_years">Years</span>
+          <span class="stat-number">100+</span>
+          <span class="stat-label">Khách Hàng Hài Lòng</span>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about">
+    <section class="about" id="about">
       <div class="about-container">
         <div class="section-title">
-          <h2 data-i18n="about_title">Thông tin cá nhân</h2>
+          <h2>Về Tôi</h2>
           <div class="section-underline"></div>
-          <p data-i18n="about_subtitle">Khám phá thêm về tôi</p>
+          <p>Hành trình của tôi trong lĩnh vực công nghệ và thiết kế.</p>
         </div>
         <div class="info-grid">
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-calendar-alt"></i>
-            </div>
-            <h3 data-i18n="info_dob">Ngày sinh</h3>
-            <p>21/09/2003</p>
+            <div class="info-icon"><i class="fas fa-code"></i></div>
+            <h3>Phát Triển Web</h3>
+            <p>Xây dựng các trang web hiện đại với HTML, CSS, JavaScript và các framework như React.</p>
           </div>
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <h3 data-i18n="info_location">Quê quán</h3>
-            <p>Hậu Giang</p>
+            <div class="info-icon"><i class="fas fa-paint-brush"></i></div>
+            <h3>Thiết Kế UI/UX</h3>
+            <p>Tạo ra các giao diện trực quan và thân thiện với người dùng.</p>
           </div>
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-phone"></i>
-            </div>
-            <h3 data-i18n="info_phone">Điện thoại</h3>
-            <p><a href="tel:0907316417">0907316417</a></p>
+            <div class="info-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Phát Triển Mobile</h3>
+            <p>Phát triển ứng dụng di động với công nghệ cross-platform.</p>
           </div>
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3>Email</h3>
-            <p style="font-size: 0.95rem;">tranhuyhoang.dev.ai@gmail.com</p>
+            <div class="info-icon"><i class="fas fa-cogs"></i></div>
+            <h3>Giải Pháp Tùy Chỉnh</h3>
+            <p>Cung cấp các giải pháp công nghệ cá nhân hóa cho doanh nghiệp.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="skills">
+    <section class="skills" id="skills">
       <div class="skills-container">
         <div class="section-title">
-          <h2 data-i18n="skills_title">Kỹ năng</h2>
+          <h2>Kỹ Năng Của Tôi</h2>
           <div class="section-underline"></div>
-          <p data-i18n="skills_subtitle">Các công nghệ và kỹ năng tôi thành thạo</p>
+          <p>Các kỹ năng chính giúp tôi hoàn thành công việc hiệu quả.</p>
         </div>
         <div class="skills-grid">
           <div class="skill-item">
             <i class="fab fa-html5 skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_html">HTML5</div>
-            <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 90%"></div>
-            </div>
+            <span class="skill-name">HTML5</span>
+            <span class="skill-level">90%</span>
+            <div class="progress-container"><div class="progress-bar" style="width: 90%;"></div></div>
           </div>
           <div class="skill-item">
             <i class="fab fa-css3-alt skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_css">CSS3</div>
-            <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 85%"></div>
-            </div>
+            <span class="skill-name">CSS3</span>
+            <span class="skill-level">85%</span>
+            <div class="progress-container"><div class="progress-bar" style="width: 85%;"></div></div>
           </div>
           <div class="skill-item">
             <i class="fab fa-js skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_js">JavaScript</div>
-            <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 70%"></div>
-            </div>
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-level">80%</span>
+            <div class="progress-container"><div class="progress-bar" style="width: 80%;"></div></div>
           </div>
           <div class="skill-item">
             <i class="fab fa-react skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_react">React</div>
-            <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 65%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-node-js skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_nodejs">Node.js</div>
-            <div class="skill-level" data-i18n="skill_level_beginner">Sơ cấp</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 50%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-paint-brush skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_design">Thiết kế giao diện</div>
-            <div class="skill-level" data-i18n="skill_level_advanced">Nâng cao</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 80%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-figma skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_figma">Figma</div>
-            <div class="skill-level" data-i18n="skill_level_intermediate">Trung cấp</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 70%"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-database skill-icon"></i>
-            <div class="skill-name" data-i18n="skill_database">Cơ sở dữ liệu</div>
-            <div class="skill-level" data-i18n="skill_level_beginner">Sơ cấp</div>
-            <div class="progress-container">
-              <div class="progress-bar" style="width: 50%"></div>
-            </div>
+            <span class="skill-name">React</span>
+            <span class="skill-level">75%</span>
+            <div class="progress-container"><div class="progress-bar" style="width: 75%;"></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section class="contact" id="contact">
       <div class="contact-container">
         <div class="section-title">
-          <h2 data-i18n="contact_title">Liên hệ</h2>
+          <h2>Liên Hệ Với Tôi</h2>
           <div class="section-underline"></div>
-          <p data-i18n="contact_subtitle">Kết nối với tôi qua các nền tảng hoặc gửi tin nhắn trực tiếp</p>
+          <p>Các cách để kết nối với tôi.</p>
         </div>
         <div class="social-grid">
-          <a href="https://zalo.me/0907316417" class="social-card zalo" target="_blank">
-            <div class="social-icon">
-              <i class="fab fa-whatsapp"></i>
-            </div>
-            <h3 data-i18n="social_zalo">Zalo</h3>
-            <p>0907316417</p>
+          <a href="https://zalo.me/" class="social-card zalo">
+            <div class="social-icon"><i class="fab fa-zalo"></i></div>
+            <h3>Zalo</h3>
+            <p>Nhắn tin trực tiếp qua Zalo.</p>
           </a>
-          <a href="https://facebook.com/tranhuyhoang.dev" class="social-card facebook" target="_blank">
-            <div class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </div>
-            <h3 data-i18n="social_facebook">Facebook</h3>
-            <p>Trần Huy Hoàng</p>
+          <a href="https://facebook.com/" class="social-card facebook">
+            <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+            <h3>Facebook</h3>
+            <p>Kết nối qua Facebook.</p>
           </a>
-          <a href="https://instagram.com/tranhuyhoang.dev" class="social-card instagram" target="_blank">
-            <div class="social-icon">
-              <i class="fab fa-instagram"></i>
-            </div>
-            <h3 data-i18n="social_instagram">Instagram</h3>
-            <p>@tranhuyhoang.dev</p>
+          <a href="https://instagram.com/" class="social-card instagram">
+            <div class="social-icon"><i class="fab fa-instagram"></i></div>
+            <h3>Instagram</h3>
+            <p>Theo dõi tôi trên Instagram.</p>
           </a>
-          <a href="mailto:tranhuyhoang.dev.ai@gmail.com" class="social-card gmail">
-            <div class="social-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3 data-i18n="social_gmail">Gmail</h3>
-            <p style="font-size: 0.9rem;">tranhuyhoang.dev.ai@gmail.com</p>
+          <a href="mailto:example@gmail.com" class="social-card gmail">
+            <div class="social-icon"><i class="fas fa-envelope"></i></div>
+            <h3>Email</h3>
+            <p>Gửi email trực tiếp.</p>
           </a>
         </div>
         <div class="action-buttons">
-          <button class="action-btn phone" data-modal="phoneModal">
-            <i class="fas fa-phone"></i>
-            <span data-i18n="action_phone">Số điện thoại</span>
-          </button>
-          <button class="action-btn bank" data-modal="bankModal">
-            <i class="fas fa-university"></i>
-            <span data-i18n="action_bank">Tài khoản ngân hàng</span>
-          </button>
-          <button class="action-btn message" data-modal="messageModal">
-            <i class="fas fa-envelope"></i>
-            <span data-i18n="action_message">Gửi tin nhắn</span>
-          </button>
+          <a href="tel:+84987654321" class="action-btn phone">
+            <i class="fas fa-phone"></i><span>Gọi Ngay</span>
+          </a>
+          <a href="#bank" class="action-btn bank">
+            <i class="fas fa-university"></i><span>Chuyển Khoản</span>
+          </a>
         </div>
       </div>
     </section>
-
-    <div class="modal" id="phoneModal">
-      <div class="modal-content">
-        <button class="modal-close" data-close="phoneModal">
-          <i class="fas fa-times"></i>
-        </button>
-        <h3 data-i18n="modal_phone_title">Số điện thoại</h3>
-        <p data-i18n="modal_phone_text">Liên hệ với tôi qua số điện thoại dưới đây:</p>
-        <p class="phone-number">0907316417</p>
-        <a href="tel:0907316417" class="btn-primary call-btn">
-          <i class="fas fa-phone"></i>
-          <span data-i18n="call_now">Gọi ngay</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="modal" id="bankModal">
-      <div class="modal-content">
-        <button class="modal-close" data-close="bankModal">
-          <i class="fas fa-times"></i>
-        </button>
-        <h3 data-i18n="modal_bank_title">Tài khoản ngân hàng</h3>
-        <p data-i18n="modal_bank_text">Thông tin tài khoản ngân hàng của tôi:</p>
-        <div class="bank-info">
-          <p>Tên tài khoản: TRAN HUY HOANG</p>
-          <p>Số tài khoản: 14999999997979</p>
-          <p>Ngân Hàng: MB BANK</p>
-        </div>
-        <div class="qr-wrapper">
-          <img src="IMG_6758.jpeg" alt="Bank QR Code" />
-        </div>
-        <a href="bank://" class="btn-primary transfer-btn">
-          <i class="fas fa-money-bill-wave"></i>
-          <span data-i18n="transfer_now">Chuyển khoản ngay</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="modal" id="messageModal">
-      <div class="modal-content">
-        <button class="modal-close" data-close="messageModal">
-          <i class="fas fa-times"></i>
-        </button>
-        <h3 data-i18n="form_title">Gửi tin nhắn</h3>
-        <input type="text" placeholder="Họ và tên" data-i18n-placeholder="form_name" required />
-        <input type="email" placeholder="Email" data-i18n-placeholder="form_email" required />
-        <textarea placeholder="Tin nhắn của bạn" data-i18n-placeholder="form_message" rows="5" required></textarea>
-        <button type="submit" data-i18n="form_submit">Gửi đi</button>
-      </div>
-    </div>
 
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
-          <div class="logo-icon">H</div>
-          <span class="logo-text">Hoàng</span>
+          <div class="logo-icon">TH</div>
+          <span class="logo-text">Trần Huy Hoàng</span>
         </div>
         <div class="footer-links">
-          <a href="#about" data-i18n="nav_about">Giới thiệu</a>
-          <a href="#skills" data-i18n="nav_skills">Kỹ năng</a>
-          <a href="#contact" data-i18n="nav_contact">Liên hệ</a>
-          <a href="Portfolio.html">Portfolio</a>
-          <a href="CV.html">CV</a>
-          <a href="Services.html">Dịch vụ</a>
+          <a href="#hero">Trang Chủ</a>
+          <a href="#about">Về Tôi</a>
+          <a href="#skills">Kỹ Năng</a>
+          <a href="#stats">Thống Kê</a>
+          <a href="#contact">Liên Hệ</a>
+          <a href="#services">Dịch Vụ</a>
+          <a href="#portfolio">Dự Án</a>
+          <a href="#blog">Blog</a>
         </div>
         <div class="footer-social">
-          <a href="https://zalo.me/0907316417" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://facebook.com/tranhuyhoang.dev" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://instagram.com/tranhuyhoang.dev" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="mailto:tranhuyhoang.dev.ai@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <div class="footer-text" data-i18n="footer_text">
-          Tạo ra những giải pháp sáng tạo, hiệu quả và đáng tin cậy.
-        </div>
-        <div class="footer-copyright" data-i18n="footer_copyright">
-          &copy; 2025 Trần Huy Hoàng. All rights reserved.
-        </div>
+        <p class="footer-text">Cảm ơn bạn đã ghé thăm! Hãy kết nối với tôi để thảo luận về các dự án.</p>
+        <p class="footer-copyright">© 2025 Trần Huy Hoàng. All rights reserved.</p>
       </div>
     </footer>
+  </div>
 
-    <script>
-      // Loader
-      window.addEventListener('load', () => {
-        const loader = document.getElementById('loader');
-        setTimeout(() => {
-          loader.classList.add('hidden');
-        }, 1000);
-      });
-
-      // Theme Toggle
-      const themeToggle = document.getElementById('themeToggle');
-      themeToggle.addEventListener('click', () => {
-        const body = document.body;
-        const currentTheme = body.getAttribute('data-theme') || 'dark';
-        body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
-        themeToggle.querySelector('span').classList.toggle('fa-moon');
-        themeToggle.querySelector('span').classList.toggle('fa-sun');
-      });
-
-      // Desktop Mode Toggle
-      const desktopToggle = document.getElementById('desktopToggle');
-      desktopToggle.addEventListener('click', () => {
-        document.body.classList.toggle('desktop-mode');
-      });
-
-      // Language Switcher
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loader = document.querySelector('.loader');
+      const themeToggle = document.querySelector('.theme-toggle');
       const langButtons = document.querySelectorAll('.lang-btn');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('nav');
+      const header = document.querySelector('header');
+      const desktopToggle = document.querySelector('.desktop-toggle');
+      const sections = document.querySelectorAll('section');
+      const avatar = document.querySelector('.avatar');
+      const logoIcon = document.querySelector('.logo-icon');
+      const infoIcons = document.querySelectorAll('.info-icon');
+      const skillIcons = document.querySelectorAll('.skill-icon');
+      const socialIcons = document.querySelectorAll('.social-icon');
+      const statCards = document.querySelectorAll('.stat-card');
+      const infoCards = document.querySelectorAll('.info-card');
+      const skillItems = document.querySelectorAll('.skill-item');
+      const socialCards = document.querySelectorAll('.social-card');
+
+      // Hide loader
+      window.addEventListener('load', () => {
+        loader.classList.add('hidden');
+        logoIcon.classList.add('loaded');
+        infoIcons.forEach(icon => icon.classList.add('loaded'));
+        skillIcons.forEach(icon => icon.classList.add('loaded'));
+        socialIcons.forEach(icon => icon.classList.add('loaded'));
+      });
+
+      // Theme toggle
+      themeToggle.addEventListener('click', () => {
+        document.body.dataset.theme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
+      });
+
+      // Language switch
       langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           langButtons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           const lang = btn.getAttribute('data-lang');
-          // Implement language switch logic here
+          // Add language switch logic here
         });
       });
 
-      // Menu Toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const nav = document.getElementById('nav');
+      // Menu toggle
       menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('active');
         nav.classList.toggle('active');
+        if (nav.classList.contains('active')) {
+          nav.style.display = 'flex';
+          nav.style.flexDirection = 'column';
+          nav.style.position = 'fixed';
+          nav.style.top = '70px';
+          nav.style.right = '20px';
+          nav.style.background = 'var(--glass)';
+          nav.style.padding = '1rem';
+          nav.style.borderRadius = '15px';
+          nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+          nav.style.zIndex = '1000';
+        } else {
+          nav.style.display = 'none';
+        }
       });
 
-      // Scroll Effects
-      const header = document.getElementById('header');
-      const scrollTop = document.getElementById('scrollTop');
+      // Desktop toggle
+      desktopToggle.addEventListener('click', () => {
+        document.body.classList.toggle('desktop-mode');
+      });
+
+      // Header scroll effect
       window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-        scrollTop.classList.toggle('show', window.scrollY > 300);
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
       });
 
-      scrollTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      // Reveal Animations
-      const revealElements = document.querySelectorAll('.stat-card, .section-title, .info-card, .skill-item, .social-card');
-      const revealOnScroll = () => {
-        revealElements.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.8) {
-            el.classList.add('reveal');
+      // Intersection Observer for animations
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            observer.unobserve(entry.target);
           }
         });
-      };
-      window.addEventListener('scroll', revealOnScroll);
-      revealOnScroll();
+      }, { threshold: 0.1 });
 
-      // Typing Effect
-      const typingText = document.getElementById('typingText');
-      const texts = [
-        'Nhà phát triển Web',
-        'Thiết kế giao diện',
-        'Tư duy sáng tạo',
-        'Đam mê công nghệ'
-      ];
+      sections.forEach(section => observer.observe(section));
+      statCards.forEach(card => observer.observe(card));
+      infoCards.forEach(card => observer.observe(card));
+      skillItems.forEach(item => observer.observe(item));
+      socialCards.forEach(card => observer.observe(card));
+
+      // Typing effect
+      const typingText = document.querySelector('.typing-text');
+      const texts = ['Developer', 'Designer', 'Creator'];
       let textIndex = 0;
       let charIndex = 0;
       let isDeleting = false;
 
       function type() {
         const currentText = texts[textIndex];
-        if (!isDeleting && charIndex < currentText.length) {
-          typingText.textContent = currentText.substring(0, charIndex + 1);
-          charIndex++;
-          setTimeout(type, 100);
-        } else if (isDeleting && charIndex >= 0) {
-          typingText.textContent = currentText.substring(0, charIndex);
-          charIndex--;
-          setTimeout(type, 50);
-        } else {
-          isDeleting = !isDeleting;
-          if (!isDeleting) {
+        if (isDeleting) {
+          typingText.textContent = currentText.substring(0, charIndex--);
+          if (charIndex < 0) {
+            isDeleting = false;
             textIndex = (textIndex + 1) % texts.length;
           }
-          setTimeout(type, isDeleting ? 50 : 1000);
+        } else {
+          typingText.textContent = currentText.substring(0, charIndex++);
+          if (charIndex > currentText.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+            return;
+          }
         }
+        setTimeout(type, isDeleting ? 50 : 100);
       }
       type();
 
-      // Counter Animation
-      const counters = document.querySelectorAll('.stat-number');
-      counters.forEach(counter => {
-        const updateCount = () => {
-          const target = +counter.getAttribute('data-count');
-          const count = +counter.innerText;
-          const speed = 200;
-          const increment = target / speed;
-          if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(updateCount, 20);
-          } else {
-            counter.innerText = target;
-          }
-        };
-        updateCount();
-      });
-
-      // Modal Handling
-      const modalButtons = document.querySelectorAll('[data-modal]');
-      const modals = document.querySelectorAll('.modal');
-      const modalCloses = document.querySelectorAll('.modal-close');
-
-      modalButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const modalId = btn.getAttribute('data-modal');
-          const modal = document.getElementById(modalId);
-          modal.classList.add('active');
-        });
-      });
-
-      modalCloses.forEach(close => {
-        close.addEventListener('click', () => {
-          const modalId = close.getAttribute('data-close');
-          const modal = document.getElementById(modalId);
-          modal.classList.remove('active');
-        });
-      });
-
-      modals.forEach(modal => {
-        modal.addEventListener('click', e => {
-          if (e.target === modal) {
-            modal.classList.remove('active');
-          }
-        });
-      });
-
-      // Lazy Loading Images
-      const lazyImages = document.querySelectorAll('img[data-src]');
-      const loadImages = () => {
-        lazyImages.forEach(img => {
-          if (img.getBoundingClientRect().top < window.innerHeight * 1.2) {
-            img.src = img.getAttribute('data-src');
-            img.classList.add('loaded');
-          }
-        });
-      };
-      window.addEventListener('scroll', loadImages);
-      loadImages();
-
-      // Ripple Effect
-      const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .action-btn, .lang-btn, .theme-toggle, .desktop-toggle, .modal-close');
-      buttons.forEach(btn => {
-        btn.addEventListener('click', e => {
+      // Ripple effect for buttons
+      const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .action-btn');
+      buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
           const ripple = document.createElement('span');
-          ripple.classList.add('ripple');
-          const rect = btn.getBoundingClientRect();
+          const rect = button.getBoundingClientRect();
           const size = Math.max(rect.width, rect.height);
-          ripple.style.width = ripple.style.height = `${size}px`;
-          ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
-          ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
-          btn.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
-        });
-      });
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
 
-      // Install Button
-      let deferredPrompt;
-      const installBtn = document.getElementById('installBtn');
-      window.addEventListener('beforeinstallprompt', e => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = 'flex';
-        installBtn.addEventListener('click', () => {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then(choice => {
-            if (choice.outcome === 'accepted') {
-              installBtn.style.display = 'none';
-            }
-            deferredPrompt = null;
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+          ripple.classList.add('ripple');
+
+          button.appendChild(ripple);
+
+          ripple.addEventListener('animationend', () => {
+            ripple.remove();
           });
         });
       });
 
-      // Hero Canvas Animation
-      const canvas = document.getElementById('heroCanvas');
+      // Canvas animation
+      const canvas = document.querySelector('canvas');
       const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-
-      const particles = [];
       class Particle {
         constructor() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 3 + 1;
-          this.speedX = Math.random() * 2 - 1;
-          this.speedY = Math.random() * 2 - 1;
+          this.size = Math.random() * 5 + 1;
+          this.speedX = Math.random() * 3 - 1.5;
+          this.speedY = Math.random() * 3 - 1.5;
         }
         update() {
           this.x += this.speedX;
           this.y += this.speedY;
-          if (this.size > 0.2) this.size -= 0.05;
+          if (this.size > 0.2) this.size -= 0.1;
+          if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+          if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
         }
         draw() {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+          ctx.fillStyle = `rgba(37, 99, 235, ${this.size * 0.2})`;
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      function initParticles() {
-        for (let i = 0; i < 100; i++) {
-          particles.push(new Particle());
+      let particlesArray = [];
+      const numberOfParticles = 100;
+
+      function init() {
+        for (let i = 0; i < numberOfParticles; i++) {
+          particlesArray.push(new Particle());
         }
       }
-      initParticles();
 
-      function animateParticles() {
+      function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particles.length; i++) {
-          particles[i].update();
-          particles[i].draw();
-          if (particles[i].size <= 0.2) {
-            particles.splice(i, 1);
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+          if (particlesArray[i].size <= 0.2) {
+            particlesArray.splice(i, 1);
             i--;
-            particles.push(new Particle());
+            particlesArray.push(new Particle());
           }
         }
-        requestAnimationFrame(animateParticles);
+        requestAnimationFrame(animate);
       }
-      setTimeout(() => {
-        canvas.classList.add('visible');
-        animateParticles();
-      }, 1000);
-    </script>
-  </body>
+
+      init();
+      animate();
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      canvas.classList.add('visible');
+    });
+  </script>
+</body>
 </html>
-</xaiArtifact>
