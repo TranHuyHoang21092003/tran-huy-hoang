@@ -1,301 +1,834 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Calendar, Facebook, Instagram, Send, QrCode, FileText, X } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trần Huy Hoàng - Professional Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-export default function CorporateProfile() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isQROpen, setIsQROpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+    :root {
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --accent: #ec4899;
+      --dark: #1f2937;
+      --gray: #6b7280;
+      --light-gray: #f3f4f6;
+    }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: white;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
 
-  const socialLinks = [
-    { icon: Send, label: 'Zalo', action: () => alert('Zalo: 0907316417'), color: '#0068ff' },
-    { icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1YrcewP31o/?mibextid=wwXIfr', color: '#1877f2' },
-    { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/huyho4ng.03?igsh=MXV2emwwMXp0MjJ1Mg%3D%3D&utm_source=qr', color: '#e4405f' },
-    { icon: Mail, label: 'Gmail', action: () => alert('Gmail: tranhuyhoang.dev.ai@gmail.com'), color: '#ea4335' },
-  ];
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Header/Navbar */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">H</span>
-            </div>
-            <span className={`font-bold text-xl transition-colors ${scrolled ? 'text-gray-800' : 'text-white'}`}>
-              Hoàng
-            </span>
-          </div>
-          
-          <nav className="hidden md:flex space-x-8">
-            <a href="#about" className={`font-medium transition-colors hover:text-blue-600 ${scrolled ? 'text-gray-700' : 'text-white'}`}>
-              Giới thiệu
-            </a>
-            <a href="#contact" className={`font-medium transition-colors hover:text-blue-600 ${scrolled ? 'text-gray-700' : 'text-white'}`}>
-              Liên hệ
-            </a>
-            <a href="CV.html" className={`font-medium transition-colors hover:text-blue-600 ${scrolled ? 'text-gray-700' : 'text-white'}`}>
-              CV
-            </a>
-          </nav>
+    header.scrolled {
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
-          >
-            <div className={`w-6 h-0.5 mb-1.5 transition-colors ${scrolled ? 'bg-gray-800' : 'bg-white'}`}></div>
-            <div className={`w-6 h-0.5 mb-1.5 transition-colors ${scrolled ? 'bg-gray-800' : 'bg-white'}`}></div>
-            <div className={`w-6 h-0.5 transition-colors ${scrolled ? 'bg-gray-800' : 'bg-white'}`}></div>
-          </button>
-        </div>
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg">
-            <nav className="px-6 py-4 space-y-3">
-              <a href="#about" className="block text-gray-700 font-medium hover:text-blue-600">Giới thiệu</a>
-              <a href="#contact" className="block text-gray-700 font-medium hover:text-blue-600">Liên hệ</a>
-              <a href="CV.html" className="block text-gray-700 font-medium hover:text-blue-600">CV</a>
-            </nav>
-          </div>
-        )}
-      </header>
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Trần Huy Hoàng
-              </h1>
-              <p className="text-xl md:text-2xl mb-4 text-blue-100">
-                Developer & Creative Designer
-              </p>
-              <p className="text-lg text-blue-50 mb-8 leading-relaxed">
-                Tạo ra những giải pháp công nghệ sáng tạo và hiệu quả, kết hợp giữa thiết kế hiện đại và lập trình chuyên nghiệp.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a 
-                  href="#contact" 
-                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105"
-                >
-                  Liên hệ ngay
-                </a>
-                <a 
-                  href="CV.html" 
-                  className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-all"
-                >
-                  Xem CV
-                </a>
-              </div>
-            </div>
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
 
-            <div className="flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-white rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                <img 
-                  src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" 
-                  alt="Trần Huy Hoàng"
-                  className="relative w-80 h-80 rounded-full object-cover shadow-2xl border-8 border-white"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    .logo-text {
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: white;
+      transition: color 0.3s ease;
+    }
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Thông tin cá nhân</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
-          </div>
+    header.scrolled .logo-text {
+      color: var(--dark);
+    }
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Calendar className="text-blue-600" size={32} />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Ngày sinh</h3>
-              <p className="text-gray-600">21/09/2003</p>
-            </div>
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <MapPin className="text-purple-600" size={32} />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Quê quán</h3>
-              <p className="text-gray-600">Hậu Giang</p>
-            </div>
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
-                <Phone className="text-pink-600" size={32} />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Điện thoại</h3>
-              <a href="tel:0907316417" className="text-gray-600 hover:text-blue-600">0907316417</a>
-            </div>
+    header.scrolled nav a {
+      color: var(--dark);
+    }
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Mail className="text-green-600" size={32} />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Email</h3>
-              <p className="text-gray-600 text-sm">tranhuyhoang.dev.ai@gmail.com</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    nav a:hover {
+      color: var(--primary);
+    }
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Kết nối với tôi</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-4"></div>
-            <p className="text-gray-600 text-lg">Hãy liên hệ qua các kênh mạng xã hội</p>
-          </div>
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {socialLinks.map((link, index) => (
-              <div key={index}>
-                {link.href ? (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block bg-white border-2 border-gray-200 p-6 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-2 group"
-                    style={{ '--hover-color': link.color }}
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-colors"
-                        style={{ backgroundColor: `${link.color}15` }}
-                      >
-                        <link.icon size={32} style={{ color: link.color }} />
-                      </div>
-                      <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
-                        {link.label}
-                      </h3>
-                    </div>
-                  </a>
-                ) : (
-                  <button
-                    onClick={link.action}
-                    className="w-full bg-white border-2 border-gray-200 p-6 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-2 group"
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mb-4 transition-colors"
-                        style={{ backgroundColor: `${link.color}15` }}
-                      >
-                        <link.icon size={32} style={{ color: link.color }} />
-                      </div>
-                      <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
-                        {link.label}
-                      </h3>
-                    </div>
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+    nav a:hover::after {
+      width: 100%;
+    }
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <a
-              href="tel:0907316417"
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-2 flex items-center justify-center space-x-3"
-            >
-              <Phone size={24} />
-              <span className="font-semibold text-lg">Gọi điện ngay</span>
-            </a>
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
 
-            <button
-              onClick={() => setIsQROpen(true)}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-2 flex items-center justify-center space-x-3"
-            >
-              <QrCode size={24} />
-              <span className="font-semibold text-lg">Chuyển khoản</span>
-            </button>
-          </div>
-        </div>
-      </section>
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: background 0.3s ease;
+    }
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">H</span>
-            </div>
-            <span className="font-bold text-xl">Trần Huy Hoàng</span>
-          </div>
-          <p className="text-gray-400 mb-4">Developer & Creative Designer</p>
-          <p className="text-gray-500 text-sm">© 2025 Trần Huy Hoàng. All rights reserved.</p>
-        </div>
-      </footer>
+    header.scrolled .menu-toggle span {
+      background: var(--dark);
+    }
 
-      {/* QR Modal */}
-      {isQROpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setIsQROpen(false)}
-        >
-          <div 
-            className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-scale-in"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold text-gray-800">Quét mã QR</h3>
-              <button
-                onClick={() => setIsQROpen(false)}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
-              >
-                <X size={20} className="text-gray-600" />
-              </button>
-            </div>
-            <p className="text-gray-600 mb-6">Sử dụng ứng dụng ngân hàng để quét mã QR và chuyển khoản</p>
-            <div className="bg-gray-50 p-6 rounded-2xl">
-              <img 
-                src="IMG_6758.jpeg" 
-                alt="QR Code"
-                className="w-full rounded-xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #ec4899 100%);
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-      <style jsx>{`
-        @keyframes scale-in {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        .animate-scale-in {
-          animation: scale-in 0.3s ease;
-        }
-      `}</style>
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      animation: slideInLeft 0.8s ease;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1rem;
+      animation: slideInLeft 0.8s ease 0.2s backwards;
+    }
+
+    .hero-content .description {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      animation: slideInLeft 0.8s ease 0.4s backwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      animation: slideInLeft 0.8s ease 0.6s backwards;
+    }
+
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -15px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .avatar {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid white;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    /* About Section */
+    .about {
+      padding: 5rem 2rem;
+      background: var(--light-gray);
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-title .underline {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      margin: 0 auto;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .info-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .info-card:nth-child(1) .info-icon {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+    }
+
+    .info-card:nth-child(2) .info-icon {
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--secondary);
+    }
+
+    .info-card:nth-child(3) .info-icon {
+      background: rgba(236, 72, 153, 0.1);
+      color: var(--accent);
+    }
+
+    .info-card:nth-child(4) .info-icon {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+
+    .info-card h3 {
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card p {
+      color: var(--gray);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 2rem;
+      background: white;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-card {
+      background: white;
+      border: 2px solid var(--light-gray);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .social-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      border-color: transparent;
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover .social-icon {
+      transform: scale(1.1);
+    }
+
+    .social-card.zalo .social-icon { background: rgba(0, 104, 255, 0.1); color: #0068ff; }
+    .social-card.facebook .social-icon { background: rgba(24, 119, 242, 0.1); color: #1877f2; }
+    .social-card.instagram .social-icon { background: rgba(228, 64, 95, 0.1); color: #e4405f; }
+    .social-card.gmail .social-icon { background: rgba(234, 67, 53, 0.1); color: #ea4335; }
+
+    .social-card h3 {
+      font-size: 1.1rem;
+      color: var(--dark);
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .action-btn {
+      padding: 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    .action-btn.phone {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .action-btn.bank {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: #111827;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      color: #9ca3af;
+      margin-bottom: 1rem;
+    }
+
+    .footer-copyright {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    /* QR Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 25px;
+      max-width: 450px;
+      width: 100%;
+      position: relative;
+      animation: scaleIn 0.3s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--gray);
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .qr-wrapper {
+      background: var(--light-gray);
+      padding: 1.5rem;
+      border-radius: 20px;
+    }
+
+    .qr-wrapper img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.5;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .avatar {
+        width: 250px;
+        height: 250px;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .action-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="header-container">
+      <div class="logo">
+        <div class="logo-icon">H</div>
+        <span class="logo-text">Hoàng</span>
+      </div>
+      <nav>
+        <a href="#about">Giới thiệu</a>
+        <a href="#contact">Liên hệ</a>
+        <a href="CV.html">CV</a>
+      </nav>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  );
-}
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Trần Huy Hoàng</h1>
+        <p class="subtitle">Developer & Creative Designer</p>
+        <p class="description">
+          Tạo ra những giải pháp công nghệ sáng tạo và hiệu quả, kết hợp giữa thiết kế hiện đại và lập trình chuyên nghiệp.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">Liên hệ ngay</a>
+          <a href="CV.html" class="btn-secondary">Xem CV</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <img src="207A155C-5CEB-4D68-B430-5C3064336B5B.png" alt="Trần Huy Hoàng" class="avatar" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-container">
+      <div class="section-title">
+        <h2>Thông tin cá nhân</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Ngày sinh</h3>
+          <p>21/09/2003</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Quê quán</h3>
+          <p>Hậu Giang</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Điện thoại</h3>
+          <p><a href="tel:0907316417" style="color: var(--gray); text-decoration: none;">0907316417</a></p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p style="font-size: 0.9rem;">tranhuyhoang.dev.ai@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="contact-container">
+      <div class="section-title">
+        <h2>Kết nối với tôi</h2>
+        <div class="underline"></div>
+        <p style="color: var(--gray); margin-top: 1rem; font-size: 1.1rem;">Hãy liên hệ qua các kênh mạng xã hội</p>
+      </div>
+      
+      <div class="social-grid">
+        <div class="social-card zalo" onclick="alert('Zalo: 0907316417')">
+          <div class="social-icon">
+            <i class="fas fa-comment-dots"></i>
+          </div>
+          <h3>Zalo</h3>
+        </div>
+        <a href="https://www.facebook.com/share/1YrcewP31o/?mibextid=wwXIfr" class="social-card facebook" target="_blank">
+          <div class="social-icon">
+            <i class="fab fa-facebook"></i>
+          </div>
+          <h3>Facebook</h3>
+        </a>
+        <a href="https://www.instagram.com/huyho4ng.03?igsh=MXV2emwwMXp0MjJ1Mg%3D%3D&utm_source=qr" class="social-card instagram" target="_blank">
+          <div class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <h3>Instagram</h3>
+        </a>
+        <div class="social-card gmail" onclick="alert('Gmail: tranhuyhoang.dev.ai@gmail.com')">
+          <div class="social-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Gmail</h3>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="tel:0907316417" class="action-btn phone">
+          <i class="fas fa-phone"></i>
+          Gọi điện ngay
+        </a>
+        <button class="action-btn bank" onclick="openModal()">
+          <i class="fas fa-qrcode"></i>
+          Chuyển khoản
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <div class="logo-icon">H</div>
+        <span class="logo-text">Trần Huy Hoàng</span>
+      </div>
+      <p class="footer-text">Developer & Creative Designer</p>
+      <p class="footer-copyright">© 2025 Trần Huy Hoàng. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- QR Modal -->
+  <div id="qrModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Quét mã QR</h3>
+      <p>Sử dụng ứng dụng ngân hàng để quét mã QR và chuyển khoản</p>
+      <div class="qr-wrapper">
+        <img src="IMG_6758.jpeg" alt="QR Code" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Modal functions
+    function openModal() {
+      document.getElementById('qrModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (!event || event.target.id === 'qrModal' || event.target.closest('.modal-close')) {
+        document.getElementById('qrModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
