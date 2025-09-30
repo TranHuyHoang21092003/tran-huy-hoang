@@ -102,6 +102,35 @@
       align-items: center;
     }
 
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
     .logo {
       display: flex;
       align-items: center;
@@ -270,11 +299,75 @@
       to { left: 100%; }
     }
 
+    .search-filter-section {
+      margin-bottom: 3rem;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3.5rem;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .clear-search {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    .clear-search.show {
+      display: block;
+    }
+
+    .clear-search:hover {
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.2);
+    }
+
     .filter-tabs {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 3rem;
       flex-wrap: wrap;
     }
 
@@ -288,11 +381,36 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: all 0.5s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .filter-btn:hover::before,
+    .filter-btn.active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .filter-btn span {
+      position: relative;
+      z-index: 1;
     }
 
     .filter-btn:hover,
     .filter-btn.active {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-color: transparent;
       transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
@@ -303,6 +421,7 @@
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2.5rem;
       margin-bottom: 3rem;
+      perspective: 1000px;
     }
 
     .project-card {
@@ -315,6 +434,7 @@
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: relative;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
     }
 
     .project-card::before {
@@ -326,6 +446,7 @@
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transition: left 0.5s ease;
+      z-index: 1;
     }
 
     .project-card:hover::before {
@@ -333,9 +454,59 @@
     }
 
     .project-card:hover {
-      transform: translateY(-15px);
+      transform: translateY(-15px) rotateX(5deg);
       border-color: var(--primary);
       box-shadow: 0 20px 60px rgba(37, 99, 235, 0.5);
+    }
+
+    .project-card.hide {
+      animation: cardFadeOut 0.3s ease forwards;
+    }
+
+    .project-card.show {
+      animation: cardFadeIn 0.5s ease forwards;
+    }
+
+    @keyframes cardFadeOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes cardFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .no-results i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.5;
     }
 
     .card-banner {
@@ -347,6 +518,7 @@
       font-size: 5rem;
       position: relative;
       overflow: hidden;
+      transition: all 0.5s ease;
     }
 
     .card-banner::after {
@@ -357,6 +529,27 @@
       right: 0;
       bottom: 0;
       background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .project-card:hover .card-banner {
+      transform: scale(1.1);
+    }
+
+    .card-banner-icon {
+      position: relative;
+      z-index: 1;
+      animation: iconFloat 3s ease-in-out infinite;
+      transition: all 0.5s ease;
+    }
+
+    .project-card:hover .card-banner-icon {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(0 10px 30px rgba(37, 99, 235, 0.6));
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     .card-body {
@@ -579,35 +772,401 @@
     }
 
     @media (max-width: 968px) {
-      .portfolio-title {
-        font-size: 3rem;
+      .portfolio-section {
+        padding: 8rem 1.5rem 4rem;
       }
 
-      nav a:not(.back-btn) {
-        display: none;
+      .portfolio-title {
+        font-size: 2.5rem;
+      }
+
+      .portfolio-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        position: fixed;
+        top: 85px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        border-radius: 20px 0 0 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        gap: 1.5rem;
+        min-width: 250px;
+        z-index: 999;
+      }
+
+      nav.active {
+        right: 0;
+      }
+
+      nav a {
+        display: block;
+        padding: 0.75rem 0;
+      }
+
+      .back-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .search-box {
+        max-width: 100%;
+      }
+
+      .search-input {
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem 0.9rem 3rem;
+      }
+
+      .search-icon {
+        left: 1.2rem;
+        font-size: 1rem;
+      }
+
+      .clear-search {
+        right: 1.2rem;
+        font-size: 1rem;
+      }
+
+      .filter-tabs {
+        gap: 0.75rem;
+      }
+
+      .filter-btn {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.95rem;
       }
 
       .projects-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 2rem;
       }
-    }
 
-    @media (max-width: 640px) {
-      .portfolio-title {
-        font-size: 2.5rem;
+      .card-banner {
+        height: 180px;
+        font-size: 4rem;
       }
 
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .card-body {
+        padding: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.4rem;
+      }
+
+      .card-description {
+        font-size: 0.95rem;
+      }
+
+      .detail-image {
+        height: 250px;
+        font-size: 6rem;
       }
 
       .detail-body {
         padding: 2rem 1.5rem;
       }
 
+      .detail-title {
+        font-size: 2rem;
+      }
+
+      .detail-description {
+        font-size: 1.1rem;
+      }
+
+      /* Disable 3D tilt on mobile */
+      .project-card:hover {
+        transform: translateY(-10px) !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-container {
+        padding: 1rem 1.5rem;
+      }
+
+      .logo-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+
+      .logo-text {
+        font-size: 1.3rem;
+      }
+
+      .portfolio-section {
+        padding: 7rem 1rem 3rem;
+      }
+
+      .portfolio-title {
+        font-size: 2rem;
+      }
+
+      .portfolio-subtitle {
+        font-size: 1rem;
+      }
+
+      .section-underline {
+        width: 80px;
+        height: 4px;
+      }
+
+      .search-filter-section {
+        margin-bottom: 2rem;
+      }
+
+      .search-box {
+        margin-bottom: 1.5rem;
+      }
+
+      .search-input {
+        padding: 0.85rem 1rem 0.85rem 2.8rem;
+        font-size: 0.9rem;
+      }
+
+      .search-icon {
+        left: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .clear-search {
+        right: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .filter-tabs {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card-banner {
+        height: 160px;
+        font-size: 3.5rem;
+      }
+
+      .card-body {
+        padding: 1.25rem;
+      }
+
+      .card-category {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.85rem;
+      }
+
+      .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .card-tech {
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .tech-badge {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.8rem;
+      }
+
+      .card-footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .view-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .detail-modal {
+        padding: 1rem;
+      }
+
+      .detail-content {
+        border-radius: 20px;
+        max-height: 85vh;
+      }
+
+      .detail-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .detail-image {
+        height: 200px;
+        font-size: 5rem;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .detail-body {
+        padding: 1.5rem 1rem;
+      }
+
+      .detail-title {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .detail-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .detail-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .detail-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+
       .features-list {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .features-list li {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+      }
+
+      .tech-tags {
+        gap: 0.5rem;
+      }
+
+      .tech-tag {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .no-results {
+        padding: 3rem 1rem;
+      }
+
+      .no-results i {
+        font-size: 3rem;
+      }
+
+      /* Smooth touch interactions */
+      .project-card {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .filter-btn,
+      .view-btn,
+      .back-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 375px) {
+      .portfolio-title {
+        font-size: 1.75rem;
+      }
+
+      .portfolio-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .search-input {
+        padding: 0.75rem 0.9rem 0.75rem 2.5rem;
+        font-size: 0.85rem;
+      }
+
+      .filter-btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      .card-banner {
+        height: 140px;
+        font-size: 3rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .detail-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .project-card:hover {
+        transform: translateY(0) !important;
+      }
+
+      .project-card:active {
+        transform: scale(0.98);
+      }
+
+      .filter-btn:hover {
+        transform: translateY(0);
+      }
+
+      .filter-btn:active {
+        transform: scale(0.95);
+      }
+
+      .view-btn:hover {
+        transform: translateX(0);
+      }
+
+      .view-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* Disable parallax and complex animations on touch devices */
+      .card-banner-icon {
+        animation: none;
+      }
+
+      .project-card:hover .card-banner {
+        transform: scale(1);
+      }
+
+      .project-card:hover .card-banner-icon {
+        transform: scale(1) rotate(0);
+        filter: none;
       }
     }
   </style>
@@ -623,7 +1182,12 @@
           <div class="logo-icon">H</div>
           <span class="logo-text">Hoàng</span>
         </a>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav id="nav">
           <a href="index.html">Trang chủ</a>
           <a href="CV.html">CV</a>
           <a href="Services.html">Dịch vụ</a>
@@ -643,14 +1207,41 @@
           <div class="section-underline"></div>
         </div>
 
-        <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">Tất cả</button>
-          <button class="filter-btn" data-filter="web">Web</button>
-          <button class="filter-btn" data-filter="app">App</button>
-          <button class="filter-btn" data-filter="ai">AI/ML</button>
+        <div class="search-filter-section">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input 
+              type="text" 
+              class="search-input" 
+              id="searchInput"
+              placeholder="Tìm kiếm dự án theo tên hoặc công nghệ..."
+            />
+            <button class="clear-search" id="clearSearch">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">
+              <span>Tất cả</span>
+            </button>
+            <button class="filter-btn" data-filter="web">
+              <span>Web</span>
+            </button>
+            <button class="filter-btn" data-filter="app">
+              <span>App</span>
+            </button>
+            <button class="filter-btn" data-filter="ai">
+              <span>AI/ML</span>
+            </button>
+          </div>
         </div>
 
         <div class="projects-grid" id="projectsGrid"></div>
+        <div class="no-results" id="noResults">
+          <i class="fas fa-search"></i>
+          <p>Không tìm thấy dự án phù hợp</p>
+        </div>
       </div>
     </section>
   </div>
@@ -782,16 +1373,35 @@
       }
     ];
 
-    function renderProjects(filter = 'all') {
+    function renderProjects(filter = 'all', searchTerm = '') {
       const grid = document.getElementById('projectsGrid');
-      const filteredProjects = filter === 'all' 
+      const noResults = document.getElementById('noResults');
+      
+      let filteredProjects = filter === 'all' 
         ? projects 
         : projects.filter(p => p.category === filter);
 
-      grid.innerHTML = filteredProjects.map(project => `
-        <div class="project-card" onclick="showDetail(${project.id})">
+      // Search filter
+      if (searchTerm) {
+        filteredProjects = filteredProjects.filter(p => 
+          p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          p.tech.some(t => t.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
+
+      if (filteredProjects.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.add('show');
+        return;
+      }
+
+      noResults.classList.remove('show');
+
+      grid.innerHTML = filteredProjects.map((project, index) => `
+        <div class="project-card show" style="animation-delay: ${index * 0.1}s" onclick="showDetail(${project.id})">
           <div class="card-banner">
-            ${project.icon}
+            <div class="card-banner-icon">${project.icon}</div>
           </div>
           <div class="card-body">
             <span class="card-category">${project.categoryName}</span>
@@ -810,6 +1420,32 @@
           </div>
         </div>
       `).join('');
+
+      // Add 3D tilt effect
+      addTiltEffect();
+    }
+
+    function addTiltEffect() {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+      });
     }
 
     function showDetail(id) {
@@ -840,13 +1476,35 @@
 
     // Filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
+    let currentFilter = 'all';
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.getAttribute('data-filter');
-        renderProjects(filter);
+        currentFilter = btn.getAttribute('data-filter');
+        renderProjects(currentFilter, searchInput.value);
       });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value;
+      if (searchTerm) {
+        clearSearch.classList.add('show');
+      } else {
+        clearSearch.classList.remove('show');
+      }
+      renderProjects(currentFilter, searchTerm);
+    });
+
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearch.classList.remove('show');
+      renderProjects(currentFilter, '');
+      searchInput.focus();
     });
 
     // Close modal on Escape key
