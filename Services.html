@@ -336,13 +336,29 @@
       background: rgba(10, 10, 10, 0.95);
       backdrop-filter: blur(40px);
       border: 2px solid rgba(255, 255, 255, 0.2);
-      padding: 3rem;
+      padding: 2.5rem;
       border-radius: 30px;
-      max-width: 700px;
+      max-width: 650px;
       width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
       position: relative;
       animation: modalSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
     }
 
     @keyframes modalSlideIn {
@@ -383,7 +399,7 @@
 
     /* Progress Bar */
     .progress-container {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .progress-steps {
@@ -487,7 +503,7 @@
     }
 
     .step-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 900;
       margin-bottom: 0.5rem;
       background: linear-gradient(135deg, #fff, #a0aec0);
@@ -497,20 +513,20 @@
 
     .step-description {
       color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
     }
 
     /* Service Selection Cards */
     .service-selection {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .service-option {
-      padding: 1.5rem;
+      padding: 1.25rem;
       background: rgba(255, 255, 255, 0.05);
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -531,27 +547,27 @@
     }
 
     .service-option i {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
       display: block;
     }
 
     .service-option-name {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
     /* Form Inputs */
     .form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.9);
-      font-size: 1.05rem;
+      font-size: 0.95rem;
     }
 
     .input-wrapper {
@@ -570,12 +586,12 @@
 
     .form-input {
       width: 100%;
-      padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+      padding: 1rem 1.25rem 1rem 3.25rem;
       background: rgba(255, 255, 255, 0.05);
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       color: white;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
     }
 
@@ -599,8 +615,8 @@
 
     textarea.form-input {
       resize: vertical;
-      min-height: 120px;
-      padding-top: 1.2rem;
+      min-height: 100px;
+      padding-top: 1rem;
     }
 
     /* Confirmation Summary */
@@ -608,15 +624,17 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .summary-item {
       display: flex;
       justify-content: space-between;
-      padding: 1rem 0;
+      align-items: flex-start;
+      padding: 0.75rem 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 1rem;
     }
 
     .summary-item:last-child {
@@ -626,26 +644,31 @@
     .summary-label {
       color: rgba(255, 255, 255, 0.6);
       font-weight: 600;
+      font-size: 0.9rem;
+      min-width: 120px;
     }
 
     .summary-value {
       color: white;
-      font-weight: 700;
+      font-weight: 600;
+      text-align: right;
+      font-size: 0.95rem;
+      word-break: break-word;
     }
 
     /* Form Buttons */
     .form-buttons {
       display: flex;
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .btn {
       flex: 1;
-      padding: 1.2rem 2rem;
+      padding: 1rem 1.75rem;
       border: none;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -1056,11 +1079,12 @@
           </div>
 
           <div class="form-group">
-            <label for="customerEmail">Email</label>
+            <label for="customerEmail">Email <span style="color: var(--accent)">*</span></label>
             <div class="input-wrapper">
-              <input type="email" id="customerEmail" class="form-input" placeholder="example@email.com">
+              <input type="email" id="customerEmail" class="form-input" placeholder="example@email.com" required>
               <i class="fas fa-envelope input-icon"></i>
             </div>
+            <small style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.25rem; display: block;">Email thật để nhận thông tin dự án</small>
           </div>
 
           <div class="form-group">
@@ -1194,29 +1218,50 @@
     function nextStep() {
       // Validate current step
       if (currentStep === 1 && !formData.service) {
-        alert('Vui lòng chọn dịch vụ!');
+        showAlert('Vui lòng chọn dịch vụ!');
         return;
       }
 
       if (currentStep === 2) {
         const name = document.getElementById('customerName').value.trim();
         const phone = document.getElementById('customerPhone').value.trim();
+        const email = document.getElementById('customerEmail').value.trim();
         
         if (!name || !phone) {
-          alert('Vui lòng điền đầy đủ họ tên và số điện thoại!');
+          showAlert('Vui lòng điền đầy đủ họ tên và số điện thoại!');
+          return;
+        }
+
+        // Validate email format
+        if (!email) {
+          showAlert('Vui lòng nhập email!');
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showAlert('Email không hợp lệ! Vui lòng nhập email thật.');
+          return;
+        }
+
+        // Check for common fake email domains
+        const fakeEmailDomains = ['test.com', 'fake.com', 'example.com', 'temp.com'];
+        const emailDomain = email.split('@')[1].toLowerCase();
+        if (fakeEmailDomains.includes(emailDomain)) {
+          showAlert('Vui lòng sử dụng email thật (không phải email test/fake)');
           return;
         }
 
         formData.name = name;
         formData.phone = phone;
-        formData.email = document.getElementById('customerEmail').value.trim();
+        formData.email = email;
         formData.details = document.getElementById('projectDetails').value.trim();
 
         // Update summary
         document.getElementById('summaryService').textContent = formData.service;
         document.getElementById('summaryName').textContent = formData.name;
         document.getElementById('summaryPhone').textContent = formData.phone;
-        document.getElementById('summaryEmail').textContent = formData.email || 'Không có';
+        document.getElementById('summaryEmail').textContent = formData.email;
         document.getElementById('summaryDetails').textContent = formData.details || 'Không có';
       }
 
@@ -1224,6 +1269,10 @@
         currentStep++;
         updateStepDisplay();
       }
+    }
+
+    function showAlert(message) {
+      alert(message);
     }
 
     function prevStep() {
