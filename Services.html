@@ -32,6 +32,295 @@
       letter-spacing: 0.3px;
     }
 
+    /* ===== LOADING SCREEN ===== */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #loadingScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
+      overflow: hidden;
+    }
+
+    .loading-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 3s linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(60px, 60px); }
+    }
+
+    .loading-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .diamond-loader {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 3rem;
+    }
+
+    .diamond-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      animation: diamondRotate 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
+    }
+
+    @keyframes diamondRotate {
+      0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); }
+    }
+
+    .diamond-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: ringExpand 2s ease-out infinite;
+    }
+
+    .diamond-ring:nth-child(2) { animation-delay: 0s; }
+    .diamond-ring:nth-child(3) { animation-delay: 0.5s; }
+    .diamond-ring:nth-child(4) { animation-delay: 1s; }
+
+    @keyframes ringExpand {
+      0% {
+        width: 60px;
+        height: 60px;
+        opacity: 0.8;
+        border-width: 3px;
+      }
+      100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        border-width: 1px;
+      }
+    }
+
+    .loading-sparkles {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: sparkleFloat 2s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .sparkle:nth-child(1) { left: 20%; top: 30%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { left: 80%; top: 25%; animation-delay: 0.3s; }
+    .sparkle:nth-child(3) { left: 15%; top: 70%; animation-delay: 0.6s; }
+    .sparkle:nth-child(4) { left: 85%; top: 75%; animation-delay: 0.9s; }
+    .sparkle:nth-child(5) { left: 50%; top: 10%; animation-delay: 1.2s; }
+    .sparkle:nth-child(6) { left: 50%; top: 90%; animation-delay: 1.5s; }
+
+    @keyframes sparkleFloat {
+      0%, 100% { 
+        transform: translateY(0) scale(0);
+        opacity: 0;
+      }
+      50% { 
+        transform: translateY(-30px) scale(1.5);
+        opacity: 1;
+      }
+    }
+
+    .loading-text-wrapper {
+      margin-bottom: 2.5rem;
+    }
+
+    .loading-text-line {
+      font-size: 1rem;
+      color: rgba(229, 228, 226, 0.6);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      animation: textFadeIn 1s ease-in-out;
+      font-weight: 300;
+    }
+
+    .loading-luxury-text {
+      font-size: 3.5rem;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, 
+        var(--gold) 0%, 
+        var(--gold-light) 25%, 
+        var(--platinum) 50%, 
+        var(--gold-light) 75%, 
+        var(--gold) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: luxuryShine 3s linear infinite, textGlow 2s ease-in-out infinite;
+      position: relative;
+      display: inline-block;
+    }
+
+    @keyframes luxuryShine {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes textGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+      }
+      50% {
+        filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.8));
+      }
+    }
+
+    @keyframes textFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .loading-luxury-text::before,
+    .loading-luxury-text::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: lineExpand 2s ease-in-out infinite;
+    }
+
+    .loading-luxury-text::before {
+      top: -15px;
+      left: 0;
+      right: 0;
+    }
+
+    .loading-luxury-text::after {
+      bottom: -15px;
+      left: 0;
+      right: 0;
+    }
+
+    @keyframes lineExpand {
+      0%, 100% {
+        width: 50%;
+        left: 25%;
+        opacity: 0.3;
+      }
+      50% {
+        width: 100%;
+        left: 0%;
+        opacity: 1;
+      }
+    }
+
+    .loading-bar-container {
+      width: 300px;
+      height: 4px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 10px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 10px;
+      width: 0%;
+      animation: loadingProgress 2.5s ease-out forwards;
+      position: relative;
+      box-shadow: 0 0 20px var(--gold);
+    }
+
+    .loading-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent);
+      animation: lightMove 1s linear infinite;
+    }
+
+    @keyframes loadingProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes lightMove {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* ===== LEAVE TRANSITION ===== */
+    body.leaving {
+      animation: pageLeave 0.6s ease-out forwards;
+    }
+
+    @keyframes pageLeave {
+      to {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(0.95);
+      }
+    }
+
+    /* ===== MAIN CONTENT ===== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -51,15 +340,13 @@
       height: 200%;
       background: 
         radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 70% 60%, rgba(229, 228, 226, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 70% 60%, rgba(229, 228, 226, 0.05) 0%, transparent 40%);
       animation: luxuryFloat 25s ease-in-out infinite;
     }
 
     @keyframes luxuryFloat {
-      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-      33% { transform: translate(3%, -3%) rotate(2deg) scale(1.05); }
-      66% { transform: translate(-3%, 3%) rotate(-2deg) scale(0.95); }
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(3%, -3%) rotate(2deg); }
     }
 
     .grid-bg {
@@ -136,29 +423,13 @@
       text-decoration: none;
       color: var(--gold);
       font-size: 1.6rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.1) inset;
-    }
-
-    .back-btn::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      z-index: -1;
-      filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
 
     .back-btn:hover {
       transform: translateX(-10px) scale(1.15);
       border-color: var(--gold);
-      box-shadow: 0 12px 48px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3);
-    }
-
-    .back-btn:hover::before {
-      opacity: 0.3;
+      box-shadow: 0 12px 48px rgba(212, 175, 55, 0.5);
     }
 
     .services-container {
@@ -180,37 +451,24 @@
     .hero-section h1 {
       font-size: clamp(3rem, 10vw, 6.5rem);
       font-weight: 300;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       background: linear-gradient(135deg, var(--platinum) 0%, var(--gold) 50%, var(--gold-light) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
       letter-spacing: 0.05em;
-      position: relative;
-      display: inline-block;
       text-transform: uppercase;
     }
 
-    .hero-section h1::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      box-shadow: 0 0 20px var(--gold);
-      animation: lineGlow 3s ease-in-out infinite;
-    }
-
-    @keyframes lineGlow {
-      0%, 100% { width: 120px; opacity: 0.5; box-shadow: 0 0 10px var(--gold); }
-      50% { width: 200px; opacity: 1; box-shadow: 0 0 30px var(--gold); }
+    .hero-brand {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: rgba(229, 228, 226, 0.5);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
     }
 
     .hero-subtitle {
-      font-size: clamp(1.1rem, 3vw, 1.8rem);
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
       color: rgba(229, 228, 226, 0.6);
       margin-bottom: 2rem;
       font-weight: 300;
@@ -229,18 +487,6 @@
     .stat-item {
       text-align: center;
       animation: luxuryFadeIn 1.2s ease backwards;
-      position: relative;
-    }
-
-    .stat-item::before {
-      content: '';
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
 
     .stat-item:nth-child(1) { animation-delay: 0.3s; }
@@ -256,7 +502,6 @@
       display: block;
       margin-bottom: 0.8rem;
       letter-spacing: 0.05em;
-      text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
     }
 
     .stat-label {
@@ -298,84 +543,17 @@
       }
     }
 
-    .service-card:nth-child(1) { 
-      grid-column: span 6; 
-      grid-row: span 2;
-      animation-delay: 0.1s; 
-    }
-    
-    .service-card:nth-child(2) { 
-      grid-column: span 6; 
-      animation-delay: 0.2s; 
-    }
-    
-    .service-card:nth-child(3) { 
-      grid-column: span 6; 
-      animation-delay: 0.3s; 
-    }
-    
-    .service-card:nth-child(4) { 
-      grid-column: span 12; 
-      animation-delay: 0.4s; 
-    }
-    
-    .service-card:nth-child(5) { 
-      grid-column: span 6; 
-      animation-delay: 0.5s; 
-    }
-    
-    .service-card:nth-child(6) { 
-      grid-column: span 6; 
-      animation-delay: 0.6s; 
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      padding: 1px;
-      background: linear-gradient(135deg, var(--gold), var(--platinum), var(--gold));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
+    .service-card:nth-child(1) { grid-column: span 6; grid-row: span 2; animation-delay: 0.1s; }
+    .service-card:nth-child(2) { grid-column: span 6; animation-delay: 0.2s; }
+    .service-card:nth-child(3) { grid-column: span 6; animation-delay: 0.3s; }
+    .service-card:nth-child(4) { grid-column: span 12; animation-delay: 0.4s; }
+    .service-card:nth-child(5) { grid-column: span 6; animation-delay: 0.5s; }
+    .service-card:nth-child(6) { grid-column: span 6; animation-delay: 0.6s; }
 
     .service-card:hover {
       transform: translateY(-25px);
       border-color: var(--gold);
-      box-shadow: 
-        0 40px 100px rgba(0, 0, 0, 0.8),
-        0 0 80px rgba(212, 175, 55, 0.3),
-        inset 0 0 60px rgba(212, 175, 55, 0.05);
-    }
-
-    .service-card:hover::before {
-      opacity: 1;
-    }
-
-    .service-card::after {
-      content: '';
-      position: absolute;
-      top: -100%;
-      left: -100%;
-      width: 300%;
-      height: 300%;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      animation: luxuryRotate 30s linear infinite;
-    }
-
-    @keyframes luxuryRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .service-card:hover::after {
-      opacity: 1;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 80px rgba(212, 175, 55, 0.3);
     }
 
     .service-icon {
@@ -387,29 +565,19 @@
       justify-content: center;
       margin-bottom: 2.5rem;
       font-size: 3.5rem;
-      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      z-index: 1;
+      transition: all 0.8s ease;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
       border: 1px solid rgba(212, 175, 55, 0.3);
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 0 20px rgba(212, 175, 55, 0.1);
     }
 
     .service-card:hover .service-icon {
       transform: scale(1.15) rotate(5deg);
-      box-shadow: 
-        0 12px 48px rgba(0, 0, 0, 0.6),
-        0 0 40px rgba(212, 175, 55, 0.4),
-        inset 0 0 30px rgba(212, 175, 55, 0.2);
     }
 
     .service-icon i {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
     }
 
     .service-card h3 {
@@ -417,8 +585,6 @@
       font-weight: 300;
       margin-bottom: 1.5rem;
       color: var(--platinum);
-      position: relative;
-      z-index: 1;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
@@ -428,8 +594,6 @@
       color: rgba(229, 228, 226, 0.7);
       line-height: 1.9;
       margin-bottom: 2.5rem;
-      position: relative;
-      z-index: 1;
       flex-grow: 1;
       font-weight: 300;
     }
@@ -437,8 +601,6 @@
     .service-features {
       list-style: none;
       margin-bottom: 2.5rem;
-      position: relative;
-      z-index: 1;
     }
 
     .service-features li {
@@ -453,10 +615,6 @@
       border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     }
 
-    .service-features li:last-child {
-      border-bottom: none;
-    }
-
     .service-features li:hover {
       transform: translateX(8px);
       color: var(--gold-light);
@@ -465,12 +623,6 @@
     .service-features li i {
       color: var(--gold);
       font-size: 1.1rem;
-      transition: transform 0.4s ease;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
-    }
-
-    .service-features li:hover i {
-      transform: scale(1.3) rotate(10deg);
     }
 
     .order-btn {
@@ -485,824 +637,18 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 0 20px rgba(212, 175, 55, 0.1);
+      transition: all 0.6s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .order-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      z-index: -1;
     }
 
     .order-btn:hover {
       transform: translateY(-5px);
-      border-color: var(--gold-light);
       color: var(--darker);
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.6),
-        0 0 60px rgba(212, 175, 55, 0.5),
-        inset 0 0 40px rgba(212, 175, 55, 0.3);
-    }
-
-    .order-btn:hover::before {
-      opacity: 1;
-    }
-
-    .order-btn i {
-      transition: transform 0.6s ease;
-    }
-
-    .order-btn:hover i {
-      transform: translateX(8px);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(40px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    .modal.active {
-      display: flex;
-      animation: modalLuxuryFadeIn 0.8s ease;
-    }
-
-    @keyframes modalLuxuryFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal-content {
-      background: rgba(10, 10, 10, 0.98);
-      backdrop-filter: blur(60px);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 4rem;
-      border-radius: 30px;
-      max-width: 800px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      animation: modalLuxurySlideIn 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 
-        0 40px 120px rgba(0, 0, 0, 0.9),
-        0 0 80px rgba(212, 175, 55, 0.2),
-        inset 0 0 60px rgba(212, 175, 55, 0.05);
-    }
-
-    .modal-content::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    .modal-content::-webkit-scrollbar-track {
-      background: rgba(212, 175, 55, 0.05);
-      border-radius: 10px;
-    }
-
-    .modal-content::-webkit-scrollbar-thumb {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-    }
-
-    @keyframes modalLuxurySlideIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8) translateY(100px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.5s ease;
-      color: var(--gold);
-      font-size: 1.4rem;
-      z-index: 10;
-    }
-
-    .modal-close:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--darker);
-      transform: rotate(90deg) scale(1.2);
-      box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
-    }
-
-    .progress-container {
-      margin-bottom: 4rem;
-    }
-
-    .progress-steps {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .progress-steps::before {
-      content: '';
-      position: absolute;
-      top: 27px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: rgba(212, 175, 55, 0.2);
-      border-radius: 10px;
-      z-index: 0;
-    }
-
-    .progress-line {
-      position: absolute;
-      top: 27px;
-      left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 1;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
-    }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-      z-index: 2;
-      flex: 1;
-    }
-
-    .step-circle {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.1);
-      border: 2px solid rgba(212, 175, 55, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 300;
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      color: rgba(229, 228, 226, 0.5);
-      font-size: 1.3rem;
-      letter-spacing: 0.05em;
-    }
-
-    .step.active .step-circle {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-color: var(--gold);
-      color: var(--darker);
-      box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
-      transform: scale(1.25);
-    }
-
-    .step.completed .step-circle {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      border-color: var(--gold);
-      color: var(--darker);
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-    }
-
-    .step-label {
-      font-size: 0.95rem;
-      color: rgba(229, 228, 226, 0.5);
-      transition: all 0.4s ease;
-      text-align: center;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .step.active .step-label,
-    .step.completed .step-label {
-      color: var(--gold);
-      font-weight: 400;
-    }
-
-    .form-step {
-      display: none;
-      animation: stepLuxuryFadeIn 0.8s ease;
-    }
-
-    .form-step.active {
-      display: block;
-    }
-
-    @keyframes stepLuxuryFadeIn {
-      from {
-        opacity: 0;
-        transform: translateX(60px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .step-title {
-      font-size: 2.5rem;
-      font-weight: 300;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--platinum), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .step-description {
-      color: rgba(229, 228, 226, 0.6);
-      margin-bottom: 3rem;
-      font-size: 1.1rem;
-      font-weight: 300;
-      letter-spacing: 0.05em;
-    }
-
-    .service-selection {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .service-option {
-      padding: 2rem;
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-option::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: -1;
-      filter: blur(10px);
-    }
-
-    .service-option:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: var(--gold);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    }
-
-    .service-option.selected {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(184, 148, 30, 0.2));
-      border-color: var(--gold);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(212, 175, 55, 0.4);
-      transform: scale(1.05);
-    }
-
-    .service-option.selected::before {
-      opacity: 0.2;
-    }
-
-    .service-option i {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .service-option:hover i,
-    .service-option.selected i {
-      transform: scale(1.25) rotate(10deg);
-    }
-
-    .service-option-name {
-      font-weight: 400;
-      font-size: 1.05rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--platinum);
-    }
-
-    .form-group {
-      margin-bottom: 2rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 400;
-      color: var(--platinum);
-      font-size: 1.05rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(212, 175, 55, 0.5);
-      font-size: 1.4rem;
-      transition: all 0.5s ease;
-      z-index: 1;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 1.5rem 2rem 1.5rem 4.5rem;
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 15px;
-      color: var(--platinum);
-      font-size: 1.05rem;
-      transition: all 0.5s ease;
-      font-family: inherit;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
-
-    .form-input::placeholder {
-      color: rgba(229, 228, 226, 0.4);
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--gold);
-      background: rgba(212, 175, 55, 0.1);
-      box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-      transform: translateY(-3px);
-    }
-
-    .form-input:focus + .input-icon {
-      color: var(--gold);
-      animation: iconLuxuryShake 0.8s ease;
-    }
-
-    @keyframes iconLuxuryShake {
-      0%, 100% { transform: translateY(-50%) rotate(0); }
-      25% { transform: translateY(-50%) rotate(-10deg) scale(1.1); }
-      75% { transform: translateY(-50%) rotate(10deg) scale(1.1); }
-    }
-
-    textarea.form-input {
-      resize: vertical;
-      min-height: 140px;
-      padding-top: 1.5rem;
-    }
-
-    .summary-card {
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 20px;
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .summary-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-      gap: 2rem;
-    }
-
-    .summary-item:last-child {
-      border-bottom: none;
-    }
-
-    .summary-label {
-      color: rgba(229, 228, 226, 0.6);
-      font-weight: 400;
-      font-size: 1rem;
-      min-width: 150px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .summary-value {
-      color: var(--platinum);
-      font-weight: 300;
-      text-align: right;
-      font-size: 1.05rem;
-      word-break: break-word;
-      letter-spacing: 0.03em;
-    }
-
-    .form-buttons {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .btn {
-      flex: 1;
-      padding: 1.5rem 2.5rem;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .btn-prev {
-      background: rgba(212, 175, 55, 0.1);
-      color: var(--gold);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .btn-prev:hover {
-      background: rgba(212, 175, 55, 0.15);
-      border-color: var(--gold);
-      transform: translateX(-8px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .btn-next {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--darker);
-      box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--gold);
-    }
-
-    .btn-next::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .btn-next:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.6);
-    }
-
-    .btn-next:hover::before {
-      opacity: 1;
-    }
-
-    .btn-next span,
-    .btn-next i {
-      position: relative;
-      z-index: 1;
-    }
-
-    .success-animation {
-      display: none;
-      text-align: center;
-      animation: successLuxuryFadeIn 1s ease;
-    }
-
-    .success-animation.active {
-      display: block;
-    }
-
-    @keyframes successLuxuryFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .success-checkmark {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 3rem;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
-      color: var(--darker);
-      box-shadow: 0 30px 100px rgba(212, 175, 55, 0.6);
-      animation: checkmarkLuxuryPop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @keyframes checkmarkLuxuryPop {
-      0% {
-        transform: scale(0) rotate(-180deg);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1.4) rotate(10deg);
-      }
-      100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-      }
-    }
-
-    .success-title {
-      font-size: 3.2rem;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--platinum), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .success-message {
-      font-size: 1.3rem;
-      color: rgba(229, 228, 226, 0.7);
-      margin-bottom: 3rem;
-      line-height: 2;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
-
-    .order-summary-box {
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 2.5rem;
-      text-align: left;
-      box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
-    }
-
-    .order-summary-title {
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: var(--gold);
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .order-data {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      line-height: 2;
-      color: var(--platinum);
-      max-height: 350px;
-      overflow-y: auto;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .order-data::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .order-data::-webkit-scrollbar-track {
-      background: rgba(212, 175, 55, 0.05);
-      border-radius: 10px;
-    }
-
-    .order-data::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-    }
-
-    .order-data-item {
-      margin-bottom: 0.8rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-    }
-
-    .order-data-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .order-data-label {
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .btn-copy {
-      width: 100%;
-      padding: 1.6rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--darker);
-      border: 1px solid var(--gold);
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.5s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-copy::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .btn-copy:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.6);
-    }
-
-    .btn-copy:hover::before {
-      opacity: 1;
-    }
-
-    .btn-copy.copied {
-      background: linear-gradient(135deg, var(--platinum), var(--gold));
-    }
-
-    .btn-copy span,
-    .btn-copy i {
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-zalo {
-      width: 100%;
-      padding: 1.6rem;
-      background: linear-gradient(135deg, #0068FF, #0052CC);
-      color: white;
-      border: 1px solid #0068FF;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.5s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-zalo::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #0052CC, #0068FF);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .btn-zalo:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(0, 104, 255, 0.6);
-    }
-
-    .btn-zalo:hover::before {
-      opacity: 1;
-    }
-
-    .btn-zalo span,
-    .btn-zalo i {
-      position: relative;
-      z-index: 1;
-    }
-
-    .instruction-text {
-      font-size: 1.05rem;
-      color: rgba(229, 228, 226, 0.7);
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      background: rgba(212, 175, 55, 0.1);
-      border-left: 3px solid var(--gold);
-      border-radius: 10px;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
-
-    .loading-spinner {
-      display: none;
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(212, 175, 55, 0.2);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: luxurySpin 1s linear infinite;
-      margin: 3rem auto;
-    }
-
-    @keyframes luxurySpin {
-      to { transform: rotate(360deg); }
-    }
-
-    .error-message {
-      color: #ff6b6b;
-      font-size: 0.95rem;
-      margin-top: 0.8rem;
-      display: none;
-      animation: luxuryShake 0.6s ease;
-      font-weight: 300;
-      letter-spacing: 0.03em;
-    }
-
-    @keyframes luxuryShake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-12px); }
-      75% { transform: translateX(12px); }
-    }
-
-    .error-message.show {
-      display: block;
-    }
-
-    @media (max-width: 1024px) {
-      .services-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
-
-      .service-card:nth-child(1) { 
-        grid-column: span 6; 
-        grid-row: span 1;
-      }
-      
-      .service-card:nth-child(2),
-      .service-card:nth-child(3),
-      .service-card:nth-child(4),
-      .service-card:nth-child(5),
-      .service-card:nth-child(6) { 
-        grid-column: span 6; 
-      }
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.5);
     }
 
     @media (max-width: 768px) {
@@ -1310,37 +656,17 @@
         padding: 1.5rem;
       }
 
-      .back-btn {
-        top: 2rem;
-        left: 2rem;
-        width: 60px;
-        height: 60px;
-        font-size: 1.4rem;
-      }
-
       .services-container {
         margin: 6rem auto 2rem;
       }
 
-      .hero-section {
-        margin-bottom: 5rem;
-      }
-
-      .hero-stats {
-        gap: 3rem;
-      }
-
-      .stat-number {
-        font-size: 2.8rem;
-      }
-
       .services-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
       }
 
       .service-card {
-        padding: 3rem 2.5rem;
+        padding: 3rem 2rem;
       }
 
       .service-card:nth-child(1),
@@ -1348,87 +674,64 @@
       .service-card:nth-child(3),
       .service-card:nth-child(4),
       .service-card:nth-child(5),
-      .service-card:nth-child(6) { 
-        grid-column: span 1; 
+      .service-card:nth-child(6) {
+        grid-column: span 1;
         grid-row: span 1;
       }
 
-      .modal-content {
-        padding: 2.5rem 2rem;
-        border-radius: 25px;
-      }
-
-      .step-title {
-        font-size: 2rem;
-      }
-
-      .service-selection {
-        grid-template-columns: 1fr;
-      }
-
-      .form-buttons {
-        flex-direction: column;
-      }
-
-      .progress-steps {
-        gap: 0.5rem;
-      }
-
-      .step-circle {
-        width: 50px;
-        height: 50px;
-        font-size: 1.1rem;
-      }
-
-      .step-label {
-        font-size: 0.85rem;
-      }
-
-      .success-checkmark {
-        width: 140px;
-        height: 140px;
-        font-size: 5rem;
-      }
-
-      .success-title {
+      .loading-luxury-text {
         font-size: 2.5rem;
-      }
-
-      .order-summary-box {
-        padding: 2.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-stats {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .service-option i {
-        font-size: 2.5rem;
-      }
-
-      .modal-close {
-        width: 50px;
-        height: 50px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- LOADING SCREEN -->
+  <div id="loadingScreen">
+    <div class="loading-bg">
+      <div class="loading-grid"></div>
+    </div>
+    <div class="loading-content">
+      <div class="diamond-loader">
+        <div class="diamond-ring"></div>
+        <div class="diamond-ring"></div>
+        <div class="diamond-ring"></div>
+        <div class="diamond-core"></div>
+        <div class="loading-sparkles">
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+          <div class="sparkle"></div>
+        </div>
+      </div>
+      
+      <div class="loading-text-wrapper">
+        <div class="loading-text-line">Bạn đang bước vào môi trường</div>
+        <div class="loading-luxury-text">LUXURY</div>
+      </div>
+      
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
   <div class="animated-bg"></div>
   <div class="grid-bg"></div>
   <div class="particles" id="particles"></div>
 
   <div class="content-wrapper">
-    <a href="index.html" class="back-btn" title="Quay lại">
+    <a href="index.html" class="back-btn smooth-link" title="Quay lại">
       <i class="fas fa-arrow-left"></i>
     </a>
 
     <div class="services-container">
       <div class="hero-section">
         <h1>Dịch vụ</h1>
+        <p class="hero-brand">Trần Huy Hoàng</p>
         <p class="hero-subtitle">Giải pháp công nghệ đẳng cấp</p>
         
         <div class="hero-stats">
@@ -1455,62 +758,11 @@
           <h3>Website Tĩnh</h3>
           <p>Thiết kế website tĩnh đẳng cấp, tối ưu hiệu suất và SEO, phù hợp cho landing page, portfolio.</p>
           <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Responsive design</li>
-            <li><i class="fas fa-check-circle"></i> Tốc độ siêu nhanh</li>
-            <li><i class="fas fa-check-circle"></i> SEO-friendly</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Website Tĩnh', '💻')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-laptop-code"></i>
-          </div>
-          <h3>Website Động</h3>
-          <p>Phát triển website động với đầy đủ chức năng quản trị, tương tác người dùng.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Quản trị nội dung</li>
-            <li><i class="fas fa-check-circle"></i> Database integration</li>
-            <li><i class="fas fa-check-circle"></i> Bảo mật cao</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Website Động', '🌐')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <h3>Ứng dụng Web</h3>
-          <p>Xây dựng ứng dụng web phức tạp với React, Vue, API integration và real-time features.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> SPA/PWA</li>
-            <li><i class="fas fa-check-circle"></i> Real-time updates</li>
-            <li><i class="fas fa-check-circle"></i> API Integration</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Ứng dụng Web', '🚀')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-desktop"></i>
-          </div>
-          <h3>Ứng dụng Desktop</h3>
-          <p>Phát triển ứng dụng desktop đa nền tảng với giao diện đẳng cấp và hiệu suất tối ưu.</p>
-          <ul class="service-features">
             <li><i class="fas fa-check-circle"></i> Cross-platform</li>
             <li><i class="fas fa-check-circle"></i> UI hiện đại</li>
             <li><i class="fas fa-check-circle"></i> Tối ưu performance</li>
           </ul>
-          <button class="order-btn" onclick="openOrderForm('Ứng dụng Desktop', '🖥️')">
+          <button class="order-btn">
             <i class="fas fa-rocket"></i>
             <span>Đặt dịch vụ</span>
           </button>
@@ -1527,7 +779,7 @@
             <li><i class="fas fa-check-circle"></i> NLP Processing</li>
             <li><i class="fas fa-check-circle"></i> Chatbot AI</li>
           </ul>
-          <button class="order-btn" onclick="openOrderForm('AI & Machine Learning', '🤖')">
+          <button class="order-btn">
             <i class="fas fa-rocket"></i>
             <span>Đặt dịch vụ</span>
           </button>
@@ -1544,7 +796,7 @@
             <li><i class="fas fa-check-circle"></i> Custom development</li>
             <li><i class="fas fa-check-circle"></i> Support 24/7</li>
           </ul>
-          <button class="order-btn" onclick="openOrderForm('Giải pháp tùy chỉnh', '⚙️')">
+          <button class="order-btn">
             <i class="fas fa-rocket"></i>
             <span>Đặt dịch vụ</span>
           </button>
@@ -1553,198 +805,37 @@
     </div>
   </div>
 
-  <div id="orderModal" class="modal" onclick="closeModalOutside(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()" title="Đóng">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <div class="progress-container">
-        <div class="progress-steps">
-          <div class="progress-line" id="progressLine"></div>
-          <div class="step active" data-step="1">
-            <div class="step-circle">1</div>
-            <div class="step-label">Chọn dịch vụ</div>
-          </div>
-          <div class="step" data-step="2">
-            <div class="step-circle">2</div>
-            <div class="step-label">Thông tin</div>
-          </div>
-          <div class="step" data-step="3">
-            <div class="step-circle">3</div>
-            <div class="step-label">Xác nhận</div>
-          </div>
-        </div>
-      </div>
-
-      <form id="orderForm">
-        <div class="form-step active" data-step="1">
-          <h2 class="step-title">Chọn dịch vụ</h2>
-          <p class="step-description">Chọn dịch vụ bạn quan tâm để bắt đầu</p>
-          
-          <div class="service-selection">
-            <div class="service-option" onclick="selectService(event, 'Website Tĩnh', '💻')">
-              <i class="fas fa-file-code" style="color: var(--gold)"></i>
-              <div class="service-option-name">Website Tĩnh</div>
-            </div>
-            <div class="service-option" onclick="selectService(event, 'Website Động', '🌐')">
-              <i class="fas fa-laptop-code" style="color: var(--gold)"></i>
-              <div class="service-option-name">Website Động</div>
-            </div>
-            <div class="service-option" onclick="selectService(event, 'Ứng dụng Web', '🚀')">
-              <i class="fas fa-globe" style="color: var(--gold)"></i>
-              <div class="service-option-name">Ứng dụng Web</div>
-            </div>
-            <div class="service-option" onclick="selectService(event, 'Ứng dụng Desktop', '🖥️')">
-              <i class="fas fa-desktop" style="color: var(--gold)"></i>
-              <div class="service-option-name">App Desktop</div>
-            </div>
-            <div class="service-option" onclick="selectService(event, 'AI & ML', '🤖')">
-              <i class="fas fa-brain" style="color: var(--gold)"></i>
-              <div class="service-option-name">AI & ML</div>
-            </div>
-            <div class="service-option" onclick="selectService(event, 'Giải pháp tùy chỉnh', '⚙️')">
-              <i class="fas fa-cogs" style="color: var(--gold)"></i>
-              <div class="service-option-name">Custom</div>
-            </div>
-          </div>
-
-          <div class="form-buttons">
-            <button type="button" class="btn btn-next" onclick="nextStep()">
-              <span>Tiếp theo</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-step" data-step="2">
-          <h2 class="step-title">Thông tin</h2>
-          <p class="step-description">Điền thông tin để chúng tôi liên hệ tư vấn</p>
-
-          <div class="form-group">
-            <label for="customerName">Họ và tên *</label>
-            <div class="input-wrapper">
-              <input type="text" id="customerName" class="form-input" placeholder="Nguyễn Văn A" required>
-              <i class="fas fa-user input-icon"></i>
-            </div>
-            <div class="error-message" id="nameError">Vui lòng nhập họ tên</div>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Số điện thoại *</label>
-            <div class="input-wrapper">
-              <input type="tel" id="customerPhone" class="form-input" placeholder="0907316417" required>
-              <i class="fas fa-phone input-icon"></i>
-            </div>
-            <div class="error-message" id="phoneError">Vui lòng nhập số điện thoại hợp lệ</div>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">Email *</label>
-            <div class="input-wrapper">
-              <input type="email" id="customerEmail" class="form-input" placeholder="example@gmail.com" required>
-              <i class="fas fa-envelope input-icon"></i>
-            </div>
-            <small style="color: rgba(229,228,226,0.5); font-size: 0.9rem; margin-top: 0.8rem; display: block; letter-spacing: 0.03em;">Sử dụng email thật để nhận thông tin dự án</small>
-            <div class="error-message" id="emailError">Vui lòng nhập email hợp lệ</div>
-          </div>
-
-          <div class="form-group">
-            <label for="projectDetails">Mô tả dự án</label>
-            <div class="input-wrapper">
-              <textarea id="projectDetails" class="form-input" placeholder="Mô tả chi tiết về dự án, yêu cầu, ngân sách dự kiến..."></textarea>
-              <i class="fas fa-edit input-icon" style="top: 2rem"></i>
-            </div>
-          </div>
-
-          <div class="form-buttons">
-            <button type="button" class="btn btn-prev" onclick="prevStep()">
-              <i class="fas fa-arrow-left"></i>
-              <span>Quay lại</span>
-            </button>
-            <button type="button" class="btn btn-next" onclick="nextStep()">
-              <span>Tiếp theo</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-step" data-step="3">
-          <h2 class="step-title">Xác nhận</h2>
-          <p class="step-description">Kiểm tra lại thông tin trước khi gửi yêu cầu</p>
-
-          <div class="summary-card">
-            <div class="summary-item">
-              <span class="summary-label">Dịch vụ:</span>
-              <span class="summary-value" id="summaryService">-</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">Họ tên:</span>
-              <span class="summary-value" id="summaryName">-</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">Điện thoại:</span>
-              <span class="summary-value" id="summaryPhone">-</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">Email:</span>
-              <span class="summary-value" id="summaryEmail">-</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">Mô tả:</span>
-              <span class="summary-value" id="summaryDetails">-</span>
-            </div>
-          </div>
-
-          <div class="loading-spinner" id="loadingSpinner"></div>
-
-          <div class="form-buttons">
-            <button type="button" class="btn btn-prev" onclick="prevStep()">
-              <i class="fas fa-arrow-left"></i>
-              <span>Quay lại</span>
-            </button>
-            <button type="button" class="btn btn-next" id="submitBtn" onclick="submitForm()">
-              <i class="fas fa-paper-plane"></i>
-              <span>Gửi yêu cầu</span>
-            </button>
-          </div>
-        </div>
-      </form>
-
-      <div class="success-animation" id="successAnimation">
-        <div class="success-checkmark">
-          <i class="fas fa-check"></i>
-        </div>
-        <h2 class="success-title">Thành công</h2>
-        <p class="success-message">Thông tin đặt dịch vụ của bạn đã được ghi nhận. Vui lòng copy nội dung bên dưới và gửi qua Zalo để hoàn tất!</p>
-        
-        <div class="order-summary-box">
-          <div class="order-summary-title">
-            <i class="fas fa-clipboard-list"></i>
-            <span>Thông tin đơn hàng</span>
-          </div>
-
-          <div class="instruction-text">
-            <i class="fas fa-info-circle"></i> Vui lòng copy toàn bộ thông tin bên dưới và gửi qua Zalo để chúng tôi xử lý đơn hàng của bạn
-          </div>
-
-          <div class="order-data" id="orderData"></div>
-
-          <button class="btn-copy" id="copyBtn" onclick="copyOrderData()">
-            <i class="fas fa-copy"></i>
-            <span>Copy thông tin</span>
-          </button>
-
-          <a href="https://zalo.me/0907316417" target="_blank" class="btn-zalo">
-            <i class="fab fa-telegram"></i>
-            <span>Gửi qua Zalo</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
+    // ===== LOADING SCREEN =====
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('hidden');
+      }, 3000);
+    });
+
+    // ===== SMOOTH PAGE TRANSITIONS =====
+    document.addEventListener('DOMContentLoaded', function() {
+      const smoothLinks = document.querySelectorAll('a.smooth-link, a[href$=".html"]');
+      
+      smoothLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          
+          // Only apply transition to internal .html links
+          if (href && href.endsWith('.html') && !href.startsWith('http')) {
+            e.preventDefault();
+            
+            document.body.classList.add('leaving');
+            
+            setTimeout(function() {
+              window.location.href = href;
+            }, 600);
+          }
+        });
+      });
+    });
+
+    // ===== PARTICLES =====
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
       const particleCount = 40;
@@ -1759,6 +850,7 @@
       }
     }
 
+    // ===== COUNTER ANIMATION =====
     function animateCounters() {
       const counters = document.querySelectorAll('.stat-number');
       const options = {
@@ -1791,301 +883,7 @@
       counters.forEach(counter => observer.observe(counter));
     }
 
-    let currentStep = 1;
-    const totalSteps = 3;
-    let formData = {
-      service: '',
-      serviceIcon: '',
-      name: '',
-      phone: '',
-      email: '',
-      details: ''
-    };
-
-    function openOrderForm(serviceName, icon) {
-      document.getElementById('orderModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-      selectService(null, serviceName, icon);
-    }
-
-    function closeModal() {
-      document.getElementById('orderModal').classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(() => resetForm(), 300);
-    }
-
-    function closeModalOutside(e) {
-      if (e.target.id === 'orderModal') {
-        closeModal();
-      }
-    }
-
-    function selectService(event, serviceName, icon) {
-      formData.service = serviceName;
-      formData.serviceIcon = icon;
-      
-      document.querySelectorAll('.service-option').forEach(opt => {
-        opt.classList.remove('selected');
-      });
-      
-      if (event) {
-        event.currentTarget.classList.add('selected');
-      } else {
-        const options = document.querySelectorAll('.service-option');
-        options.forEach(opt => {
-          if (opt.textContent.includes(serviceName.split(' ')[0])) {
-            opt.classList.add('selected');
-          }
-        });
-      }
-    }
-
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-
-    function validatePhone(phone) {
-      const re = /^[0-9]{10,11}$/;
-      return re.test(phone.replace(/\s/g, ''));
-    }
-
-    function showError(elementId, show = true) {
-      const errorElement = document.getElementById(elementId);
-      if (errorElement) {
-        if (show) {
-          errorElement.classList.add('show');
-        } else {
-          errorElement.classList.remove('show');
-        }
-      }
-    }
-
-    function nextStep() {
-      document.querySelectorAll('.error-message').forEach(err => {
-        err.classList.remove('show');
-      });
-
-      if (currentStep === 1 && !formData.service) {
-        alert('⚠️ Vui lòng chọn dịch vụ!');
-        return;
-      }
-
-      if (currentStep === 2) {
-        const name = document.getElementById('customerName').value.trim();
-        const phone = document.getElementById('customerPhone').value.trim();
-        const email = document.getElementById('customerEmail').value.trim();
-        
-        let hasError = false;
-
-        if (!name) {
-          showError('nameError');
-          hasError = true;
-        }
-
-        if (!phone || !validatePhone(phone)) {
-          showError('phoneError');
-          hasError = true;
-        }
-
-        if (!email || !validateEmail(email)) {
-          showError('emailError');
-          hasError = true;
-        }
-
-        if (hasError) {
-          return;
-        }
-
-        const fakeEmailDomains = ['test.com', 'fake.com', 'example.com', 'temp.com'];
-        const emailDomain = email.split('@')[1].toLowerCase();
-        if (fakeEmailDomains.includes(emailDomain)) {
-          showError('emailError');
-          document.getElementById('emailError').textContent = 'Vui lòng sử dụng email thật';
-          return;
-        }
-
-        formData.name = name;
-        formData.phone = phone;
-        formData.email = email;
-        formData.details = document.getElementById('projectDetails').value.trim();
-
-        document.getElementById('summaryService').textContent = formData.serviceIcon + ' ' + formData.service;
-        document.getElementById('summaryName').textContent = formData.name;
-        document.getElementById('summaryPhone').textContent = formData.phone;
-        document.getElementById('summaryEmail').textContent = formData.email;
-        document.getElementById('summaryDetails').textContent = formData.details || 'Không có';
-      }
-
-      if (currentStep < totalSteps) {
-        currentStep++;
-        updateStepDisplay();
-      }
-    }
-
-    function prevStep() {
-      if (currentStep > 1) {
-        currentStep--;
-        updateStepDisplay();
-      }
-    }
-
-    function updateStepDisplay() {
-      document.querySelectorAll('.form-step').forEach(step => {
-        step.classList.remove('active');
-      });
-      document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
-
-      document.querySelectorAll('.step').forEach((step, index) => {
-        step.classList.remove('active', 'completed');
-        if (index + 1 < currentStep) {
-          step.classList.add('completed');
-          step.querySelector('.step-circle').innerHTML = '<i class="fas fa-check"></i>';
-        } else if (index + 1 === currentStep) {
-          step.classList.add('active');
-          step.querySelector('.step-circle').textContent = index + 1;
-        } else {
-          step.querySelector('.step-circle').textContent = index + 1;
-        }
-      });
-
-      const progressLine = document.getElementById('progressLine');
-      const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
-      progressLine.style.width = progressPercent + '%';
-    }
-
-    function submitForm() {
-      const submitBtn = document.getElementById('submitBtn');
-      const loadingSpinner = document.getElementById('loadingSpinner');
-      const formButtons = document.querySelector('.form-step.active .form-buttons');
-
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.6';
-      loadingSpinner.style.display = 'block';
-      formButtons.style.display = 'none';
-
-      setTimeout(() => {
-        const currentDate = new Date();
-        const dateStr = currentDate.toLocaleString('vi-VN', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        });
-
-        const orderText = `
-╔════════════════════════════════╗
-║   THÔNG TIN ĐẶT DỊCH VỤ      ║
-╚════════════════════════════════╝
-
-📅 Thời gian: ${dateStr}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${formData.serviceIcon} DỊCH VỤ
-${formData.service}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-👤 THÔNG TIN KHÁCH HÀNG
-
-Họ tên: ${formData.name}
-📞 Số ĐT: ${formData.phone}
-📧 Email: ${formData.email}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📝 MÔ TẢ DỰ ÁN
-${formData.details || 'Chưa có mô tả'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-✅ Vui lòng liên hệ lại để tư vấn chi tiết!
-        `.trim();
-
-        document.getElementById('orderData').innerHTML = orderText.split('\n').map(line => 
-          `<div class="order-data-item">${line || '&nbsp;'}</div>`
-        ).join('');
-
-        document.getElementById('orderForm').style.display = 'none';
-        document.querySelector('.progress-container').style.display = 'none';
-        loadingSpinner.style.display = 'none';
-        document.getElementById('successAnimation').classList.add('active');
-
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      }, 2500);
-    }
-
-    function copyOrderData() {
-      const orderDataText = document.getElementById('orderData').innerText;
-      const copyBtn = document.getElementById('copyBtn');
-
-      navigator.clipboard.writeText(orderDataText).then(() => {
-        const originalHTML = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã copy!</span>';
-        copyBtn.classList.add('copied');
-
-        setTimeout(() => {
-          copyBtn.innerHTML = originalHTML;
-          copyBtn.classList.remove('copied');
-        }, 2500);
-      }).catch(err => {
-        const textarea = document.createElement('textarea');
-        textarea.value = orderDataText;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-
-        const originalHTML = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã copy!</span>';
-        copyBtn.classList.add('copied');
-
-        setTimeout(() => {
-          copyBtn.innerHTML = originalHTML;
-          copyBtn.classList.remove('copied');
-        }, 2500);
-      });
-    }
-
-    function resetForm() {
-      currentStep = 1;
-      formData = {
-        service: '',
-        serviceIcon: '',
-        name: '',
-        phone: '',
-        email: '',
-        details: ''
-      };
-
-      document.getElementById('orderForm').reset();
-      document.getElementById('orderForm').style.display = 'block';
-      document.querySelector('.progress-container').style.display = 'block';
-      document.querySelector('.form-step.active .form-buttons').style.display = 'flex';
-      document.getElementById('successAnimation').classList.remove('active');
-      
-      document.querySelectorAll('.service-option').forEach(opt => {
-        opt.classList.remove('selected');
-      });
-
-      document.querySelectorAll('.error-message').forEach(err => {
-        err.classList.remove('show');
-      });
-
-      updateStepDisplay();
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-
+    // ===== CARD HOVER 3D EFFECT =====
     document.querySelectorAll('.service-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         if (window.innerWidth > 768) {
@@ -2108,6 +906,7 @@ ${formData.details || 'Chưa có mô tả'}
       });
     });
 
+    // ===== INTERSECTION OBSERVER FOR CARDS =====
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
@@ -2125,43 +924,7 @@ ${formData.details || 'Chưa có mô tả'}
       cardObserver.observe(card);
     });
 
-    document.querySelectorAll('.form-input').forEach(input => {
-      input.addEventListener('focus', function() {
-        this.parentElement.style.transform = 'scale(1.02)';
-      });
-
-      input.addEventListener('blur', function() {
-        this.parentElement.style.transform = 'scale(1)';
-      });
-
-      input.addEventListener('input', function() {
-        const errorId = this.id + 'Error';
-        if (this.value.trim()) {
-          showError(errorId, false);
-        }
-      });
-    });
-
-    document.getElementById('customerEmail').addEventListener('blur', function() {
-      const email = this.value.trim();
-      if (email && !validateEmail(email)) {
-        showError('emailError');
-        document.getElementById('emailError').textContent = 'Email không hợp lệ';
-      }
-    });
-
-    document.getElementById('customerPhone').addEventListener('blur', function() {
-      const phone = this.value.trim();
-      if (phone && !validatePhone(phone)) {
-        showError('phoneError');
-      }
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      createParticles();
-      animateCounters();
-    });
-
+    // ===== PARALLAX SCROLL =====
     let scrollPosition = 0;
     window.addEventListener('scroll', () => {
       scrollPosition = window.pageYOffset;
@@ -2170,7 +933,8 @@ ${formData.details || 'Chưa có mô tả'}
       document.querySelector('.grid-bg').style.transform = `translateY(${scrollPosition * 0.2}px)`;
     });
 
-    document.querySelectorAll('.order-btn, .btn').forEach(button => {
+    // ===== BUTTON RIPPLE EFFECT =====
+    document.querySelectorAll('.order-btn, .back-btn').forEach(button => {
       button.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
@@ -2194,6 +958,7 @@ ${formData.details || 'Chưa có mô tả'}
       });
     });
 
+    // Add ripple animation
     const style = document.createElement('style');
     style.textContent = `
       @keyframes ripple {
@@ -2202,13 +967,65 @@ ${formData.details || 'Chưa có mô tả'}
           opacity: 0;
         }
       }
-      
-      .order-btn, .btn {
-        position: relative;
-        overflow: hidden;
-      }
     `;
     document.head.appendChild(style);
+
+    // ===== INITIALIZE =====
+    window.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      animateCounters();
+    });
   </script>
 </body>
-</html>
+</html>">
+            <li><i class="fas fa-check-circle"></i> Responsive design</li>
+            <li><i class="fas fa-check-circle"></i> Tốc độ siêu nhanh</li>
+            <li><i class="fas fa-check-circle"></i> SEO-friendly</li>
+          </ul>
+          <button class="order-btn">
+            <i class="fas fa-rocket"></i>
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Website Động</h3>
+          <p>Phát triển website động với đầy đủ chức năng quản trị, tương tác người dùng.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> Quản trị nội dung</li>
+            <li><i class="fas fa-check-circle"></i> Database integration</li>
+            <li><i class="fas fa-check-circle"></i> Bảo mật cao</li>
+          </ul>
+          <button class="order-btn">
+            <i class="fas fa-rocket"></i>
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>Ứng dụng Web</h3>
+          <p>Xây dựng ứng dụng web phức tạp với React, Vue, API integration và real-time features.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check-circle"></i> SPA/PWA</li>
+            <li><i class="fas fa-check-circle"></i> Real-time updates</li>
+            <li><i class="fas fa-check-circle"></i> API Integration</li>
+          </ul>
+          <button class="order-btn">
+            <i class="fas fa-rocket"></i>
+            <span>Đặt dịch vụ</span>
+          </button>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <h3>Ứng dụng Desktop</h3>
+          <p>Phát triển ứng dụng desktop đa nền tảng với giao diện đẳng cấp và hiệu suất tối ưu.</p>
+          <ul class="service-features
