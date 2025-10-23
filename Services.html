@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dịch Vụ - Trần Huy Hoàng</title>
+  <title>Dịch Vụ Cao Cấp | Trần Huy Hoàng</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #D4AF37;
@@ -24,12 +25,23 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
       background: var(--darker);
       color: var(--platinum);
       overflow-x: hidden;
       letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
     }
 
     /* ===== LOADING SCREEN ===== */
@@ -307,21 +319,8 @@
       100% { transform: translateX(200%); }
     }
 
-    /* ===== LEAVE TRANSITION ===== */
-    body.leaving {
-      animation: pageLeave 0.6s ease-out forwards;
-    }
-
-    @keyframes pageLeave {
-      to {
-        opacity: 0;
-        filter: blur(10px);
-        transform: scale(0.95);
-      }
-    }
-
     /* ===== MAIN CONTENT ===== */
-    .animated-bg {
+    .parallax-bg {
       position: fixed;
       top: 0;
       left: 0;
@@ -331,7 +330,7 @@
       background: radial-gradient(ellipse at top, #1a1a1a 0%, #0a0a0a 50%, #000000 100%);
     }
 
-    .animated-bg::before {
+    .parallax-bg::before {
       content: '';
       position: absolute;
       top: -50%;
@@ -512,11 +511,59 @@
       font-weight: 300;
     }
 
+    /* NEW SERVICES LAYOUT */
+    .services-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+      margin-bottom: 8rem;
+    }
+
+    .category-section {
+      position: relative;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .category-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 2rem;
+      font-size: 2.5rem;
+      color: var(--gold);
+    }
+
+    .category-title {
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: var(--platinum);
+      letter-spacing: 0.05em;
+    }
+
+    .category-subtitle {
+      font-size: 1.2rem;
+      color: rgba(229, 228, 226, 0.6);
+      margin-top: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2.5rem;
-      margin-bottom: 6rem;
     }
 
     .service-card {
@@ -524,7 +571,7 @@
       backdrop-filter: blur(40px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
-      padding: 4rem 3rem;
+      padding: 3rem;
       transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       overflow: hidden;
@@ -534,6 +581,7 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     @keyframes luxurySlideUp {
@@ -543,12 +591,21 @@
       }
     }
 
-    .service-card:nth-child(1) { grid-column: span 6; grid-row: span 2; animation-delay: 0.1s; }
-    .service-card:nth-child(2) { grid-column: span 6; animation-delay: 0.2s; }
-    .service-card:nth-child(3) { grid-column: span 6; animation-delay: 0.3s; }
-    .service-card:nth-child(4) { grid-column: span 12; animation-delay: 0.4s; }
-    .service-card:nth-child(5) { grid-column: span 6; animation-delay: 0.5s; }
-    .service-card:nth-child(6) { grid-column: span 6; animation-delay: 0.6s; }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
 
     .service-card:hover {
       transform: translateY(-25px);
@@ -557,14 +614,14 @@
     }
 
     .service-icon {
-      width: 110px;
-      height: 110px;
-      border-radius: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 2.5rem;
-      font-size: 3.5rem;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
       transition: all 0.8s ease;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
       border: 1px solid rgba(212, 175, 55, 0.3);
@@ -581,12 +638,11 @@
     }
 
     .service-card h3 {
-      font-size: 2.2rem;
-      font-weight: 300;
+      font-size: 1.8rem;
+      font-weight: 400;
       margin-bottom: 1.5rem;
       color: var(--platinum);
       letter-spacing: 0.05em;
-      text-transform: uppercase;
     }
 
     .service-card p {
@@ -625,14 +681,22 @@
       font-size: 1.1rem;
     }
 
+    .service-price {
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
     .order-btn {
       width: 100%;
-      padding: 1.6rem 2.5rem;
+      padding: 1.4rem 2.5rem;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(184, 148, 30, 0.15));
       color: var(--gold);
       border: 1px solid var(--gold);
       border-radius: 50px;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1081,6 +1145,90 @@
       border-color: #0055D4;
     }
 
+    /* FOOTER */
+    .footer {
+      position: relative;
+      background: var(--glass);
+      backdrop-filter: blur(40px);
+      border-top: 1px solid var(--glass-border);
+      padding: 4rem 3rem;
+      text-align: center;
+      margin-top: 8rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: var(--platinum);
+    }
+
+    .footer-tagline {
+      font-size: 1.1rem;
+      color: rgba(229, 228, 226, 0.6);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: rgba(229, 228, 226, 0.7);
+    }
+
+    .contact-item i {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--platinum);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--gold);
+      color: var(--darker);
+      transform: translateY(-5px);
+    }
+
+    .footer-copyright {
+      color: rgba(229, 228, 226, 0.5);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
     @media (max-width: 768px) {
       .content-wrapper {
         padding: 1.5rem;
@@ -1096,17 +1244,7 @@
       }
 
       .service-card {
-        padding: 3rem 2rem;
-      }
-
-      .service-card:nth-child(1),
-      .service-card:nth-child(2),
-      .service-card:nth-child(3),
-      .service-card:nth-child(4),
-      .service-card:nth-child(5),
-      .service-card:nth-child(6) {
-        grid-column: span 1;
-        grid-row: span 1;
+        padding: 2.5rem 2rem;
       }
 
       .loading-luxury-text {
@@ -1137,6 +1275,21 @@
 
       .stat-number {
         font-size: 2.5rem;
+      }
+
+      .category-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .category-icon {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-contact {
+        flex-direction: column;
+        gap: 1.5rem;
       }
     }
   </style>
@@ -1175,7 +1328,7 @@
   </div>
 
   <!-- MAIN CONTENT -->
-  <div class="animated-bg"></div>
+  <div class="parallax-bg"></div>
   <div class="grid-bg"></div>
   <div class="particles" id="particles"></div>
 
@@ -1206,111 +1359,188 @@
         </div>
       </div>
 
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-file-code"></i>
+      <!-- NEW SERVICES LAYOUT -->
+      <div class="services-categories">
+        <!-- Web Development Category -->
+        <div class="category-section">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div>
+              <h2 class="category-title">Phát triển Web</h2>
+              <p class="category-subtitle">Giải pháp web hiện đại và tối ưu</p>
+            </div>
           </div>
-          <h3>Website Tĩnh</h3>
-          <p>Thiết kế website tĩnh đẳng cấp, tối ưu hiệu suất và SEO, phù hợp cho landing page, portfolio.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Responsive design</li>
-            <li><i class="fas fa-check-circle"></i> Tốc độ siêu nhanh</li>
-            <li><i class="fas fa-check-circle"></i> SEO-friendly</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Website Tĩnh', '💻')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
+          
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-file-code"></i>
+              </div>
+              <h3>Website Tĩnh</h3>
+              <p>Thiết kế website tĩnh đẳng cấp, tối ưu hiệu suất và SEO, phù hợp cho landing page, portfolio.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> Responsive design</li>
+                <li><i class="fas fa-check-circle"></i> Tốc độ siêu nhanh</li>
+                <li><i class="fas fa-check-circle"></i> SEO-friendly</li>
+              </ul>
+              <div class="service-price">Từ 5.000.000 VNĐ</div>
+              <button class="order-btn" onclick="openOrderForm('Website Tĩnh', '💻')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h3>Website Động</h3>
+              <p>Phát triển website động với đầy đủ chức năng quản trị, tương tác người dùng.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> Quản trị nội dung</li>
+                <li><i class="fas fa-check-circle"></i> Database integration</li>
+                <li><i class="fas fa-check-circle"></i> Bảo mật cao</li>
+              </ul>
+              <div class="service-price">Từ 15.000.000 VNĐ</div>
+              <button class="order-btn" onclick="openOrderForm('Website Động', '🌐')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h3>Ứng dụng Web</h3>
+              <p>Xây dựng ứng dụng web phức tạp với React, Vue, API integration và real-time features.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> SPA/PWA</li>
+                <li><i class="fas fa-check-circle"></i> Real-time updates</li>
+                <li><i class="fas fa-check-circle"></i> API Integration</li>
+              </ul>
+              <div class="service-price">Từ 25.000.000 VNĐ</div>
+              <button class="order-btn" onclick="openOrderForm('Ứng dụng Web', '🚀')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-laptop-code"></i>
+        <!-- Application Development Category -->
+        <div class="category-section">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div>
+              <h2 class="category-title">Ứng dụng</h2>
+              <p class="category-subtitle">Phát triển ứng dụng đa nền tảng</p>
+            </div>
           </div>
-          <h3>Website Động</h3>
-          <p>Phát triển website động với đầy đủ chức năng quản trị, tương tác người dùng.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Quản trị nội dung</li>
-            <li><i class="fas fa-check-circle"></i> Database integration</li>
-            <li><i class="fas fa-check-circle"></i> Bảo mật cao</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Website Động', '🌐')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
+          
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-desktop"></i>
+              </div>
+              <h3>Ứng dụng Desktop</h3>
+              <p>Phát triển ứng dụng desktop đa nền tảng với giao diện đẳng cấp và hiệu suất tối ưu.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> Cross-platform</li>
+                <li><i class="fas fa-check-circle"></i> UI hiện đại</li>
+                <li><i class="fas fa-check-circle"></i> Tối ưu performance</li>
+              </ul>
+              <div class="service-price">Từ 20.000.000 VNĐ</div>
+              <button class="order-btn" onclick="openOrderForm('Ứng dụng Desktop', '🖥️')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <h3>Ứng dụng Web</h3>
-          <p>Xây dựng ứng dụng web phức tạp với React, Vue, API integration và real-time features.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> SPA/PWA</li>
-            <li><i class="fas fa-check-circle"></i> Real-time updates</li>
-            <li><i class="fas fa-check-circle"></i> API Integration</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Ứng dụng Web', '🚀')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3>AI & Machine Learning</h3>
+              <p>Tích hợp AI, xử lý ảnh, nhận diện khuôn mặt, chatbot và machine learning solutions.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> Computer Vision</li>
+                <li><i class="fas fa-check-circle"></i> NLP Processing</li>
+                <li><i class="fas fa-check-circle"></i> Chatbot AI</li>
+              </ul>
+              <div class="service-price">Từ 30.000.000 VNĐ</div>
+              <button class="order-btn" onclick="openOrderForm('AI & Machine Learning', '🤖')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
 
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-desktop"></i>
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <h3>Giải pháp tùy chỉnh</h3>
+              <p>Tư vấn và phát triển giải pháp công nghệ tùy chỉnh theo yêu cầu riêng của bạn.</p>
+              <ul class="service-features">
+                <li><i class="fas fa-check-circle"></i> Tư vấn miễn phí</li>
+                <li><i class="fas fa-check-circle"></i> Custom development</li>
+                <li><i class="fas fa-check-circle"></i> Support 24/7</li>
+              </ul>
+              <div class="service-price">Liên hệ báo giá</div>
+              <button class="order-btn" onclick="openOrderForm('Giải pháp tùy chỉnh', '⚙️')">
+                <i class="fas fa-rocket"></i>
+                <span>Đặt dịch vụ</span>
+              </button>
+            </div>
           </div>
-          <h3>Ứng dụng Desktop</h3>
-          <p>Phát triển ứng dụng desktop đa nền tảng với giao diện đẳng cấp và hiệu suất tối ưu.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Cross-platform</li>
-            <li><i class="fas fa-check-circle"></i> UI hiện đại</li>
-            <li><i class="fas fa-check-circle"></i> Tối ưu performance</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Ứng dụng Desktop', '🖥️')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3>AI & Machine Learning</h3>
-          <p>Tích hợp AI, xử lý ảnh, nhận diện khuôn mặt, chatbot và machine learning solutions.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Computer Vision</li>
-            <li><i class="fas fa-check-circle"></i> NLP Processing</li>
-            <li><i class="fas fa-check-circle"></i> Chatbot AI</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('AI & Machine Learning', '🤖')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-cogs"></i>
-          </div>
-          <h3>Giải pháp tùy chỉnh</h3>
-          <p>Tư vấn và phát triển giải pháp công nghệ tùy chỉnh theo yêu cầu riêng của bạn.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check-circle"></i> Tư vấn miễn phí</li>
-            <li><i class="fas fa-check-circle"></i> Custom development</li>
-            <li><i class="fas fa-check-circle"></i> Support 24/7</li>
-          </ul>
-          <button class="order-btn" onclick="openOrderForm('Giải pháp tùy chỉnh', '⚙️')">
-            <i class="fas fa-rocket"></i>
-            <span>Đặt dịch vụ</span>
-          </button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3 class="footer-brand">Trần Huy Hoàng</h3>
+      <p class="footer-tagline">Giải pháp công nghệ đẳng cấp cho doanh nghiệp của bạn</p>
+      
+      <div class="footer-contact">
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>0907 316 417</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>tranhuyhoang@example.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Hà Nội, Việt Nam</span>
+        </div>
+      </div>
+      
+      <div class="footer-social">
+        <a href="#" class="social-link">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      
+      <p class="footer-copyright">© 2023 Trần Huy Hoàng. Tất cả các quyền được bảo lưu.</p>
+    </div>
+  </footer>
 
   <!-- MODAL -->
   <div id="orderModal" class="modal">
@@ -1520,6 +1750,13 @@
       
       // Khởi tạo modal
       updateStepDisplay();
+      
+      // Thêm hiệu ứng parallax
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.parallax-bg');
+        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+      });
     });
 
     function createParticles() {
